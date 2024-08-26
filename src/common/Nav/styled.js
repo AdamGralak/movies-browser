@@ -19,9 +19,25 @@ export const StyledNavigation = styled.nav`
     grid-auto-flow: column;
     gap: 20px;
     list-style: none;
-    padding: 24px 40px;
+    padding: 24px 20px;
     margin: 0;
 }
+
+@media (max-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(2, auto);
+        height: 142px;
+        padding: 20px;
+        grid-gap: 10px;
+
+        &>ul {
+            padding: 8px 12px;
+        }
+
+        &>img {
+            width: 170px;
+        }
+    }
 `;
 
 export const StyledButton = styled.button`
@@ -31,13 +47,20 @@ export const StyledButton = styled.button`
     border: 2px solid white;
     background-color: black;
     color: white;
+
+    @media (max-width: 768px) {
+        height: 34px;
+        width: 70px;
+        font-size: 12px;
+    }
 `;
 
 export const StyledInput = styled.input`
     display: grid;
     justify-self: end;
     height: 48px;
-    width: 432px;
+    min-width: 200px;
+    width: 430px;
     border-radius: 24px;
     border: 2px solid white;
     outline: none;
@@ -49,4 +72,14 @@ export const StyledInput = styled.input`
     padding-top: 0px;
     padding-bottom: 0px;
     font-size: 18px;
+
+    
+    @media (max-width: 768px) {
+        grid-column: span 2;
+        margin: 0 auto;
+    }
+    
+    @media (max-width: 1200px) {
+        width: 86%;
+    }
 `;
