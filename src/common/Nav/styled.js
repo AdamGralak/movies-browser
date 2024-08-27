@@ -38,6 +38,33 @@ export const StyledNavigation = styled.nav`
             width: 170px;
         }
     }
+
+    @media (max-width: 380px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+            "logo"
+            "buttons"
+            "input";
+        height: auto;
+        padding: 20px;
+        grid-gap: 10px;
+
+        &>ul {
+            grid-area: buttons;
+            display: grid;
+            grid-auto-flow: column;
+            justify-content: center;
+            gap: 10px;
+            padding: 0;
+        }
+
+        &>img {
+            grid-area: logo;
+            width: 170px;
+            justify-self: center;
+        }
+    }
 `;
 
 export const StyledButton = styled.button`
@@ -73,6 +100,14 @@ export const StyledInput = styled.input`
     padding-bottom: 0px;
     font-size: 18px;
 
+    @media (max-width: 380px) {
+        grid-column: span 2;
+        margin: 0 auto;
+        height: 32px;
+        font-size: 16px;
+        background-size: 18px 18px;
+        background-position:24px 4px;
+    }
     
     @media (max-width: 768px) {
         grid-column: span 2;
