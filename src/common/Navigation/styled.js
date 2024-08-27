@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import icon from "./searchIcon.svg"
+import icon from "../../images/searchIcon.svg"
 
 export const StyledNavigation = styled.nav`
     background-color: black;
@@ -19,8 +19,22 @@ export const StyledNavigation = styled.nav`
     grid-auto-flow: column;
     gap: 20px;
     list-style: none;
-    padding: 24px 20px;
+    padding: 14px 10px;
     margin: 0;
+}
+
+&>li {
+    width: 102px;
+    height: 48px;
+    display: grid;
+    justify-content: center;
+    text-align: center;
+    background-color: black;
+
+    @media (max-width: 768px) {
+        height: 34px;
+        width: 70px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -56,7 +70,7 @@ export const StyledNavigation = styled.nav`
             grid-auto-flow: column;
             justify-content: center;
             gap: 10px;
-            padding: 0;
+            padding-bottom: 8px;
         }
 
         &>img {
@@ -65,22 +79,27 @@ export const StyledNavigation = styled.nav`
             justify-self: center;
         }
     }
-`;
 
-export const StyledButton = styled.button`
-    width: 102px;
-    height: 48px;
-    border-radius: 24px;
-    border: 2px solid white;
-    background-color: black;
-    color: white;
-
-    @media (max-width: 768px) {
-        height: 34px;
-        width: 70px;
-        font-size: 12px;
+    & a {
+        text-decoration: none;
+        color: white;
+        border-radius: 24px;
+        font-size: 18px;
+        transition: 0.8s;
+        padding: 6px;
+    
+        @media (max-width: 768px) {
+        font-size: 14px;
     }
-`;
+    }
+
+    & a.active {
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 24px;
+    }
+    `;
 
 export const StyledInput = styled.input`
     display: grid;
@@ -94,8 +113,8 @@ export const StyledInput = styled.input`
     background-image: url(${icon});
     background-size: 24px 24px;
     background-repeat: no-repeat;
-    background-position:24px 8px;
-    padding-left: 64px;
+    background-position:20px 8px;
+    padding-left: 52px;
     padding-top: 0px;
     padding-bottom: 0px;
     font-size: 18px;
