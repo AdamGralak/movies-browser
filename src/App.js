@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { GlobalStyle } from './globalStyles';
+import { StyledNavigation, StyledInput } from "./common/Navigation/styled";
+import { HashRouter, NavLink, Route, Routes, Navigate } from "react-router-dom";
+import logo from "./images/logo.svg";
+import { PeopleList } from './features/PeopleList';
+import { MoviesList } from './features/MoviesList';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <HashRouter>
+        <StyledNavigation>
+          <img src={logo} alt="logo" />
+          <ul>
+            <li>
+              <NavLink to="/movies">MOVIES</NavLink>
+            </li>
+            <li>
+              <NavLink to="/people">PEOPLE</NavLink>
+            </li>
+          </ul>
+          <StyledInput
+            type="text"
+            placeholder="Search in..."
+          />
+        </StyledNavigation>
+
+        <Routes>
+          <Route path="/movies" element={<MoviesList />} />
+          <Route path="/people" element={<PeopleList />} />
+          <Route path="/" element={<Navigate to="/movies" />} />
+        </Routes>
+        
+      </HashRouter>
+    </>
   );
 }
 
