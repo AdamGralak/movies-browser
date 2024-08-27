@@ -85,7 +85,6 @@ export const StyledNavigation = styled.nav`
         color: white;
         border-radius: 24px;
         font-size: 18px;
-        transition: 0.8s;
         padding: 6px;
     
         @media (max-width: 768px) {
@@ -97,7 +96,6 @@ export const StyledNavigation = styled.nav`
         background-color: black;
         color: white;
         border: 2px solid white;
-        border-radius: 24px;
     }
     `;
 
