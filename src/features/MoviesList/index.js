@@ -1,32 +1,53 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { selectLoading, selectImagePath } from "./moviesListSlice";
+import { movies } from "./MoviesBaseTest";
+import { Movies, Content, Photo, Wrapper, Info, Title, Year, Categories, Category, Bottom, StyledStarIcon, Rates, Votes } from "./styled";
+import { Header } from "../../common/Header/styled";
+import { Container } from "../../common/Container/styled";
 
 export const MoviesList = () => {
-    const movies = useSelector(selectImagePath);
-    const loading = useSelector(selectLoading);
-    const baseURL = "https://image.tmdb.org/t/p/";
-    const size = {
-        small: "w200",
-        large: "w400",
-    }
-
-    if (loading===true) return <p>Loading Page (spinner)</p>;
 
     return (
-        <>
-            {movies.map(movie => {
-                const url = `${baseURL}${size.small}${movie.poster_path}`;
-                console.log(url);
-                return (
-                    <img 
-                        key={movie.id} 
-                        src={url} 
-                        alt={movie.title}
-                    />
-                );
-            })}
-        </>
+        <Container>
+            <Header>Popular movies</Header>
+            <Movies>
+                {movies.map((item) => {
+                    return (
+                        <Content
+                            key={item.id}
+                        >
+                            <Photo src={item.photo} />
+                            <Wrapper>
+                                <Info>
+                                    <Title>
+                                        {item.title}
+                                    </Title>
+                                    <Year>
+                                        {item.year ? item.year : ""}
+                                    </Year>
+                                    <Categories>
+                                        {item.category ? (item.category.map((item) => {
+                                            return (
+                                                <Category>
+                                                    {item}
+                                                </Category>
+                                            )
+                                        })) : ""}
+                                    </Categories>
+                                </Info>
+                                <Bottom>
+                                    <StyledStarIcon />
+                                    <Rates>
+                                        {item.rates}
+                                    </Rates>
+                                    <Votes>
+                                        {item.votes} votes
+                                    </Votes>
+                                </Bottom>
+                            </Wrapper>
+                        </Content>
+                    );
+                })}
+            </Movies>
+        </Container>
     );
 };
 
