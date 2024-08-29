@@ -53,8 +53,8 @@ export const StyledButtonLink = styled(Link)`
   width: 181px;
   height: 51px;
   padding: 16px 24px 16px 24px;
-  color: white;
-  background-color: #0044CC;
+  color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.scienceBlue};
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
