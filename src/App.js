@@ -6,6 +6,7 @@ import logo from "./images/logo.svg";
 import { PeopleList } from './features/PeopleList';
 import { MoviesList } from './features/MoviesList';
 import { Error } from './common/Error';
+import { NoResults } from './common/NoResults';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/movies" element={<MoviesList />} />
           <Route path="/people" element={<PeopleList />} />
           <Route path="/no-connection" element={<Error />} />
+          <Route path="/no-results" element={<NoResults />} />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
         
