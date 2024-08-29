@@ -33,4 +33,9 @@ export const {
     clearMoviesListState,
 } = moviesListSlice.actions;
 
+const selectMoviesState = state => state.movies;
+export const selectMovies = state => selectMoviesState(state).movies;
+export const selectLoading = state => selectMoviesState(state).loading;
+export const selectImagePath = state => selectMoviesState(state).movies.results || [];
+
 export default moviesListSlice.reducer;

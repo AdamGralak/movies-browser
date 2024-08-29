@@ -1,9 +1,11 @@
+import {accessToken} from "../accessToken";
+
 export const getMoviesFromApi = async () => {
   const options = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIzZGJhYjEwYTQ4NTkyNjZjMDFmODAzMmFkNDRmM2ZiMiIsIm5iZiI6MTcyNDg2NzU1NC43NzU5NjUsInN1YiI6IjY2Y2YwNDg1ZjQ1M2U4MzJmNzY5ZjBjMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lnAN-emp0pzEatRjt8kDvIhqhzRLJnQoRBny6pnA-10'
+      Authorization: `Bearer ${accessToken}`,
     }
   };
     

@@ -31,5 +31,9 @@ export const {
     fetchPeopleListError,
     clearPeopleState,
 } = peopleListSlice.actions;
+const selectPeopleState = state => state.people;
+export const selectPeople = state => selectPeopleState(state).people;
+export const selectLoading = state => selectPeopleState(state).loading;
+export const selectPeopleImagePath = state => selectPeopleState(state).people.results || [];
 
 export default peopleListSlice.reducer;
