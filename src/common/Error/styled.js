@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ReactComponent as ExclamationIcon } from "./Combined Shape.svg";
-import { ReactComponent as WarningIcon } from "./Fill 5.svg";
+import { ReactComponent as WarningIcon } from "./WarningIcon.svg";
 
 export const Wrapper = styled.article`
   margin-top: 180px;
@@ -20,16 +19,8 @@ export const IconWrapper = styled.div`
 `;
 
 export const StyledWarningIcon = styled(WarningIcon)`
-  position: relative;
   width: 100px; 
   height: 90.83px;
-`;
-
-export const StyledExclamationIcon = styled(ExclamationIcon)`
-  position: absolute; 
-  top: 43.5%;
-  width: 8.75px;
-  height: 40px; 
 `;
 
 export const ErrorMessage = styled.div`

@@ -6,7 +6,6 @@ import {
   ErrorInfo,
   Wrapper,
   IconWrapper,
-  StyledExclamationIcon,
   StyledWarningIcon,
   ButtonText
 } from "./styled";
@@ -16,7 +15,6 @@ export const Error = () => (
     <Wrapper>
       <IconWrapper>
         <StyledWarningIcon />
-        <StyledExclamationIcon />
       </IconWrapper>
       <ErrorMessage>
         <ErrorHeader>Ooops! Something went wrong...</ErrorHeader>
@@ -31,5 +29,4 @@ export const Error = () => (
       </ErrorMessage>
     </Wrapper>
   </Container>
-
 );
