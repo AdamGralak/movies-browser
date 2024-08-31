@@ -22,13 +22,14 @@ export const Content = styled.div`
     max-width: 325px;
     display: flex;
     flex-direction: column;
-    height: 650px;
+    min-height: 650px;
     padding: 16px;
     border-radius: 5px;
     box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
     cursor: pointer;
     transition: 0.3s;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
+        min-height: 0;
         flex-direction: row;
         height: 210px;
         max-width: none;
