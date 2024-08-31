@@ -10,23 +10,19 @@ export const Wrapper = styled.div`
   text-align: center;
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-    margin-top: 40px;
-    padding: 15px;
+    margin-top: 45px;  
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax3}px) {
-    margin-top: 30px;
-    padding: 10px;
+    margin-top: 35px;  
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
-    margin-top: 20px;
-    padding: 5px;
+    margin-top: 30px;  
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax5}px) {
-    margin-top: 10px;
-    padding: 2px;
+    margin-top: 24px;  
   }
 `;
 
@@ -41,22 +37,23 @@ export const InfoHeader = styled.h1`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
     font-size: 22px;
-    margin: 0 0 0 138px;
+    margin: 0 0 0 200px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax3}px) {
     font-size: 20px;
-    margin: 0 0 0 69px;
+    margin: 0 0 0 100px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
     font-size: 18px;
-    margin: 0 0 0 35px;
+    margin: 0 0 0 40px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax5}px) {
-    font-size: 16px;
-    margin: 0 0 0 18px;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0 0 0 16px;
   }
 `;
 
