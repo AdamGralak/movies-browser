@@ -68,7 +68,7 @@ export const Info = styled.div`
 
 export const Title = styled.div`
     font-size: 22px;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 8px;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
         font-size: 16px;
@@ -110,6 +110,7 @@ export const StyledStarIcon = styled(StarIcon)`
 `;
 
 export const Rates = styled.div`
+    font-weight: 600;
     margin: 0 12px;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
         margin: 0 9px;
