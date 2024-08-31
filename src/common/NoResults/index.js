@@ -1,8 +1,12 @@
-import { Wrapper, Heading, StyledNoResultsIcon } from "./styled";
+import { Container } from "../Container/styled";
+import { Wrapper, InfoHeader, StyledNoResultsIcon } from "./styled";
 
 export const NoResults = ({ searchQuery = "Muan" }) => (
-  <Wrapper>
-    <Heading>Sorry, there are no results for "{searchQuery}"</Heading>
-    <StyledNoResultsIcon />
-  </Wrapper>
+  <Container>
+    <Wrapper>
+      <InfoHeader>Sorry, there are no results for "{searchQuery}"</InfoHeader>
+      <StyledNoResultsIcon />
+    </Wrapper>
+  </Container>
+
 );
