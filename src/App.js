@@ -5,6 +5,7 @@ import { HashRouter, NavLink, Route, Routes, Navigate } from "react-router-dom";
 import logo from "./images/logo.svg";
 import { PeopleList } from './features/PeopleList';
 import { MoviesList } from './features/MoviesList';
+import { Error } from './common/Error';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/movies" element={<MoviesList />} />
           <Route path="/people" element={<PeopleList />} />
+          <Route path="/no-connection" element={<Error />} />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
         
