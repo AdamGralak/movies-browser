@@ -65,17 +65,21 @@ export const StyledNoResultsIcon = styled(NoResultsIcon)`
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
     max-width: 550px;
+    margin-top: 35px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax3}px) {
     max-width: 450px;
+    margin-top: 30px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
     max-width: 350px;
+    margin-top: 27px;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax5}px) {
     max-width: 250px;
+    margin-top: 24px;
   }
 `;
