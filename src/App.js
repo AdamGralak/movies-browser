@@ -11,6 +11,7 @@ import { clearPeopleState, fetchPeopleList } from './features/PeopleList/peopleL
 import Paginator from './common/Paginator';
 import { Error } from './common/Error';
 import { MovieDetails } from './features/MovieDetails';
+import PeopleDetails from './features/PeopleDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
         <Routes>
           <Route path="/movies" element={<MoviesList />} />
           <Route path="/moviepage" element={<MovieDetails />} />
+          <Route path="/personpage" element={<PeopleDetails />} />
           <Route path="/people" element={<PeopleList />} />
           <Route path="/no-connection" element={<Error />} />
           <Route path="/" element={<Navigate to="/movies" />} />
