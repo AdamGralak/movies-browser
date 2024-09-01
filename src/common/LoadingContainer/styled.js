@@ -1,5 +1,5 @@
 import styled, { keyframes } from "styled-components";
-import { ReactComponent as SearchResultsIcon } from "./IconSpinner.svg";
+import { ReactComponent as SpinnerIcon } from "./IconSpinner.svg";
 
 const rotate = keyframes`
   from {
@@ -35,7 +35,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-
 export const InfoHeader = styled.h1`
   margin: 0 0 0 276px;
   font-size: 36px;
@@ -67,7 +66,7 @@ export const InfoHeader = styled.h1`
   }
 `;
 
-export const StyledSearchResultsIcon = styled(SearchResultsIcon)`
+export const StyledSpinnerIcon = styled(SpinnerIcon)`
   width: 100%;
   max-width: 91px;
   height: auto;
@@ -94,5 +93,3 @@ export const StyledSearchResultsIcon = styled(SearchResultsIcon)`
     margin-top: 24px; 
   }
 `;
-
-

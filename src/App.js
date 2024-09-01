@@ -11,7 +11,8 @@ import { clearPeopleState, fetchPeopleList } from './features/PeopleList/peopleL
 import Paginator from './common/Paginator';
 import { Error } from './common/Error';
 import { NoResults } from './common/NoResults';
-import { SearchResults } from './common/SearchResults';
+import { SearchResults } from './common/LoadingContainer/SearchResults';
+import { Loading } from './common/LoadingContainer/Loading';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,7 @@ function App() {
           <Route path="/no-connection" element={<Error />} />
           <Route path="/no-results" element={<NoResults />} />
           <Route path="/search-results" element={<SearchResults />} />
+          <Route path="/loading" element={<Loading />} />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
       </HashRouter>
