@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { clearMoviesListState, fetchMoviesList } from './features/MoviesList/moviesListSlice';
 import { clearPeopleState, fetchPeopleList } from './features/PeopleList/peopleListSlice';
 import Paginator from './common/Paginator';
+import { Error } from './common/Error';
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +43,7 @@ function App() {
         <Routes>
           <Route path="/movies" element={<MoviesList />} />
           <Route path="/people" element={<PeopleList />} />
+          <Route path="/no-connection" element={<Error />} />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
       </HashRouter>
