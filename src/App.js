@@ -10,6 +10,7 @@ import { clearMoviesListState, fetchMoviesList } from './features/MoviesList/mov
 import { clearPeopleState, fetchPeopleList } from './features/PeopleList/peopleListSlice';
 import Paginator from './common/Paginator';
 import { Error } from './common/Error';
+import { NoResults } from './common/NoResults';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
           <Route path="/movies" element={<MoviesList />} />
           <Route path="/people" element={<PeopleList />} />
           <Route path="/no-connection" element={<Error />} />
+          <Route path="/no-results" element={<NoResults />} />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
       </HashRouter>
