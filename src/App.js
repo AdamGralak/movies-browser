@@ -8,6 +8,7 @@ import { MoviesList } from './features/MoviesList';
 import { useDispatch } from 'react-redux';
 import { clearMoviesListState, fetchMoviesList } from './features/MoviesList/moviesListSlice';
 import { clearPeopleState, fetchPeopleList } from './features/PeopleList/peopleListSlice';
+import Paginator from './common/Paginator';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ function App() {
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
       </HashRouter>
+      <Paginator/>
     </>
   );
 }

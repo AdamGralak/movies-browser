@@ -6,15 +6,15 @@ import { selectImagePath, selectLoading } from "./moviesListSlice";
 
 export const MoviesList = () => {
 
-        const movies = useSelector(selectImagePath);
-        const loading = useSelector(selectLoading);
-        const baseURL = "https://image.tmdb.org/t/p/";
-        const size = {
-            small: "w200",
-            large: "w400",
-        }
+    const movies = useSelector(selectImagePath);
+    const loading = useSelector(selectLoading);
+    const baseURL = "https://image.tmdb.org/t/p/";
+    const size = {
+        small: "w200",
+        large: "w400",
+    }
 
-    if (loading===true) return <p>Loading Page (spinner)</p>;
+    if (loading === true) return <p>Loading Page (spinner)</p>;
 
     return (
         <Container>
@@ -26,10 +26,10 @@ export const MoviesList = () => {
                         <Content
                             key={movie.id}
                         >
-                            <Photo 
-                            key={movie.id} 
-                            src={url} 
-                            alt={movie.title} 
+                            <Photo
+                                key={movie.id}
+                                src={url}
+                                alt={movie.title}
                             />
                             <Wrapper>
                                 <Info>
