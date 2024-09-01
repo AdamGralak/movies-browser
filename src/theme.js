@@ -8,6 +8,7 @@ export const theme = {
     },
     breakpoint: {
         mobileMax: 1225,
+        mobileMax1: 1040,
         mobileMax2: 850,
         mobileMax3: 520,
         mobileMax4: 476,
