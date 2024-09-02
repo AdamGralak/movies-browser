@@ -1,4 +1,4 @@
-import { Container } from "../Container/styled";
+import { Container } from "../../Container/styled";
 import {
   StyledButtonLink,
   ErrorMessage,
@@ -10,7 +10,7 @@ import {
   ButtonText
 } from "./styled";
 
-export const Error = () => (
+export const ConnectionError = () => (
   <Container>
     <Wrapper>
       <IconWrapper>

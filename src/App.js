@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 import { clearMoviesListState, fetchMoviesList } from './features/MoviesList/moviesListSlice';
 import { clearPeopleState, fetchPeopleList } from './features/PeopleList/peopleListSlice';
 import Paginator from './common/Paginator';
-import { Error } from './common/Error';
+import { ConnectionError } from './common/Message/ConnectionError';
 import { NoResults } from './common/Message/MessageContainer/NoResults';
 import { SearchResults } from './common/Message/MessageContainer/SearchResults';
 import { Loading } from './common/Message/MessageContainer/Loading';
@@ -46,7 +46,7 @@ function App() {
         <Routes>
           <Route path="/movies" element={<MoviesList />} />
           <Route path="/people" element={<PeopleList />} />
-          <Route path="/no-connection" element={<Error />} />
+          <Route path="/no-connection" element={<ConnectionError />} />
           <Route path="/no-results" element={<NoResults />} />
           <Route path="/search-results" element={<SearchResults />} />
           <Route path="/loading" element={<Loading />} />
