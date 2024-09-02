@@ -1,20 +1,27 @@
 import {
     BackgroundBlack,
     BackgroundImage,
-    SmallerFont,
+    HeadTitle,
+    RatingWrapper,
+    HeadRatingInfo,
+    HeadStyledStarIcon,
+    HeadRates,
+    HeadVotes,
+    HeadSmallerFont,
     MovieInfo,
     Poster,
     Wrapper,
-    Info,
     Title,
     Year,
+    ProductionRelease,
     GreyText,
     Categories,
     Category,
     RatingInfo,
     StyledStarIcon,
     Rates,
-    Votes,
+    SmallerFont,
+    Description,
     People,
     Content,
     Photo,
@@ -25,68 +32,75 @@ import examplePhoto from "./example.png"
 import exampleBackground from "./exampleBackground.jpg"
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
+import { Section } from "../../common/Section/styled";
 
 export const MovieDetails = () => {
 
     return (
         <>
             <BackgroundBlack>
-                <BackgroundImage bgImage={exampleBackground}>
-                    <Header>Tytuł</Header>
-                    <RatingInfo>
-                        <StyledStarIcon />
-                        <Rates>7,8 <SmallerFont>/ 10</SmallerFont></Rates>
-                        <Votes>335 votes</Votes>
-                    </RatingInfo>
+                <BackgroundImage bgimage={exampleBackground}>
+                    <HeadTitle>Tytuł long long long long</HeadTitle>
+                    <RatingWrapper>
+                        <HeadRatingInfo>
+                            <HeadStyledStarIcon />
+                            <HeadRates>7,8</HeadRates>
+                            <HeadSmallerFont>/ 10</HeadSmallerFont>
+                        </HeadRatingInfo>
+                        <HeadVotes>335 votes</HeadVotes>
+                    </RatingWrapper>
                 </BackgroundImage>
             </BackgroundBlack>
             <Container>
-                <MovieInfo>
-                    <Poster src={examplePhoto} />
-                    <Wrapper>
-                        <Info>
+                <Section>
+                    <MovieInfo>
+                        <Poster src={examplePhoto} />
+                        <Wrapper>
                             <Title>
-                                Tytuł
+                                Tytuł long long long long
                             </Title>
                             <Year>
                                 Rok produkcji
                             </Year>
-                            <GreyText>Production:</GreyText> miejsce produkcji<br />
-                            <GreyText>Release date:</GreyText> data premiery
+                            <ProductionRelease>
+                                <GreyText>Production:</GreyText> miejsce produkcji<br />
+                                <GreyText>Release date:</GreyText> data premiery
+                            </ProductionRelease>
                             <Categories> {/* tutaj mapowanie  */}
                                 <Category>
                                     kategoria
                                 </Category>
                             </Categories>
-                        </Info>
-                        <RatingInfo>
-                            <StyledStarIcon />
-                            <Rates>
-                                7,8 <SmallerFont>/ 10</SmallerFont>
-                            </Rates>
-                            <Votes>
-                                335 votes
-                            </Votes>
-                        </RatingInfo>
-                        <p>opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis opis </p>
-                    </Wrapper>
-                </MovieInfo>
-                <Header>Cast</Header>
-                <People> {/* tutaj mapowanie  */}
-                    <Content>
-                        <Photo src={examplePhoto} />
-                        <Name>Imię i nazwisko</Name>
-                        <Role>Rola</Role>
-                    </Content>
-                </People>
-                <Header>Crew</Header>
-                <People> {/* tutaj mapowanie  */}
-                    <Content>
-                        <Photo src={examplePhoto} />
-                        <Name>Imię i nazwisko</Name>
-                        <Role>Rola</Role>
-                    </Content>
-                </People>
+                            <RatingInfo>
+                                <StyledStarIcon />
+                                <Rates>7,8</Rates><SmallerFont disabledonmobile="true">/ 10</SmallerFont>
+                                <SmallerFont>335 votes</SmallerFont>
+                            </RatingInfo>
+                        </Wrapper>
+                        <Description>A young Chinese maiden disguises herself as a male warrior in order to save her father.
+                            Disguises herself as a male warrior in order to save her father.  A young Chinese maiden disguises herself as a male warrior in order to save her father.</Description>
+                    </MovieInfo>
+                </Section>
+                <Section>
+                    <Header>Cast</Header>
+                    <People> {/* tutaj mapowanie  */}
+                        <Content>
+                            <Photo src={examplePhoto} />
+                            <Name>Imię i nazwisko</Name>
+                            <Role>Rola</Role>
+                        </Content>
+                    </People>
+                </Section>
+                <Section>
+                    <Header>Crew</Header>
+                    <People> {/* tutaj mapowanie  */}
+                        <Content>
+                            <Photo src={examplePhoto} />
+                            <Name>Imię i nazwisko</Name>
+                            <Role>Rola</Role>
+                        </Content>
+                    </People>
+                </Section>
             </Container>
         </>
     );

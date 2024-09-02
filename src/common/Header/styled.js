@@ -6,7 +6,7 @@ export const Header = styled.h1`
     margin: 0;
     margin-bottom: 24px;
     padding: 0;
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax21}px) {
         font-size: 18px;
         margin-bottom: 12px;
     }
