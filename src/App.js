@@ -8,7 +8,6 @@ import { MoviesList } from './features/MoviesList';
 import { useDispatch } from 'react-redux';
 import { clearMoviesListState, fetchMoviesList } from './features/MoviesList/moviesListSlice';
 import { clearPeopleState, fetchPeopleList } from './features/PeopleList/peopleListSlice';
-import Paginator from './common/Paginator';
 import { Error } from './common/Error';
 import { NoResults } from './common/NoResults';
 import { SearchResults } from './common/SearchResults';
@@ -30,7 +29,7 @@ function App() {
             }}>
               <NavLink to="/movies">MOVIES</NavLink>
             </li>
-            <li onClick={()=>{
+            <li onClick={() => {
               dispatch(fetchPeopleList());
               dispatch(clearMoviesListState());
             }}>
@@ -51,7 +50,6 @@ function App() {
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
       </HashRouter>
-      <Paginator/>
     </>
   );
 }
