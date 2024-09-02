@@ -1,18 +1,28 @@
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMovies, selectLoading, selectTotalPages, fetchMoviesList } from "./moviesListSlice";
 import { Movies, Content, Photo, Wrapper, Info, Title, Year, Categories, Category, Bottom, StyledStarIcon, Rates, Votes } from "./styled";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
-import { useSelector } from "react-redux";
-import { selectImagePath, selectLoading } from "./moviesListSlice";
+import Paginator from "../../common/Paginator";
 
 export const MoviesList = () => {
 
-    const movies = useSelector(selectImagePath);
+    const dispatch = useDispatch();
+    const movies = useSelector(selectMovies);
     const loading = useSelector(selectLoading);
+    const totalPages = useSelector(selectTotalPages);
     const baseURL = "https://image.tmdb.org/t/p/";
     const size = {
         small: "w200",
         large: "w400",
     }
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const handlePageChange = (newPage) => {
+        setCurrentPage(newPage);
+        dispatch(fetchMoviesList(newPage));
+    };
 
     if (loading === true) return <p>Loading Page (spinner)</p>;
 
@@ -63,6 +73,11 @@ export const MoviesList = () => {
                     );
                 })}
             </Movies>
+            <Paginator
+                totalPages={totalPages}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+            />
         </Container>
     );
 };

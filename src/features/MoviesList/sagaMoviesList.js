@@ -2,10 +2,10 @@ import { call, put, delay, takeLatest } from "redux-saga/effects";
 import { fetchMoviesList, fetchMoviesListSuccess, fetchMoviesListError } from "./moviesListSlice";
 import { getMoviesFromApi } from "./getMoviesList";
 
-function* fetchMoviesListHandler() {
+function* fetchMoviesListHandler(action) {
     try {
         yield delay(600);
-        const movies = yield call(getMoviesFromApi);
+        const movies = yield call(getMoviesFromApi, action.payload);
         yield put(fetchMoviesListSuccess(movies));
     } catch (error) {
         yield put(fetchMoviesListError());

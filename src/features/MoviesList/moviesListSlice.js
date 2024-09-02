@@ -3,8 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     loading: false,
     movies: [],
+    totalPages: 0,
 };
-
 
 const moviesListSlice = createSlice({
     name: 'movies',
@@ -16,8 +16,9 @@ const moviesListSlice = createSlice({
         fetchMoviesListError: (state) => {
             state.loading = true;
         },
-        fetchMoviesListSuccess: (state, { payload: movies }) => {
-            state.movies = movies;
+        fetchMoviesListSuccess: (state, { payload }) => {
+            state.movies = payload.results;
+            state.totalPages = payload.total_pages;
             state.loading = false;
         },
         clearMoviesListState: (state) => {
@@ -35,7 +36,8 @@ export const {
 
 const selectMoviesState = state => state.movies;
 export const selectMovies = state => selectMoviesState(state).movies;
+export const selectImagePath = state => selectMoviesState(state).movies || [];
 export const selectLoading = state => selectMoviesState(state).loading;
-export const selectImagePath = state => selectMoviesState(state).movies.results || [];
+export const selectTotalPages = state => selectMoviesState(state).totalPages;
 
 export default moviesListSlice.reducer;
