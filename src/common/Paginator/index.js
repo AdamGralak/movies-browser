@@ -1,4 +1,9 @@
-import { StyledPaginator, Button, PageInfo } from "./styled";
+import { StyledPaginator, PaginatorButton, PageInfo, PageText, PageNumber, BackwardForward } from "./styled";
+import FirstPageIcon from './First.svg';
+import PreviousPageIcon from './Previous.svg';
+import NextPageIcon from './Next.svg';
+import LastPageIcon from './Last.svg';
+
 
 const Paginator = ({ totalPages, currentPage, onPageChange }) => {
 
@@ -24,13 +29,28 @@ const Paginator = ({ totalPages, currentPage, onPageChange }) => {
 
     return (
         <StyledPaginator>
-            <Button onClick={handleFirstPage} disabled={currentPage === 1}>Przejdź do pierwszej strony</Button>
-            <Button onClick={handlePreviousPage} disabled={currentPage === 1}>Poprzednia strona</Button>
+            <BackwardForward>
+                <PaginatorButton onClick={handleFirstPage} disabled={currentPage === 1}>
+                    <img src={FirstPageIcon} alt="First page" />
+                </PaginatorButton>
+                <PaginatorButton onClick={handlePreviousPage} disabled={currentPage === 1}>
+                    <img src={PreviousPageIcon} alt="Previous page" />
+                </PaginatorButton>
+            </BackwardForward>
             <PageInfo>
-                Page {currentPage} of {totalPages}
+                <PageText>Page</PageText>
+                <PageNumber>{currentPage}</PageNumber>
+                <PageText>of</PageText>
+                <PageNumber>{totalPages}</PageNumber>
             </PageInfo>
-            <Button onClick={handleNextPage} disabled={currentPage === totalPages}>Następna strona</Button>
-            <Button onClick={handleLastPage} disabled={currentPage === totalPages}>Przejdź do ostatniej strony</Button>
+            <BackwardForward>
+                <PaginatorButton onClick={handleNextPage} disabled={currentPage === totalPages}>
+                    <img src={NextPageIcon} alt="Next page" />
+                </PaginatorButton>
+                <PaginatorButton onClick={handleLastPage} disabled={currentPage === totalPages}>
+                    <img src={LastPageIcon} alt="Last page" />
+                </PaginatorButton>
+            </BackwardForward>
         </StyledPaginator>
     );
 };
