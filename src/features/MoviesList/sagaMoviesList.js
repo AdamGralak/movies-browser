@@ -6,7 +6,17 @@ function* fetchMoviesListHandler(action) {
     try {
         yield delay(600);
         const movies = yield call(getMoviesFromApi, action.payload);
-        yield put(fetchMoviesListSuccess(movies));
+
+        if (movies && movies.results && movies.results.length > 0) {
+            yield put(fetchMoviesListSuccess({
+                results: movies.results,
+                total_pages: movies.total_pages,
+                isEmpty: false,
+            }));
+        } else {
+            yield put(fetchMoviesListSuccess({ results: [], total_pages: 0, isEmpty: true }));
+            yield call(alert, "Brak wyników na tej stronie");
+        }
     } catch (error) {
         yield put(fetchMoviesListError());
         yield call(alert, "Coś poszło nie tak");

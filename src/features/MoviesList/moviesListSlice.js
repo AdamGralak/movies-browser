@@ -4,6 +4,7 @@ const initialState = {
     loading: false,
     movies: [],
     totalPages: 0,
+    isEmpty: false,
 };
 
 const moviesListSlice = createSlice({
@@ -14,12 +15,13 @@ const moviesListSlice = createSlice({
             state.loading = true;
         },
         fetchMoviesListError: (state) => {
-            state.loading = true;
+            state.loading = false;
         },
         fetchMoviesListSuccess: (state, { payload }) => {
-            state.movies = payload.results;
-            state.totalPages = payload.total_pages;
             state.loading = false;
+            state.movies = payload.results || [];
+            state.totalPages = payload.total_pages || 0;
+            state.isEmpty = payload.isEmpty;
         },
         clearMoviesListState: (state) => {
             Object.assign(state, initialState);
@@ -39,5 +41,6 @@ export const selectMovies = state => selectMoviesState(state).movies;
 export const selectImagePath = state => selectMoviesState(state).movies || [];
 export const selectLoading = state => selectMoviesState(state).loading;
 export const selectTotalPages = state => selectMoviesState(state).totalPages;
+export const selectIsEmpty = state => selectMoviesState(state).isEmpty;
 
 export default moviesListSlice.reducer;
