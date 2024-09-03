@@ -117,8 +117,6 @@ export const MovieInfo = styled.div`
     padding: 40px;
     border-radius: 5px;
     box-shadow: 0px 4px 12px 0px rgba(186, 199, 213, 0.5);
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-    }
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax21}px) {
         min-height: 0;
         grid-template-columns: 1fr 1.08fr;
@@ -141,8 +139,6 @@ export const Poster = styled.img`
 `;
 
 export const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
     height: 100%;
     margin-left: 40px;
     grid-column: 2 / 3;
