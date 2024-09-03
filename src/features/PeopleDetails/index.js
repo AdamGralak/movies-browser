@@ -1,22 +1,10 @@
 import {
     PersonInfo,
-    Poster,
-    Wrapper,
     Info,
     Name,
     GreyText,
     Birth,
-    Categories,
-    Category,
-    RatingInfo,
-    StyledStarIcon,
-    Rates,
-    Votes,
-    Movies,
-    Content,
     Photo,
-    Title,
-    Year,
     DisabledOnMobile,
     Description,
 } from "./styled";
@@ -24,9 +12,18 @@ import examplePhoto from "./example.png"
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
+import MoviesList from "../MoviesList";
+import { useSelector } from "react-redux";
+import { selectImagePath } from "../MoviesListPage/moviesListSlice";
 
 
 export const PeopleDetails = () => {
+    const movies = useSelector(selectImagePath);
+    const size = {
+        small: "w200",
+        large: "w400",
+    }
+    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
 
     return (
         <Container>
@@ -54,59 +51,19 @@ export const PeopleDetails = () => {
             </Section>
             <Section>
                 <Header>Movies - cast (ilość)</Header>
-                <Movies> {/* tutaj mapowanie  */}
-                    <Content>
-                        <Poster src={examplePhoto} />
-                        <Wrapper>
-                            <div>
-                                <Title>tytuł</Title>
-                                <Year><DisabledOnMobile>rola i (</DisabledOnMobile>rok przodukcji<DisabledOnMobile>)</DisabledOnMobile></Year>
-                                <Categories> {/* tutaj mapowanie  */}
-                                    <Category>
-                                        kategoria
-                                    </Category>
-                                </Categories>
-                            </div>
-                            <RatingInfo>
-                                <StyledStarIcon />
-                                <Rates>
-                                    7,8
-                                </Rates>
-                                <Votes>
-                                    335 votes
-                                </Votes>
-                            </RatingInfo>
-                        </Wrapper>
-                    </Content>
-                </Movies>
+                <MoviesList
+                    movies={movies}
+                    baseurl={baseURL}
+                    peopledetails={(true)}
+                />
             </Section>
             <Section>
                 <Header>Movies - crew (ilość)</Header>
-                <Movies> {/* tutaj mapowanie  */}
-                    <Content>
-                        <Poster src={examplePhoto} />
-                        <Wrapper>
-                            <div>
-                                <Title>tytuł</Title>
-                                <Year><DisabledOnMobile>rola i (</DisabledOnMobile>rok przodukcji<DisabledOnMobile>)</DisabledOnMobile></Year>
-                                <Categories> {/* tutaj mapowanie  */}
-                                    <Category>
-                                        kategoria
-                                    </Category>
-                                </Categories>
-                            </div>
-                            <RatingInfo>
-                                <StyledStarIcon />
-                                <Rates>
-                                    7,8
-                                </Rates>
-                                <Votes>
-                                    335 votes
-                                </Votes>
-                            </RatingInfo>
-                        </Wrapper>
-                    </Content>
-                </Movies>
+                <MoviesList
+                    movies={movies}
+                    baseurl={baseURL}
+                    peopledetails={(true)}
+                />
             </Section>
         </Container>
     );

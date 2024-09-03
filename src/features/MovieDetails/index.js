@@ -22,19 +22,23 @@ import {
     Rates,
     SmallerFont,
     Description,
-    People,
-    Content,
-    Photo,
-    Name,
-    Role,
 } from "./styled";
 import examplePhoto from "./example.png"
 import exampleBackground from "./exampleBackground.jpg"
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
+import { useSelector } from "react-redux";
+import { selectPeopleImagePath } from "../PeopleListPage/peopleListSlice";
+import PeopleList from "../PeopleList";
 
 export const MovieDetails = () => {
+    const people = useSelector(selectPeopleImagePath);
+    const size = {
+        small: "w200",
+        large: "w400",
+    };
+    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
 
     return (
         <>
@@ -83,23 +87,19 @@ export const MovieDetails = () => {
                 </Section>
                 <Section>
                     <Header>Cast</Header>
-                    <People> {/* tutaj mapowanie  */}
-                        <Content>
-                            <Photo src={examplePhoto} />
-                            <Name>Imię i nazwisko</Name>
-                            <Role>Rola</Role>
-                        </Content>
-                    </People>
+                    <PeopleList
+                        people= {people}
+                        baseurl= {baseURL}
+                        moviedetails= {(true)} 
+                    />
                 </Section>
                 <Section>
                     <Header>Crew</Header>
-                    <People> {/* tutaj mapowanie  */}
-                        <Content>
-                            <Photo src={examplePhoto} />
-                            <Name>Imię i nazwisko</Name>
-                            <Role>Rola</Role>
-                        </Content>
-                    </People>
+                    <PeopleList
+                        people= {people}
+                        baseurl= {baseURL}
+                        moviedetails= {(true)} 
+                    />
                 </Section>
             </Container>
         </>

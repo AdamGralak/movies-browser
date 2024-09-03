@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ReactComponent as StarIcon } from '../../images/StarIcon.svg';
 
 export const People = styled.div`
     display: grid;
@@ -59,6 +58,20 @@ export const Name = styled.div`
     height: 100%;
     margin-top: 16px;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
-       
+        margin-top: 16px;
+    }
+`;
+
+export const Role = styled.div`
+    font-weight: 500;
+    color: ${({ theme }) => theme.color.darkerGrey};
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
+    margin-top: 16px;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
+        margin-top: 8px;
     }
 `;
