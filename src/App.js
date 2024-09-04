@@ -12,6 +12,8 @@ import Paginator from './common/Paginator';
 import { Error } from './common/Error';
 import { MovieDetails } from './features/MovieDetails';
 import PeopleDetails from './features/PeopleDetails';
+import { NoResults } from './common/NoResults';
+import { SearchResults } from './common/SearchResults';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +50,8 @@ function App() {
           <Route path="/personpage" element={<PeopleDetails />} />
           <Route path="/people" element={<PeopleListPage />} />
           <Route path="/no-connection" element={<Error />} />
+          <Route path="/no-results" element={<NoResults />} />
+          <Route path="/search-results" element={<SearchResults />} />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
       </HashRouter>
