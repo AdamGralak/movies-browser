@@ -28,12 +28,10 @@ import exampleBackground from "./exampleBackground.jpg"
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
-import { useSelector } from "react-redux";
-import { selectPeopleImagePath } from "../PeopleListPage/peopleListSlice";
 import PeopleList from "../PeopleList";
 
 export const MovieDetails = () => {
-    const people = useSelector(selectPeopleImagePath);
+    const people = undefined;
     const size = {
         small: "w200",
         large: "w400",

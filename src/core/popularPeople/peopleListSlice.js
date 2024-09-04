@@ -19,9 +19,6 @@ const peopleListSlice = createSlice({
             state.people = people;
             state.loading = false;
         },
-        clearPeopleState: (state) => {
-            Object.assign(state, initialState);
-        }
     },
 });
 
@@ -29,7 +26,6 @@ export const {
     fetchPeopleList,
     fetchPeopleListSuccess,
     fetchPeopleListError,
-    clearPeopleState,
 } = peopleListSlice.actions;
 const selectPeopleState = state => state.people;
 export const selectPeople = state => selectPeopleState(state).people;

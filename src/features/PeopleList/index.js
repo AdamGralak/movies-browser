@@ -1,7 +1,12 @@
 import React from "react";
 import { People, Content, Photo, Name, Role } from "./styled";
+import { fetchPeopleDetails } from "../../core/peopleDetails/peopleDetailsSlice";
+import { useDispatch } from "react-redux";
 
 export const PeopleList = ( { people , baseurl, renderinmoviedetails } ) => {
+
+    const dispatch = useDispatch();
+    dispatch(fetchPeopleDetails(81866));
 
     return (
         <People>

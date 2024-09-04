@@ -1,7 +1,7 @@
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { useSelector } from "react-redux";
-import { selectImagePath, selectLoading } from "./moviesListSlice";
+import { selectImagePath, selectLoading } from "../../core/moviesListPage/moviesListSlice";
 import MoviesList from "../MoviesList";
 
 export const MoviesListPage = () => {

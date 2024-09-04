@@ -13,12 +13,9 @@ import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
 import MoviesList from "../MoviesList";
-import { useSelector } from "react-redux";
-import { selectImagePath } from "../MoviesListPage/moviesListSlice";
-
 
 export const PeopleDetails = () => {
-    const movies = useSelector(selectImagePath);
+    const movies = undefined;
     const size = {
         small: "w200",
         large: "w400",

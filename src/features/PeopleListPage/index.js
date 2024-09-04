@@ -1,5 +1,5 @@
 import React from "react";
-import { selectLoading, selectPeopleImagePath } from "./peopleListSlice";
+import { selectLoading, selectPeopleImagePath } from "../../core/popularPeople/peopleListSlice";
 import { useSelector } from "react-redux";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";

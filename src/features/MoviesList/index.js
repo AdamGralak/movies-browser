@@ -1,3 +1,4 @@
+import { useDispatch } from "react-redux";
 import { 
     Movies, 
     Content, 
@@ -14,8 +15,10 @@ import {
     Rates, 
     Votes 
 }  from "./styled";
+import { fetchMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
 export const MoviesList = ({ movies, baseurl, renderinpeopledetails }) => {
-
+    const dispatch = useDispatch();
+    dispatch(fetchMovieDetails(1022789));
     return (
         <Movies>
             {movies.map((movie) => {

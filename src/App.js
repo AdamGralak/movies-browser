@@ -6,8 +6,8 @@ import logo from "./images/logo.svg";
 import { PeopleListPage } from './features/PeopleListPage';
 import { MoviesListPage } from './features/MoviesListPage';
 import { useDispatch } from 'react-redux';
-import { clearMoviesListState, fetchMoviesList } from './features/MoviesListPage/moviesListSlice';
-import { clearPeopleState, fetchPeopleList } from './features/PeopleListPage/peopleListSlice';
+import { fetchMoviesList } from './core/moviesListPage/moviesListSlice';
+import { fetchPeopleList } from './core/popularPeople/peopleListSlice';
 import Paginator from './common/Paginator';
 import { Error } from './common/Error';
 import { MovieDetails } from './features/MovieDetails';
@@ -26,16 +26,10 @@ function App() {
         <StyledNavigation>
           <img src={logo} alt="logo" />
           <ul>
-            <li onClick={() => {
-              dispatch(fetchMoviesList());
-              dispatch(clearPeopleState());
-            }}>
+            <li onClick={() => { dispatch(fetchMoviesList()); }}>
               <NavLink to="/movies">MOVIES</NavLink>
             </li>
-            <li onClick={()=>{
-              dispatch(fetchPeopleList());
-              dispatch(clearMoviesListState());
-            }}>
+            <li onClick={() => { dispatch(fetchPeopleList()); }}>
               <NavLink to="/people">PEOPLE</NavLink>
             </li>
           </ul>
@@ -54,8 +48,8 @@ function App() {
           <Route path="/search-results" element={<SearchResults />} />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
-      </HashRouter>
-      <Paginator/>
+      </HashRouter >
+      <Paginator />
     </>
   );
 }

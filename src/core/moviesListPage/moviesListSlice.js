@@ -20,9 +20,6 @@ const moviesListSlice = createSlice({
             state.movies = movies;
             state.loading = false;
         },
-        clearMoviesListState: (state) => {
-            Object.assign(state, initialState);
-        }
     },
 });
 
@@ -30,7 +27,6 @@ export const {
     fetchMoviesList,
     fetchMoviesListSuccess,
     fetchMoviesListError,
-    clearMoviesListState,
 } = moviesListSlice.actions;
 
 const selectMoviesState = state => state.movies;
