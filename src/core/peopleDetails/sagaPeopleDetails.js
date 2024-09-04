@@ -8,7 +8,7 @@ function* fetchPeopleDetailsHandler(action) {
         const personID = action.payload;
         const peopleDetails = yield call(getPeopleDetailsFromApi, personID);
         const peopleCredits = yield call(getPeopleCreditsFromApi, personID);
-        yield delay(400);
+        
         yield put(fetchPeopleDetailsSucces(peopleDetails));
         yield put(fetchPeopleCreditsSucces(peopleCredits));
     } catch (error) {

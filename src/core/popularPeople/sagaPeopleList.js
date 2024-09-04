@@ -5,7 +5,7 @@ import { getPeopleFromApi } from "./getPeopleList";
 function* fetchPeopleListHandler() {
     try {
         const people = yield call(getPeopleFromApi);
-        yield delay(400);
+        
         yield put(fetchPeopleListSuccess(people));
     } catch (error) {
         yield put(fetchPeopleListError());

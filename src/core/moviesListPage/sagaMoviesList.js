@@ -4,7 +4,7 @@ import { getMoviesFromApi } from "./getMoviesList";
 
 function* fetchMoviesListHandler() {
     try {
-        yield delay(400);
+        
         const movies = yield call(getMoviesFromApi);
         yield put(fetchMoviesListSuccess(movies));
     } catch (error) {
