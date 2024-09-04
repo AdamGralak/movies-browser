@@ -76,6 +76,12 @@ export const Title = styled.div`
     }
 `;
 
+export const DisabledOnMobile = styled.span`
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax21}px) {
+        display: none;
+    }
+`;
+
 export const Year = styled.div`
     color: ${({ theme }) => theme.color.darkerGrey};
 `;
