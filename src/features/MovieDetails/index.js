@@ -29,14 +29,14 @@ import { Section } from "../../common/Section/styled";
 import PeopleList from "../PeopleList";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMovieDetails, selectMovieCredits, selectMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
+import { fetchMovieDetails, selectLoading, selectMovieCredits, selectMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
 import { useEffect } from "react";
 import { resetMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
 
 export const MovieDetails = () => {
-    const people = ["sa", "asd"];
     const movie = useSelector(selectMovieDetails);
     const credits = useSelector(selectMovieCredits);
+    const loading = useSelector(selectLoading);
     const size = {
         small: "w200",
         large: "w500",
@@ -45,6 +45,7 @@ export const MovieDetails = () => {
 
     const { id } = useParams();
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(fetchMovieDetails(id));
         return () => {
@@ -52,6 +53,11 @@ export const MovieDetails = () => {
         };
     }, [dispatch, id]);
 
+    if (loading) return <p>Loading Page (spinner)</p>;
+
+    if (!movie || !credits) {
+        return <p>No data available</p>;
+    }
 
     const url = `${baseURL}${movie.poster_path}`;
 
@@ -59,14 +65,14 @@ export const MovieDetails = () => {
         <>
             <BackgroundBlack>
                 <BackgroundImage bgimage={url}>
-                    <HeadTitle>{movie.orilinal_title}</HeadTitle>
+                    <HeadTitle>{movie.original_title}</HeadTitle>
                     <RatingWrapper>
                         <HeadRatingInfo>
                             <HeadStyledStarIcon />
-                            <HeadRates>7,8</HeadRates>
+                            <HeadRates>{movie.vote_average}</HeadRates>
                             <HeadSmallerFont>/ 10</HeadSmallerFont>
                         </HeadRatingInfo>
-                        <HeadVotes>335 votes</HeadVotes>
+                        <HeadVotes>{movie.vote_count} votes</HeadVotes>
                     </RatingWrapper>
                 </BackgroundImage>
             </BackgroundBlack>
@@ -75,41 +81,34 @@ export const MovieDetails = () => {
                     <MovieInfo>
                         <Poster src={url} />
                         <Wrapper>
-                            <Title>
-                                {movie.orilinal_title}
-                            </Title>
-                            <Year>
-                                {movie.release_date}
-                            </Year>
+                            <Title>{movie.original_title}</Title>
+                            <Year>{movie.release_date}</Year>
                             <ProductionRelease>
-                                <GreyText>Production:</GreyText> miejsce produkcji<br />
-                                <GreyText>Release date:</GreyText> data premiery
+                                <GreyText>Production:</GreyText> {movie.production_countries?.map(c => c.name).join(", ")}<br />
+                                <GreyText>Release date:</GreyText> {movie.release_date}
                             </ProductionRelease>
-                            <Categories> {/* tutaj mapowanie  */}
-                                <Category>
-                                    kategoria
-                                </Category>
+                            <Categories>
+                                {movie.genres?.map(genre => (
+                                    <Category key={genre.id}>{genre.name}</Category>
+                                ))}
                             </Categories>
                             <RatingInfo>
                                 <StyledStarIcon />
-                                <Rates>7,8</Rates><SmallerFont disabledonmobile="true">/ 10</SmallerFont>
-                                <SmallerFont>335 votes</SmallerFont>
+                                <Rates>{movie.vote_average}</Rates>
+                                <SmallerFont>/ 10</SmallerFont>
+                                <SmallerFont>{movie.vote_count} votes</SmallerFont>
                             </RatingInfo>
                         </Wrapper>
-                        <Description> {movie.overview} </Description>
+                        <Description>{movie.overview}</Description>
                     </MovieInfo>
                 </Section>
                 <Section>
                     <Header>Cast</Header>
-                    <PeopleList people={credits.cast} baseurl={baseURL} renderinmoviedetails={(true)} />
+                    <PeopleList people={credits.cast || []} baseurl={baseURL} renderinmoviedetails={true} />
                 </Section>
                 <Section>
                     <Header>Crew</Header>
-                    <PeopleList
-                        people={credits.crew}
-                        baseurl={baseURL}
-                        renderinmoviedetails={(true)}
-                    />
+                    <PeopleList people={credits.crew || []} baseurl={baseURL} renderinmoviedetails={true} />
                 </Section>
             </Container>
         </>

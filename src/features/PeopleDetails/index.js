@@ -8,25 +8,48 @@ import {
     DisabledOnMobile,
     Description,
 } from "./styled";
-import examplePhoto from "./example.png"
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
 import MoviesList from "../MoviesList";
+import { fetchPeopleDetails, resetPeopleDetails, selectLoading, selectPeopleCredits, selectPeopleDetails } from "../../core/peopleDetails/peopleDetailsSlice";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 export const PeopleDetails = () => {
-    const movies = undefined;
+    const people = useSelector(selectPeopleDetails);
+    const credits = useSelector(selectPeopleCredits);
+    const loading = useSelector(selectLoading);
     const size = {
         small: "w200",
-        large: "w400",
+        large: "w500",
+    };
+    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.large}`;
+
+    const { id } = useParams();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchPeopleDetails(id));
+        return () => {
+            dispatch(resetPeopleDetails());
+        };
+    }, [dispatch, id]);
+
+    if (loading) return <p>Loading Page (spinner)</p>;
+
+    if (!people || !credits) {
+        return <p>No data available</p>;
     }
-    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
+
+    const url = `${baseURL}${people.profile_path}`;
 
     return (
         <Container>
             <Section>
                 <PersonInfo>
-                    <Photo src={examplePhoto} />
+                    <Photo src={url} />
                     <Info>
                         <Name>
                             Imię i nazwisko
@@ -49,7 +72,7 @@ export const PeopleDetails = () => {
             <Section>
                 <Header>Movies - cast (ilość)</Header>
                 <MoviesList
-                    movies={movies}
+                    movies={credits.cast}
                     baseurl={baseURL}
                     renderinpeopledetails={(true)}
                 />
@@ -57,7 +80,7 @@ export const PeopleDetails = () => {
             <Section>
                 <Header>Movies - crew (ilość)</Header>
                 <MoviesList
-                    movies={movies}
+                    movies={credits.crew}
                     baseurl={baseURL}
                     renderinpeopledetails={(true)}
                 />

@@ -15,7 +15,12 @@ import {
     Rates,
     Votes
 } from "./styled";
-export const MoviesList = ({ movies, baseurl, renderinpeopledetails }) => {
+export const MoviesList = ({ movies =[], baseurl, renderinpeopledetails }) => {
+
+    if (!Array.isArray(movies)) {
+        return <p>No people data available</p>;
+    }
+
     return (
         <Movies>
             {movies.map((movie) => {

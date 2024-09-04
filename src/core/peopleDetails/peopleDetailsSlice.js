@@ -24,6 +24,10 @@ const peopleDetailsSlice = createSlice({
             state.peopleCredits = peopleCredits;
             state.loading = false;
         },
+        resetPeopleDetails: (state) => {
+            state.peopleDetails = [];
+            state.loading = false;
+        },
     },
 });
 
@@ -32,6 +36,7 @@ export const {
     fetchPeopleDetailsSucces,
     fetchPeopleDetailsError,
     fetchPeopleCreditsSucces,
+    resetPeopleDetails,
 } = peopleDetailsSlice.actions;
 const selectPeopleDetailsState = state => state.peopleDetails;
 export const selectPeopleDetails = state => selectPeopleDetailsState(state).peopleDetails;
