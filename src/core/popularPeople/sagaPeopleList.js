@@ -1,11 +1,11 @@
 import { call, put, delay, takeLatest } from "redux-saga/effects";
-import { fetchPeopleList, fetchPeopleListSuccess, fetchPeopleListError} from "./peopleListSlice"
+import { fetchPeopleList, fetchPeopleListSuccess, fetchPeopleListError } from "./peopleListSlice"
 import { getPeopleFromApi } from "./getPeopleList";
 
 function* fetchPeopleListHandler() {
     try {
         const people = yield call(getPeopleFromApi);
-        yield delay(2000);
+        yield delay(400);
         yield put(fetchPeopleListSuccess(people));
     } catch (error) {
         yield put(fetchPeopleListError());

@@ -40,7 +40,7 @@ function App() {
         </StyledNavigation>
         <Routes>
           <Route path="/movies" element={<MoviesListPage />} />
-          <Route path="/moviepage" element={<MovieDetails />} />
+          <Route path="/movies/:id" element={<MovieDetails />} />
           <Route path="/personpage" element={<PeopleDetails />} />
           <Route path="/people" element={<PeopleListPage />} />
           <Route path="/no-connection" element={<Error />} />

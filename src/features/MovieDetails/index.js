@@ -23,26 +23,43 @@ import {
     SmallerFont,
     Description,
 } from "./styled";
-import examplePhoto from "./example.png"
-import exampleBackground from "./exampleBackground.jpg"
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
 import PeopleList from "../PeopleList";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMovieDetails, selectMovieCredits, selectMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
+import { useEffect } from "react";
+import { resetMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
 
 export const MovieDetails = () => {
-    const people = undefined;
+    const people = ["sa", "asd"];
+    const movie = useSelector(selectMovieDetails);
+    const credits = useSelector(selectMovieCredits);
     const size = {
         small: "w200",
-        large: "w400",
+        large: "w500",
     };
-    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
+    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.large}`;
+
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchMovieDetails(id));
+        return () => {
+            dispatch(resetMovieDetails());
+        };
+    }, [dispatch, id]);
+
+
+    const url = `${baseURL}${movie.poster_path}`;
 
     return (
         <>
             <BackgroundBlack>
-                <BackgroundImage bgimage={exampleBackground}>
-                    <HeadTitle>Tytuł long long long long</HeadTitle>
+                <BackgroundImage bgimage={url}>
+                    <HeadTitle>{movie.orilinal_title}</HeadTitle>
                     <RatingWrapper>
                         <HeadRatingInfo>
                             <HeadStyledStarIcon />
@@ -56,13 +73,13 @@ export const MovieDetails = () => {
             <Container>
                 <Section>
                     <MovieInfo>
-                        <Poster src={examplePhoto} />
+                        <Poster src={url} />
                         <Wrapper>
                             <Title>
-                                Tytuł long long long long
+                                {movie.orilinal_title}
                             </Title>
                             <Year>
-                                Rok produkcji
+                                {movie.release_date}
                             </Year>
                             <ProductionRelease>
                                 <GreyText>Production:</GreyText> miejsce produkcji<br />
@@ -79,24 +96,19 @@ export const MovieDetails = () => {
                                 <SmallerFont>335 votes</SmallerFont>
                             </RatingInfo>
                         </Wrapper>
-                        <Description>A young Chinese maiden disguises herself as a male warrior in order to save her father.
-                            Disguises herself as a male warrior in order to save her father.  A young Chinese maiden disguises herself as a male warrior in order to save her father.</Description>
+                        <Description> {movie.overview} </Description>
                     </MovieInfo>
                 </Section>
                 <Section>
                     <Header>Cast</Header>
-                    <PeopleList
-                        people= {people}
-                        baseurl= {baseURL}
-                        renderinmoviedetails= {(true)} 
-                    />
+                    <PeopleList people={credits.cast} baseurl={baseURL} renderinmoviedetails={(true)} />
                 </Section>
                 <Section>
                     <Header>Crew</Header>
                     <PeopleList
-                        people= {people}
-                        baseurl= {baseURL}
-                        renderinmoviedetails= {(true)} 
+                        people={credits.crew}
+                        baseurl={baseURL}
+                        renderinmoviedetails={(true)}
                     />
                 </Section>
             </Container>

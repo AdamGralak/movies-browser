@@ -24,6 +24,10 @@ const movieDetailsSlice = createSlice({
             state.movieCredits = movieCredits;
             state.loading = false;
         },
+        resetMovieDetails: (state) => {
+            state.movieDetails = [];
+            state.loading = false;
+        },
     },
 });
 
@@ -32,6 +36,7 @@ export const {
     fetchMovieDetailsSucces,
     fetchMovieDetailsError,
     fetchMovieCreditsSucces,
+    resetMovieDetails,
 } = movieDetailsSlice.actions;
 const selectMovieDetailsState = state => state.movieDetails;
 export const selectMovieDetails = state => selectMovieDetailsState(state).movieDetails;
