@@ -14,7 +14,7 @@ import {
     Rates, 
     Votes 
 }  from "./styled";
-export const MoviesList = ({ movies, baseurl, peopledetails }) => {
+export const MoviesList = ({ movies, baseurl, renderinpeopledetails }) => {
 
     return (
         <Movies>
@@ -35,7 +35,7 @@ export const MoviesList = ({ movies, baseurl, peopledetails }) => {
                                     {movie.original_title}
                                 </Title>
                                 <Year>
-                                    {peopledetails ?
+                                    {renderinpeopledetails ?
                                         <><DisabledOnMobile>Rola (</DisabledOnMobile>{movie.release_date ? movie.release_date : ""}<DisabledOnMobile>)</DisabledOnMobile></>
                                         :
                                         <>{movie.release_date ? movie.release_date : ""}</>

@@ -90,7 +90,7 @@ export const MovieDetails = () => {
                     <PeopleList
                         people= {people}
                         baseurl= {baseURL}
-                        moviedetails= {(true)} 
+                        renderinmoviedetails= {(true)} 
                     />
                 </Section>
                 <Section>
@@ -98,7 +98,7 @@ export const MovieDetails = () => {
                     <PeopleList
                         people= {people}
                         baseurl= {baseURL}
-                        moviedetails= {(true)} 
+                        renderinmoviedetails= {(true)} 
                     />
                 </Section>
             </Container>

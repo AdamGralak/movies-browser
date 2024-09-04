@@ -1,7 +1,7 @@
 import React from "react";
 import { People, Content, Photo, Name, Role } from "./styled";
 
-export const PeopleList = ( { people , baseurl, moviedetails } ) => {
+export const PeopleList = ( { people , baseurl, renderinmoviedetails } ) => {
 
     return (
         <People>
@@ -17,7 +17,7 @@ export const PeopleList = ( { people , baseurl, moviedetails } ) => {
                         <Name>
                             {person.name}
                         </Name>
-                        {moviedetails ? <Role>Rola</Role> : "" }
+                        {renderinmoviedetails ? <Role>Rola</Role> : "" }
                     </Content>
                 );
             })}
