@@ -1,11 +1,35 @@
-import { StyledPaginator, PaginatorButton, PageInfo, PageText, PageNumber, BackwardForward } from "./styled";
+import React, { useState, useEffect } from 'react';
+import { useTheme } from 'styled-components';
+import {
+    StyledPaginator,
+    PaginatorButton,
+    ButtonImage,
+    PageInfo,
+    PageText,
+    PageNumber,
+    BackwardForward
+} from "./styled";
 import FirstPageIcon from './First.svg';
 import PreviousPageIcon from './Previous.svg';
 import NextPageIcon from './Next.svg';
 import LastPageIcon from './Last.svg';
-
+import MobileFirstPageIcon from './MobileFirst.svg';
+import MobilePreviousPageIcon from './MobilePrevious.svg';
+import MobileNextPageIcon from './MobileNext.svg';
+import MobileLastPageIcon from './MobileLast.svg';
 
 const Paginator = ({ totalPages, currentPage, onPageChange }) => {
+    const theme = useTheme();
+    const mobileMax2 = theme.breakpoint.mobileMax2;
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileMax2);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= mobileMax2);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, [mobileMax2]);
 
     const handleFirstPage = () => {
         onPageChange(1);
@@ -31,10 +55,10 @@ const Paginator = ({ totalPages, currentPage, onPageChange }) => {
         <StyledPaginator>
             <BackwardForward>
                 <PaginatorButton onClick={handleFirstPage} disabled={currentPage === 1}>
-                    <img src={FirstPageIcon} alt="First page" />
+                    <ButtonImage src={isMobile ? MobileFirstPageIcon : FirstPageIcon} alt="First page" />
                 </PaginatorButton>
                 <PaginatorButton onClick={handlePreviousPage} disabled={currentPage === 1}>
-                    <img src={PreviousPageIcon} alt="Previous page" />
+                    <ButtonImage src={isMobile ? MobilePreviousPageIcon : PreviousPageIcon} alt="Previous page" />
                 </PaginatorButton>
             </BackwardForward>
             <PageInfo>
@@ -45,10 +69,10 @@ const Paginator = ({ totalPages, currentPage, onPageChange }) => {
             </PageInfo>
             <BackwardForward>
                 <PaginatorButton onClick={handleNextPage} disabled={currentPage === totalPages}>
-                    <img src={NextPageIcon} alt="Next page" />
+                    <ButtonImage src={isMobile ? MobileNextPageIcon : NextPageIcon} alt="Next page" />
                 </PaginatorButton>
                 <PaginatorButton onClick={handleLastPage} disabled={currentPage === totalPages}>
-                    <img src={LastPageIcon} alt="Last page" />
+                    <ButtonImage src={isMobile ? MobileLastPageIcon : LastPageIcon} alt="Last page" />
                 </PaginatorButton>
             </BackwardForward>
         </StyledPaginator>
