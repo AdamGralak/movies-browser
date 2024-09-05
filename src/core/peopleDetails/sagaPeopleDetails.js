@@ -1,4 +1,4 @@
-import { call, put, delay, takeLatest } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 import { fetchPeopleDetails, fetchPeopleDetailsSucces, fetchPeopleDetailsError, fetchPeopleCreditsSucces } from "./peopleDetailsSlice"
 import { getPeopleDetailsFromApi } from "./getPeopleDetailsByID";
 import { getPeopleCreditsFromApi } from "./getPeopleCreditsByID";

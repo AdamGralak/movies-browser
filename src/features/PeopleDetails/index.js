@@ -52,7 +52,7 @@ export const PeopleDetails = () => {
                     <Photo src={url} />
                     <Info>
                         <Name>
-                            Imię i nazwisko
+                            {people.name}
                         </Name>
                         <div>
                             <GreyText><DisabledOnMobile>Date of birth:</DisabledOnMobile><Birth>Birth:</Birth></GreyText> data urodzin<br />

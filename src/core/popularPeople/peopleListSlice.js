@@ -15,7 +15,7 @@ const peopleListSlice = createSlice({
         fetchPeopleListError: (state) => {
             state.loading = true;
         },
-        fetchPeopleListSuccess: (state, { payload: people }) => {
+        fetchPeopleListSucces: (state, { payload: people }) => {
             state.people = people;
             state.loading = false;
         },
@@ -24,7 +24,7 @@ const peopleListSlice = createSlice({
 
 export const {
     fetchPeopleList,
-    fetchPeopleListSuccess,
+    fetchPeopleListSucces,
     fetchPeopleListError,
 } = peopleListSlice.actions;
 const selectPeopleState = state => state.people;
