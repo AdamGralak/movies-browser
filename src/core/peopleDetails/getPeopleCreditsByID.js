@@ -14,8 +14,8 @@ try {
   if (!response.ok) {
     throw new Error('Network response was not ok');
   }
-  const credits = await response.json();
-  return credits;
+  const data = await response.json();
+  return data;
 } catch (err) {
   console.error(err);
   return null;
