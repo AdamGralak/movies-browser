@@ -35,6 +35,8 @@ export const PaginatorButton = styled.button`
     height: 36px;
     border-radius: 5px;
     padding: 8px 16px;
+    background-color: ${({ theme, disabled }) => 
+        disabled ? theme.color.grey : theme.color.lightBlue};
     cursor: pointer;
     border: none;
 
@@ -56,6 +58,11 @@ export const ButtonImage = styled.img`
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
         height: 23px;
     }  
+
+    svg .button-background {
+        fill: ${({ theme, disabled }) => 
+            disabled ? theme.color.grey : theme.color.lightBlue};
+    }
 `;
 
 export const PageInfo = styled.div`
