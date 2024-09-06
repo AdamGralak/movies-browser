@@ -1,7 +1,7 @@
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchMoviesGenres, selectImagePath, selectLoading } from "../../core/moviesListPage/moviesListSlice";
+import { fetchMoviesList, selectImagePath, selectLoading } from "../../core/moviesListPage/moviesListSlice";
 import MoviesList from "../MoviesList";
 import { useEffect } from "react";
 
@@ -16,7 +16,7 @@ export const MoviesListPage = () => {
     const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(fetchMoviesGenres());
+        dispatch(fetchMoviesList());
     }, [dispatch]);
 
     if (loading === true) return <p>Loading Page (spinner)</p>;

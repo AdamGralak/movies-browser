@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GlobalStyle } from './globalStyles';
 import { StyledNavigation, StyledInput } from "./common/Navigation/styled";
 import { HashRouter, NavLink, Route, Routes, Navigate } from "react-router-dom";
@@ -6,8 +6,7 @@ import logo from "./images/logo.svg";
 import { PeopleListPage } from './features/PeopleListPage';
 import { MoviesListPage } from './features/MoviesListPage';
 import { useDispatch } from 'react-redux';
-import { fetchMoviesList } from './core/moviesListPage/moviesListSlice';
-import { fetchPeopleList } from './core/popularPeople/peopleListSlice';
+import { fetchMoviesGenres } from './core/moviesListPage/moviesListSlice';
 import Paginator from './common/Paginator';
 import { Error } from './common/Error';
 import { MovieDetails } from './features/MovieDetails';
@@ -17,7 +16,9 @@ import { SearchResults } from './common/SearchResults';
 
 function App() {
   const dispatch = useDispatch();
-  dispatch(fetchMoviesList());
+  useEffect(() => {
+    dispatch(fetchMoviesGenres());
+  }, [dispatch]);
 
   return (
     <>
@@ -26,10 +27,10 @@ function App() {
         <StyledNavigation>
           <img src={logo} alt="logo" />
           <ul>
-            <li onClick={() => { dispatch(fetchMoviesList()); }}>
+            <li>
               <NavLink to="/movies">MOVIES</NavLink>
             </li>
-            <li onClick={() => { dispatch(fetchPeopleList()); }}>
+            <li>
               <NavLink to="/people">PEOPLE</NavLink>
             </li>
           </ul>

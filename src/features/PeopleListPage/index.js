@@ -1,6 +1,6 @@
-import React from "react";
-import { selectLoading, selectPeopleImagePath } from "../../core/popularPeople/peopleListSlice";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { fetchPeopleList, selectLoading, selectPeopleImagePath } from "../../core/popularPeople/peopleListSlice";
+import { useDispatch, useSelector } from "react-redux";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import PeopleList from "../PeopleList";
@@ -13,6 +13,11 @@ export const PeopleListPage = () => {
         large: "w400",
     };
     const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
+
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchPeopleList());
+    }, [dispatch]);
 
     if (loading === true) return <p>Loading Page (spinner)</p>;
 

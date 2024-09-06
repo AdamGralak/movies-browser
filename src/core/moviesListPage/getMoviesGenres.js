@@ -10,7 +10,7 @@ export const getMoviesGenresFromApi = async () => {
   };
     
     try {
-      const response = await fetch('https://api.themoviedb.org/3//genre/movie/list?language=en-US&page=1', options);
+      const response = await fetch('https://api.themoviedb.org/3//genre/movie/list?language=en-US', options);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
