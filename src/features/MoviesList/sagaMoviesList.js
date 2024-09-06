@@ -15,7 +15,7 @@ function* fetchMoviesListHandler(action) {
             }));
         } else {
             yield put(fetchMoviesListSuccess({ results: [], total_pages: 0, isEmpty: true }));
-            yield call(alert, "There are no results on this page");
+            yield call(alert, "There are no movies on this page");
         }
     } catch (error) {
         yield put(fetchMoviesListError());
