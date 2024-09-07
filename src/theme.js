@@ -11,7 +11,7 @@ export const theme = {
         mobileMax1: 1040,
         mobileMax2: 850,
         mobileMax21: 670,
-        mobileMax3: 520,
+        mobileMax3: 538,
         mobileMax4: 476,
         mobileMax41: 400,
         mobileMax42: 370,
