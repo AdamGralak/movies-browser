@@ -61,6 +61,14 @@ export const MovieDetails = () => {
 
     const url = `${baseURL}${movie.poster_path}`;
 
+    const FormatDate = (date) => {
+        const day = date.split("-")[2];
+        const month = date.split("-")[1];
+        const year = date.split("-")[0];
+        const formattedDate = day + "." + month + "." + year;
+        return formattedDate    
+    }
+
     return (
         <>
             <BackgroundBlack>
@@ -69,7 +77,7 @@ export const MovieDetails = () => {
                     <RatingWrapper>
                         <HeadRatingInfo>
                             <HeadStyledStarIcon />
-                            <HeadRates>{movie.vote_average}</HeadRates>
+                            <HeadRates>{movie.vote_average ? movie.vote_average.toFixed(1) : ""}</HeadRates>
                             <HeadSmallerFont>/ 10</HeadSmallerFont>
                         </HeadRatingInfo>
                         <HeadVotes>{movie.vote_count} votes</HeadVotes>
@@ -82,10 +90,10 @@ export const MovieDetails = () => {
                         <Poster src={url} />
                         <Wrapper>
                             <Title>{movie.original_title}</Title>
-                            <Year>{movie.release_date}</Year>
+                            <Year>{movie.release_date ? movie.release_date.split("-")[0] : ""}</Year>
                             <ProductionRelease>
                                 <GreyText>Production:</GreyText> {movie.production_countries?.map(c => c.name).join(", ")}<br />
-                                <GreyText>Release date:</GreyText> {movie.release_date}
+                                <GreyText>Release date:</GreyText> {movie.release_date ? FormatDate(movie.release_date) : ""}
                             </ProductionRelease>
                             <Categories>
                                 {movie.genres?.map(genre => (
@@ -94,7 +102,7 @@ export const MovieDetails = () => {
                             </Categories>
                             <RatingInfo>
                                 <StyledStarIcon />
-                                <Rates>{movie.vote_average}</Rates>
+                                <Rates>{movie.vote_average ? movie.vote_average.toFixed(1) : ""}</Rates>
                                 <SmallerFont>/ 10</SmallerFont>
                                 <SmallerFont>{movie.vote_count} votes</SmallerFont>
                             </RatingInfo>
