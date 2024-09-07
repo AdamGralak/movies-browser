@@ -1,110 +1,80 @@
 import styled from "styled-components";
 import icon from "../../images/searchIcon.svg"
+import { NavLink } from "react-router-dom";
+import { ReactComponent as logo} from '../../images/logo.svg';
 
 export const StyledNavigation = styled.nav`
     background-color: black;
     color: white;
     width: 100%;
-    height: 94px;
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 1fr 1fr 4fr;
+`;
+
+export const Wrapper = styled.div`
+    display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 0 calc(100%/8);
-
-&>ul {
-    list-style-type: none;
-    display: grid;
-    grid-auto-flow: column;
-    gap: 20px;
-    list-style: none;
-    padding: 14px 10px;
-    margin: 0;
-}
-
-&>li {
-    width: 102px;
-    height: 48px;
-    display: grid;
-    justify-content: center;
-    text-align: center;
-    background-color: black;
-
-    @media (max-width: 768px) {
-        height: 34px;
-        width: 70px;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 40px; 
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
+        flex-direction: column;
     }
-}
-
-@media (max-width: 768px) {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: repeat(2, auto);
-        height: 142px;
-        padding: 20px;
-        grid-gap: 10px;
-
-        &>ul {
-            padding: 8px 12px;
-        }
-
-        &>img {
-            width: 170px;
-        }
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax21}px) {
+        padding: 20px 16px; 
     }
+`;
 
-    @media (max-width: 380px) {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        grid-template-areas:
-            "logo"
-            "buttons"
-            "input";
-        height: auto;
-        padding: 20px;
-        grid-gap: 10px;
-
-        &>ul {
-            grid-area: buttons;
-            display: grid;
-            grid-auto-flow: column;
-            justify-content: center;
-            gap: 10px;
-            padding-bottom: 8px;
-        }
-
-        &>img {
-            grid-area: logo;
-            width: 170px;
-            justify-self: center;
-        }
+export const Logo = styled(logo)`
+    cursor: pointer;
+    margin-right: 70px;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax3}px) {
+        margin-right: 10px;
     }
+`;
 
-    & a {
-        text-decoration: none;
-        color: white;
-        border-radius: 24px;
-        font-size: 18px;
-        padding: 6px;
-    
-        @media (max-width: 768px) {
-        font-size: 14px;
+export const List = styled.div`
+    display: flex;
+    align-items: center;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax3}px) {
+        justify-content: space-between;
+        width: 100%;
     }
-    }
+`;
 
-    & a.active {
-        background-color: black;
-        color: white;
-        border: 2px solid white;
+export const Item = styled.div`
+    margin-left: 10px;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax3}px) {
+        margin-left: 0;
     }
-    `;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    color: ${({ theme }) => theme.color.white};
+    border: 1px solid ${({ theme }) => theme.color.black};
+    border-radius: 24px;
+    padding: 12px 24px;
+    transition: 0.3s;
+    &:hover {
+        border: 1px solid ${({ theme }) => theme.color.white};
+    }
+    &.active {
+        border: 1px solid ${({ theme }) => theme.color.white};
+    }
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+`;
 
 export const StyledInput = styled.input`
     display: grid;
-    justify-self: end;
     height: 48px;
-    min-width: 200px;
-    width: 430px;
+    max-width: 430px;
+    width: 100%;
+    margin-left: 20px;
     border-radius: 24px;
     border: 2px solid white;
     outline: none;
@@ -116,22 +86,12 @@ export const StyledInput = styled.input`
     padding-top: 0px;
     padding-bottom: 0px;
     font-size: 18px;
-
-    @media (max-width: 380px) {
-        grid-column: span 2;
-        margin: 0 auto;
-        height: 32px;
-        font-size: 16px;
-        background-size: 18px 18px;
-        background-position:24px 4px;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
+        max-width: 512px;
+        margin-top: 22px;
+        margin-left: 0;
     }
-    
-    @media (max-width: 768px) {
-        grid-column: span 2;
-        margin: 0 auto;
-    }
-    
-    @media (max-width: 1200px) {
-        width: 86%;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
+        font-size: 14px;
     }
 `;
