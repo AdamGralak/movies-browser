@@ -13,7 +13,7 @@ export const MoviesListPage = () => {
         small: "w200",
         large: "w400",
     }
-    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
+    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.large}`;
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(fetchMoviesList());
