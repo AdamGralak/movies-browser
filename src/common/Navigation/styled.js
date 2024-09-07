@@ -32,6 +32,7 @@ export const StyledLogoNavLink = styled(NavLink)`
 export const Logo = styled(logo)`
     cursor: pointer;
     margin-right: 70px;
+    width: 100%;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax3}px) {
         margin-right: 10px;
     }
