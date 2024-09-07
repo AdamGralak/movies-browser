@@ -203,6 +203,7 @@ export const Category = styled.div`
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax21}px) {
         font-size: 10px;
         padding: 4px 8px;
+        margin-bottom: 8px;
     }
 `;
 

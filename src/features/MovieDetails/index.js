@@ -69,7 +69,7 @@ export const MovieDetails = () => {
         const formattedDate = day + "." + month + "." + year;
         return formattedDate    
     }
-    
+
     return (
         <>
             <BackgroundBlack>
@@ -104,7 +104,7 @@ export const MovieDetails = () => {
                             <RatingInfo>
                                 <StyledStarIcon />
                                 <Rates>{movie.vote_average ? movie.vote_average.toFixed(1) : ""}</Rates>
-                                <SmallerFont>/ 10</SmallerFont>
+                                <SmallerFont disabledonmobile="true">/ 10</SmallerFont>
                                 <SmallerFont>{movie.vote_count} votes</SmallerFont>
                             </RatingInfo>
                         </Wrapper>
