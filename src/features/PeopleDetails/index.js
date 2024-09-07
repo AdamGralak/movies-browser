@@ -75,7 +75,7 @@ export const PeopleDetails = () => {
                 </PersonInfo>
             </Section>
             <Section>
-                <Header>Movies - cast (ilość)</Header>
+                <Header>Movies - cast ({credits.cast?.length})</Header>
                 <MoviesList
                     movies={credits.cast}
                     baseurl={baseURL}
@@ -83,7 +83,7 @@ export const PeopleDetails = () => {
                 />
             </Section>
             <Section>
-                <Header>Movies - crew (ilość)</Header>
+                <Header>Movies - crew ({credits.crew?.length})</Header>
                 <MoviesList
                     movies={credits.crew}
                     baseurl={baseURL}
