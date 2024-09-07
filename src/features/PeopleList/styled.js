@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const People = styled.div`
@@ -19,7 +20,8 @@ export const People = styled.div`
     }
 `;
 
-export const Content = styled.div`
+export const StyledLink = styled(Link)`
+    text-decoration: none;
     color: ${({ theme }) => theme.color.black};
     background-color: ${({ theme }) => theme.color.white};
     max-width: 208px;

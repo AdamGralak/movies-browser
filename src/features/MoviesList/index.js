@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
 import {
     Movies,
+    StyledLink,
     Content,
     Photo,
     Wrapper,
@@ -40,46 +40,44 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
                 const genreNames = getGenreNames(movie.genre_ids);
 
                 return (
-                    <Link to={`/movies/${movie.id}`} key={movie.id}>
-                        <Content>
-                            <Photo
-                                src={url}
-                                alt={movie.title}
-                            />
-                            <Wrapper>
-                                <Info>
-                                    <Title>
-                                        {movie.original_title}
-                                    </Title>
-                                    <Year>
-                                        {renderinpeopledetails ?
-                                            <>
-                                                <DisabledOnMobile>Rola (</DisabledOnMobile>
-                                                {movie.release_date ? movie.release_date : ""}
-                                                <DisabledOnMobile>)</DisabledOnMobile>
-                                            </>
-                                            :
-                                            <>{movie.release_date ? movie.release_date.split("-")[0] : ""}</>
-                                        }
-                                    </Year>
-                                    <Categories>
-                                        {genreNames.map((name, index) => (
-                                            <Category key={index}>{name}</Category>
-                                        ))}
-                                    </Categories>
-                                </Info>
-                                <Bottom>
-                                    <StyledStarIcon />
-                                    <Rates>
-                                        {movie.vote_average.toFixed(1)}
-                                    </Rates>
-                                    <Votes>
-                                        {movie.vote_count} votes
-                                    </Votes>
-                                </Bottom>
-                            </Wrapper>
-                        </Content>
-                    </Link>
+                    <StyledLink to={`/movies/${movie.id}`} key={movie.id}>
+                        <Photo
+                            src={url}
+                            alt={movie.title}
+                        />
+                        <Wrapper>
+                            <Info>
+                                <Title>
+                                    {movie.original_title}
+                                </Title>
+                                <Year>
+                                    {renderinpeopledetails ?
+                                        <>
+                                            <DisabledOnMobile>Rola (</DisabledOnMobile>
+                                            {movie.release_date ? movie.release_date.split("-")[0] : ""}
+                                            <DisabledOnMobile>)</DisabledOnMobile>
+                                        </>
+                                        :
+                                        <>{movie.release_date ? movie.release_date.split("-")[0] : ""}</>
+                                    }
+                                </Year>
+                                <Categories>
+                                    {genreNames.map((name, index) => (
+                                        <Category key={index}>{name}</Category>
+                                    ))}
+                                </Categories>
+                            </Info>
+                            <Bottom>
+                                <StyledStarIcon />
+                                <Rates>
+                                    {movie.vote_average.toFixed(1)}
+                                </Rates>
+                                <Votes>
+                                    {movie.vote_count} votes
+                                </Votes>
+                            </Bottom>
+                        </Wrapper>
+                    </StyledLink>
                 );
             })}
         </Movies>
