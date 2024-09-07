@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from 'styled-components';
 import {
     StyledPaginator,
@@ -18,7 +18,7 @@ import MobilePreviousPageIcon from './MobilePrevious.svg';
 import MobileNextPageIcon from './MobileNext.svg';
 import MobileLastPageIcon from './MobileLast.svg';
 
-const Paginator = ({ totalPages, currentPage, onPageChange }) => {
+const Paginator = () => {
     const theme = useTheme();
     const mobileMax2 = theme.breakpoint.mobileMax2;
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileMax2);
@@ -31,7 +31,7 @@ const Paginator = ({ totalPages, currentPage, onPageChange }) => {
         return () => window.removeEventListener('resize', handleResize);
     }, [mobileMax2]);
 
-    const handleFirstPage = () => {
+    {/*const handleFirstPage = () => {
         onPageChange(1);
     };
 
@@ -49,29 +49,29 @@ const Paginator = ({ totalPages, currentPage, onPageChange }) => {
 
     const handleLastPage = () => {
         onPageChange(totalPages);
-    };
+    };*/}
 
     return (
         <StyledPaginator>
             <BackwardForward>
-                <PaginatorButton onClick={handleFirstPage} disabled={currentPage === 1}>
+                <PaginatorButton> {/*onClick={handleFirstPage} disabled={currentPage === 1*/} 
                     <ButtonImage src={isMobile ? MobileFirstPageIcon : FirstPageIcon} alt="First page" />
                 </PaginatorButton>
-                <PaginatorButton onClick={handlePreviousPage} disabled={currentPage === 1}>
+                <PaginatorButton> {/*onClick={handlePreviousPage} disabled={currentPage === 1}*/}
                     <ButtonImage src={isMobile ? MobilePreviousPageIcon : PreviousPageIcon} alt="Previous page" />
                 </PaginatorButton>
             </BackwardForward>
             <PageInfo>
                 <PageText>Page</PageText>
-                <PageNumber>{currentPage}</PageNumber>
+                <PageNumber>1</PageNumber>
                 <PageText>of</PageText>
-                <PageNumber>{totalPages}</PageNumber>
+                <PageNumber>500</PageNumber>
             </PageInfo>
             <BackwardForward>
-                <PaginatorButton onClick={handleNextPage} disabled={currentPage === totalPages}>
+                <PaginatorButton> {/*onClick={handleNextPage} disabled={currentPage === totalPages}*/}
                     <ButtonImage src={isMobile ? MobileNextPageIcon : NextPageIcon} alt="Next page" />
                 </PaginatorButton>
-                <PaginatorButton onClick={handleLastPage} disabled={currentPage === totalPages}>
+                <PaginatorButton> {/*onClick={handleLastPage} disabled={currentPage === totalPages}*/}
                     <ButtonImage src={isMobile ? MobileLastPageIcon : LastPageIcon} alt="Last page" />
                 </PaginatorButton>
             </BackwardForward>
