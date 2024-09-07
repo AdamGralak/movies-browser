@@ -38,6 +38,7 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
             {movies.map((movie) => {
                 const url = `${baseurl}${movie.poster_path}`;
                 const genreNames = getGenreNames(movie.genre_ids);
+                const role = `${movie.character ? movie.character : movie.department}`;
 
                 return (
                     <StyledLink to={`/movies/${movie.id}`} key={movie.id}>
@@ -53,7 +54,7 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
                                 <Year>
                                     {renderinpeopledetails ?
                                         <>
-                                            <DisabledOnMobile>Rola (</DisabledOnMobile>
+                                            <DisabledOnMobile>{role} (</DisabledOnMobile>
                                             {movie.release_date ? movie.release_date.split("-")[0] : ""}
                                             <DisabledOnMobile>)</DisabledOnMobile>
                                         </>

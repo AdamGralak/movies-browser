@@ -11,12 +11,13 @@ export const PeopleList = ({ people = [], baseurl, renderinmoviedetails }) => {
         <People>
             {people.map((person) => {
                 const url = `${baseurl}${person.profile_path}`;
+                const role = `${person.character ? person.character : person.department}`;
                 return (
                     <StyledLink to={`/people/${person.id}`} key={person.id}>
                         <Photo photo={url} alt={person.name} />
                         <Wrapper>
                             <Name>{person.name}</Name>
-                            {renderinmoviedetails && <Role>Rola</Role>}
+                            {renderinmoviedetails && <Role>{role}</Role>}
                         </Wrapper>
                     </StyledLink>
                 );
