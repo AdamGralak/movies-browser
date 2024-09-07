@@ -60,6 +60,7 @@ export const MovieDetails = () => {
     }
 
     const url = `${baseURL}${movie.poster_path}`;
+    const bgUrl = `${baseURL}${movie.backdrop_path}`;
 
     const FormatDate = (date) => {
         const day = date.split("-")[2];
@@ -68,11 +69,11 @@ export const MovieDetails = () => {
         const formattedDate = day + "." + month + "." + year;
         return formattedDate    
     }
-
+    
     return (
         <>
             <BackgroundBlack>
-                <BackgroundImage bgimage={url}>
+                <BackgroundImage bgimage={bgUrl}>
                     <HeadTitle>{movie.original_title}</HeadTitle>
                     <RatingWrapper>
                         <HeadRatingInfo>
