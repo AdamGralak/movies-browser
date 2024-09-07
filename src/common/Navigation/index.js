@@ -1,12 +1,14 @@
 import React from "react";
-import { Item, List, Logo, StyledInput, StyledNavigation, Wrapper, StyledNavLink } from "./styled";
+import { Item, List, StyledLogoNavLink, Logo, StyledInput, StyledNavigation, Wrapper, StyledNavLink } from "./styled";
 
 export const Navigation = () => {
     return (
         <StyledNavigation>
             <Wrapper>
                 <List>
-                    <Logo />
+                    <StyledLogoNavLink to="/movies">
+                        <Logo />
+                    </StyledLogoNavLink>
                     <Item>
                         <StyledNavLink to="/movies">MOVIES</StyledNavLink>
                     </Item>

@@ -24,6 +24,11 @@ export const Wrapper = styled.div`
     }
 `;
 
+export const StyledLogoNavLink = styled(NavLink)`
+    display: flex;
+    align-items: center;
+`;
+
 export const Logo = styled(logo)`
     cursor: pointer;
     margin-right: 70px;
