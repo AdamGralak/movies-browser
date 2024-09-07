@@ -165,7 +165,7 @@ export const Year = styled.div`
     margin: 16px 0;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax21}px) {
         font-size: 13px;
-        margin: 8px 0;
+        margin: 4px 0;
         color: ${({ theme }) => theme.color.darkerGrey};
     }
 `;
@@ -191,6 +191,7 @@ export const Categories = styled.div`
     margin: 16px 0;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax21}px) {
         margin: 8px 0;
+        margin-bottom: -4px;
     }
 `;
 
