@@ -1,24 +1,22 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectMovies, selectLoading, selectTotalPages, fetchMoviesList, selectIsEmpty } from "./moviesListSlice";
+import { useSelector } from "react-redux";
+import { selectMovies, selectLoading } from "./moviesListSlice";
 import { Movies, Content, Photo, Wrapper, Info, Title, Year, Categories, Category, Bottom, StyledStarIcon, Rates, Votes } from "./styled";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
-import Paginator from "../../common/Paginator";
 
 export const MoviesList = () => {
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const movies = useSelector(selectMovies);
     const loading = useSelector(selectLoading);
-    const totalPages = useSelector(selectTotalPages);
-    const isEmpty = useSelector(selectIsEmpty);
+    // const totalPages = useSelector(selectTotalPages);
+    // const isEmpty = useSelector(selectIsEmpty);
     const baseURL = "https://image.tmdb.org/t/p/";
     const size = {
         small: "w200",
         large: "w400",
     }
-    const [currentPage, setCurrentPage] = useState(1);
+    {/*const [currentPage, setCurrentPage] = useState(1);
     const [previousPage, setPreviousPage] = useState(1);
 
     const handlePageChange = (newPage) => {
@@ -32,7 +30,7 @@ export const MoviesList = () => {
             setCurrentPage(previousPage);
             dispatch(fetchMoviesList(previousPage));
         }
-    }, [isEmpty, currentPage, previousPage]);
+    }, [isEmpty, currentPage, previousPage]);*/}
 
 
     if (loading === true) return <p>Loading Page (spinner)</p>;
@@ -84,11 +82,11 @@ export const MoviesList = () => {
                     );
                 })}
             </Movies>
-            <Paginator
+           {/* <Paginator
                 totalPages={totalPages}
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
-            />
+            /> */}
         </Container>
     );
 };
