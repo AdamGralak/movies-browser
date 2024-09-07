@@ -45,6 +45,15 @@ export const PeopleDetails = () => {
 
     const url = `${baseURL}${people.profile_path}`;
 
+    console.log(people);
+    const FormatDate = (date) => {
+        const day = date.split("-")[2];
+        const month = date.split("-")[1];
+        const year = date.split("-")[0];
+        const formattedDate = day + "." + month + "." + year;
+        return formattedDate    
+    }
+
     return (
         <Container>
             <Section>
@@ -55,17 +64,13 @@ export const PeopleDetails = () => {
                             {people.name}
                         </Name>
                         <div>
-                            <GreyText><DisabledOnMobile>Date of birth:</DisabledOnMobile><Birth>Birth:</Birth></GreyText> data urodzin<br />
-                            <GreyText>Place of birth:</GreyText> miejsce urodzenia
+                            {people.birthday ? <><GreyText><DisabledOnMobile>Date of birth:</DisabledOnMobile><Birth>Birth:</Birth></GreyText> {FormatDate(people.birthday)}<br /></> : ""}
+                            
+                            {people.place_of_birth ? <><GreyText>Place of birth:</GreyText> {people.place_of_birth}</> : ""}
                         </div>
                     </Info>
                     <Description>
-                        Liu Yifei was born in Wuhan, Hubei,
-                        Province of China on August 25th, 1987. She
-                        began modeling at the age of 8 and was trained
-                        in singing, dancing and the piano. Moving to
-                        the United States at 10 with her mother,
-                        Liu lived there for four years.
+                        {people.place_of_birth ? <>{people.biography}</> : ""}        
                     </Description>
                 </PersonInfo>
             </Section>
