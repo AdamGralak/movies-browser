@@ -23,6 +23,7 @@ import {
     SmallerFont,
     Description,
 } from "./styled";
+import noMovie from "../../images/noMovie.svg";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
@@ -60,7 +61,7 @@ export const MovieDetails = () => {
         return <p>No data available</p>;
     }
 
-    const url = `${baseURL}${movie.poster_path}`;
+    const url = movie.poster_path ? `${baseURL}${movie.poster_path}` : noMovie;
     const bgUrl = `${"https://image.tmdb.org/t/p/"}${size.original}${movie.backdrop_path}`;
 
     const FormatDate = (date) => {

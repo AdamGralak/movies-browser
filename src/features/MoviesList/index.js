@@ -1,7 +1,6 @@
 import {
     Movies,
     StyledLink,
-    Content,
     Photo,
     Wrapper,
     Info,
@@ -15,6 +14,7 @@ import {
     Rates,
     Votes
 } from "./styled";
+import noMovie from "../../images/noMovie.svg";
 import { useSelector } from "react-redux";
 import { selectMoviesGenresState } from "../../core/moviesListPage/moviesListSlice";
 
@@ -36,10 +36,9 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
     return (
         <Movies>
             {movies.map((movie) => {
-                const url = `${baseurl}${movie.poster_path}`;
+                const url = movie.poster_path ? `${baseurl}${movie.poster_path}` : noMovie;
                 const genreNames = getGenreNames(movie.genre_ids);
                 const role = `${movie.character ? movie.character : movie.department}`;
-
                 return (
                     <StyledLink to={`/movies/${movie.id}`} key={movie.id}>
                         <Photo

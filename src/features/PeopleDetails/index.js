@@ -8,6 +8,7 @@ import {
     DisabledOnMobile,
     Description,
 } from "./styled";
+import noPerson from "../../images/noPerson.svg";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
@@ -43,7 +44,7 @@ export const PeopleDetails = () => {
         return <p>No data available</p>;
     }
 
-    const url = `${baseURL}${people.profile_path}`;
+    const url = people.profile_path ? `${baseURL}${people.profile_path}` : noPerson;
 
     console.log(people);
     const FormatDate = (date) => {

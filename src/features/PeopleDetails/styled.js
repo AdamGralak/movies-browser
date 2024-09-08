@@ -18,7 +18,7 @@ export const PersonInfo = styled.div`
 `;
 
 export const Photo = styled.img`
-    max-width: 312px;
+    width: 312px;
     border-radius: 5px;
     grid-column: 1 / 2;
     grid-row: 1 / 3;
