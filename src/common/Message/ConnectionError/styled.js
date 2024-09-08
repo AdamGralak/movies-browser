@@ -110,23 +110,26 @@ export const ErrorInfo = styled.h2`
 `;
 
 export const StyledButtonLink = styled(Link)`
-  width: 100%;
-  max-width: 181px;
-  height: 51px;
-  padding: 16px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 181px;  
+  height: 51px; 
+  padding: 16px 24px;  
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.scienceBlue};
   text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  text-align: center;
+  border-radius: 5px;  
+  gap: 10px;  
 `;
 
 export const ButtonText = styled.div`
-  width: 100%;
-  max-width: 133px;
-  height: 19px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 19px;
+  width: 133px;  
+  height: 19px;  
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;  
+  font-size: 14px;  
+  line-height: 19px; 
+  text-align: center;
+  white-space: nowrap;  
 `;
