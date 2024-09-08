@@ -72,6 +72,12 @@ export const MovieDetails = () => {
         return formattedDate    
     }
 
+    const formatNumber = (number) => {
+        const rounded = number.toFixed(1);
+        const formatted = rounded.replace('.', ',');
+        return formatted;
+    }
+
     return (
         <>
             <BackgroundBlack>
@@ -80,7 +86,7 @@ export const MovieDetails = () => {
                     <RatingWrapper>
                         <HeadRatingInfo>
                             <HeadStyledStarIcon />
-                            <HeadRates>{movie.vote_average ? movie.vote_average.toFixed(1) : ""}</HeadRates>
+                            <HeadRates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</HeadRates>
                             <HeadSmallerFont>/ 10</HeadSmallerFont>
                         </HeadRatingInfo>
                         <HeadVotes>{movie.vote_count} votes</HeadVotes>
@@ -105,7 +111,7 @@ export const MovieDetails = () => {
                             </Categories>
                             <RatingInfo>
                                 <StyledStarIcon />
-                                <Rates>{movie.vote_average ? movie.vote_average.toFixed(1) : ""}</Rates>
+                                <Rates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</Rates>
                                 <SmallerFont disabledonmobile="true">/ 10</SmallerFont>
                                 <SmallerFont>{movie.vote_count} votes</SmallerFont>
                             </RatingInfo>

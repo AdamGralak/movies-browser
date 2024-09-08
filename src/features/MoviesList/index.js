@@ -32,6 +32,12 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
             return genre ? genre.name : null;
         }).filter(name => name !== null);
     };
+    
+    const formatNumber = (number) => {
+        const rounded = number.toFixed(1);
+        const formatted = rounded.replace('.', ',');
+        return formatted;
+    }
 
     return (
         <Movies>
@@ -74,7 +80,7 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
                             <Bottom>
                                 <StyledStarIcon />
                                 <Rates>
-                                    {movie.vote_average.toFixed(1)}
+                                    {movie.vote_average ? formatNumber(movie.vote_average) : ""}
                                 </Rates>
                                 <Votes>
                                     {movie.vote_count} votes
