@@ -46,7 +46,6 @@ export const PeopleDetails = () => {
 
     const url = people.profile_path ? `${baseURL}${people.profile_path}` : noPerson;
 
-    console.log(people);
     const FormatDate = (date) => {
         const day = date.split("-")[2];
         const month = date.split("-")[1];
