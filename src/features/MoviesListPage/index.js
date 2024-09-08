@@ -1,8 +1,9 @@
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
-import { useSelector } from "react-redux";
-import { selectImagePath, selectLoading } from "./moviesListSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMoviesList, selectImagePath, selectLoading } from "../../core/moviesListPage/moviesListSlice";
 import MoviesList from "../MoviesList";
+import { useEffect } from "react";
 
 export const MoviesListPage = () => {
 
@@ -13,13 +14,17 @@ export const MoviesListPage = () => {
         large: "w400",
     }
     const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(fetchMoviesList());
+    }, [dispatch]);
 
     if (loading === true) return <p>Loading Page (spinner)</p>;
 
     return (
         <Container>
             <Header>Popular movies</Header>
-            <MoviesList 
+            <MoviesList
                 movies={movies}
                 baseurl={baseURL}
             />

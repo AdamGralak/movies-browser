@@ -15,21 +15,17 @@ const peopleListSlice = createSlice({
         fetchPeopleListError: (state) => {
             state.loading = true;
         },
-        fetchPeopleListSuccess: (state, { payload: people }) => {
+        fetchPeopleListSucces: (state, { payload: people }) => {
             state.people = people;
             state.loading = false;
         },
-        clearPeopleState: (state) => {
-            Object.assign(state, initialState);
-        }
     },
 });
 
 export const {
     fetchPeopleList,
-    fetchPeopleListSuccess,
+    fetchPeopleListSucces,
     fetchPeopleListError,
-    clearPeopleState,
 } = peopleListSlice.actions;
 const selectPeopleState = state => state.people;
 export const selectPeople = state => selectPeopleState(state).people;
