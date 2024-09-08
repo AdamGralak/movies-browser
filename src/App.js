@@ -37,7 +37,8 @@ function App() {
           <Route path="/loading" element={<Loading />} />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
-      <Paginator />
+        <Paginator />
+      </HashRouter>
     </>
   );
 }
