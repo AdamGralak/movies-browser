@@ -59,7 +59,7 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
                                 <Year>
                                     {renderinpeopledetails ?
                                         <>
-                                            <DisabledOnMobile>{role !== "undefined" ? role : ""} </DisabledOnMobile>
+                                            <DisabledOnMobile>{role !== "undefined" ? role : "uncredited"} </DisabledOnMobile>
                                             {movie.release_date ? 
                                                 <><DisabledOnMobile>(</DisabledOnMobile>
                                                 {movie.release_date.split("-")[0]}
