@@ -23,6 +23,7 @@ import {
     SmallerFont,
     Description,
 } from "./styled";
+import noMovie from "../../images/noMovie.svg";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
@@ -40,6 +41,7 @@ export const MovieDetails = () => {
     const size = {
         small: "w200",
         large: "w500",
+        original: "original",
     };
     const baseURL = `${"https://image.tmdb.org/t/p/"}${size.large}`;
 
@@ -59,17 +61,32 @@ export const MovieDetails = () => {
         return <p>No data available</p>;
     }
 
-    const url = `${baseURL}${movie.poster_path}`;
+    const url = movie.poster_path ? `${baseURL}${movie.poster_path}` : noMovie;
+    const bgUrl = `${"https://image.tmdb.org/t/p/"}${size.original}${movie.backdrop_path}`;
+
+    const FormatDate = (date) => {
+        const day = date.split("-")[2];
+        const month = date.split("-")[1];
+        const year = date.split("-")[0];
+        const formattedDate = day + "." + month + "." + year;
+        return formattedDate    
+    }
+
+    const formatNumber = (number) => {
+        const rounded = number.toFixed(1);
+        const formatted = rounded.replace('.', ',');
+        return formatted;
+    }
 
     return (
         <>
             <BackgroundBlack>
-                <BackgroundImage bgimage={url}>
+                <BackgroundImage bgimage={bgUrl}>
                     <HeadTitle>{movie.original_title}</HeadTitle>
                     <RatingWrapper>
                         <HeadRatingInfo>
                             <HeadStyledStarIcon />
-                            <HeadRates>{movie.vote_average}</HeadRates>
+                            <HeadRates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</HeadRates>
                             <HeadSmallerFont>/ 10</HeadSmallerFont>
                         </HeadRatingInfo>
                         <HeadVotes>{movie.vote_count} votes</HeadVotes>
@@ -82,10 +99,10 @@ export const MovieDetails = () => {
                         <Poster src={url} />
                         <Wrapper>
                             <Title>{movie.original_title}</Title>
-                            <Year>{movie.release_date}</Year>
+                            <Year>{movie.release_date ? movie.release_date.split("-")[0] : ""}</Year>
                             <ProductionRelease>
-                                <GreyText>Production:</GreyText> {movie.production_countries?.map(c => c.name).join(", ")}<br />
-                                <GreyText>Release date:</GreyText> {movie.release_date}
+                                {(movie.production_countries?.length !== 0) ? <><GreyText>Production:</GreyText> {movie.production_countries?.map(c => c.name).join(", ")}<br /></> : ""}
+                                {movie.release_date ? <><GreyText>Release date:</GreyText> {FormatDate(movie.release_date)}</> : ""}
                             </ProductionRelease>
                             <Categories>
                                 {movie.genres?.map(genre => (
@@ -94,8 +111,8 @@ export const MovieDetails = () => {
                             </Categories>
                             <RatingInfo>
                                 <StyledStarIcon />
-                                <Rates>{movie.vote_average}</Rates>
-                                <SmallerFont>/ 10</SmallerFont>
+                                <Rates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</Rates>
+                                <SmallerFont disabledonmobile="true">/ 10</SmallerFont>
                                 <SmallerFont>{movie.vote_count} votes</SmallerFont>
                             </RatingInfo>
                         </Wrapper>

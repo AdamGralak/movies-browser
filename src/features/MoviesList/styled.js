@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { ReactComponent as StarIcon } from '../../images/StarIcon.svg';
 
 export const Movies = styled.div`
@@ -16,8 +17,10 @@ export const Movies = styled.div`
     }
 `;
 
-export const Content = styled.div`
+
+export const StyledLink = styled(Link)`
     color: ${({ theme }) => theme.color.black};
+    text-decoration: none;
     background-color: ${({ theme }) => theme.color.white};
     max-width: 325px;
     display: flex;

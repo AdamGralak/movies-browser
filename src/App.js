@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { GlobalStyle } from './globalStyles';
-import { StyledNavigation, StyledInput } from "./common/Navigation/styled";
-import { HashRouter, NavLink, Route, Routes, Navigate } from "react-router-dom";
-import logo from "./images/logo.svg";
+import { Navigation } from "./common/Navigation";
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import { PeopleListPage } from './features/PeopleListPage';
 import { MoviesListPage } from './features/MoviesListPage';
 import { useDispatch } from 'react-redux';
@@ -26,21 +25,7 @@ function App() {
     <>
       <GlobalStyle />
       <HashRouter>
-        <StyledNavigation>
-          <img src={logo} alt="logo" />
-          <ul>
-            <li>
-              <NavLink to="/movies">MOVIES</NavLink>
-            </li>
-            <li>
-              <NavLink to="/people">PEOPLE</NavLink>
-            </li>
-          </ul>
-          <StyledInput
-            type="text"
-            placeholder="Search in..."
-          />
-        </StyledNavigation>
+        <Navigation />
         <Routes>
           <Route path="/movies" element={<MoviesListPage />} />
           <Route path="/movies/:id" element={<MovieDetails />} />

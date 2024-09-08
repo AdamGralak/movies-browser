@@ -8,6 +8,7 @@ import {
     DisabledOnMobile,
     Description,
 } from "./styled";
+import noPerson from "../../images/noPerson.svg";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { Section } from "../../common/Section/styled";
@@ -43,7 +44,15 @@ export const PeopleDetails = () => {
         return <p>No data available</p>;
     }
 
-    const url = `${baseURL}${people.profile_path}`;
+    const url = people.profile_path ? `${baseURL}${people.profile_path}` : noPerson;
+
+    const FormatDate = (date) => {
+        const day = date.split("-")[2];
+        const month = date.split("-")[1];
+        const year = date.split("-")[0];
+        const formattedDate = day + "." + month + "." + year;
+        return formattedDate    
+    }
 
     return (
         <Container>
@@ -55,22 +64,18 @@ export const PeopleDetails = () => {
                             {people.name}
                         </Name>
                         <div>
-                            <GreyText><DisabledOnMobile>Date of birth:</DisabledOnMobile><Birth>Birth:</Birth></GreyText> data urodzin<br />
-                            <GreyText>Place of birth:</GreyText> miejsce urodzenia
+                            {people.birthday ? <><GreyText><DisabledOnMobile>Date of birth:</DisabledOnMobile><Birth>Birth:</Birth></GreyText> {FormatDate(people.birthday)}<br /></> : ""}
+                            
+                            {people.place_of_birth ? <><GreyText>Place of birth:</GreyText> {people.place_of_birth}</> : ""}
                         </div>
                     </Info>
                     <Description>
-                        Liu Yifei was born in Wuhan, Hubei,
-                        Province of China on August 25th, 1987. She
-                        began modeling at the age of 8 and was trained
-                        in singing, dancing and the piano. Moving to
-                        the United States at 10 with her mother,
-                        Liu lived there for four years.
+                        {people.place_of_birth ? <>{people.biography}</> : ""}        
                     </Description>
                 </PersonInfo>
             </Section>
             <Section>
-                <Header>Movies - cast (ilość)</Header>
+                <Header>Movies - cast ({credits.cast?.length})</Header>
                 <MoviesList
                     movies={credits.cast}
                     baseurl={baseURL}
@@ -78,7 +83,7 @@ export const PeopleDetails = () => {
                 />
             </Section>
             <Section>
-                <Header>Movies - crew (ilość)</Header>
+                <Header>Movies - crew ({credits.crew?.length})</Header>
                 <MoviesList
                     movies={credits.crew}
                     baseurl={baseURL}

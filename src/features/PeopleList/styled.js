@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const People = styled.div`
@@ -19,10 +20,10 @@ export const People = styled.div`
     }
 `;
 
-export const Content = styled.div`
+export const StyledLink = styled(Link)`
+    text-decoration: none;
     color: ${({ theme }) => theme.color.black};
     background-color: ${({ theme }) => theme.color.white};
-    font-size: 22px;
     max-width: 208px;
     display: flex;
     flex-direction: column;
@@ -33,7 +34,6 @@ export const Content = styled.div`
     cursor: pointer;
     transition: 0.3s;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
-        font-size: 14px;
         padding: 12px;
     }
     &:hover {
@@ -41,37 +41,48 @@ export const Content = styled.div`
     }
 `;
 
-export const Photo = styled.img`
+export const Photo = styled.div`
+    background-image: url(${props => props.photo});
+    position: relative;
+    background-size: cover;
+    background-position-y: top;
+    background-position-x: center ;
+    padding-bottom: 131.25%;
     width: 100%;
     border-radius: 5px;
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
-
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax3}px) {
+        position: relative;
+        padding-bottom: 146.67%; 
+        min-height: 0px;
     }
 `;
 
-export const Name = styled.div`
-    font-weight: 500;
+export const Wrapper = styled.div`
     display: flex;
-    align-items: start;
-    justify-content: center;
-    text-align: center;
     height: 100%;
-    margin-top: 16px;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
+export const Name = styled.div`
+    font-size: 22px;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 10px;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
-        margin-top: 16px;
+        margin-top: 8px;
+        font-size: 14px;
     }
 `;
 
 export const Role = styled.div`
-    font-weight: 500;
+    font-weight: 400;
+    font-size: 18px;
     color: ${({ theme }) => theme.color.darkerGrey};
-    display: flex;
-    align-items: start;
-    justify-content: center;
     text-align: center;
-    height: 100%;
-    margin-top: 16px;
+    margin-top: 10px;
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
         margin-top: 8px;
+        font-size: 13px;
     }
 `;

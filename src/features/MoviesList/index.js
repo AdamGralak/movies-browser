@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import {
     Movies,
-    Content,
+    StyledLink,
     Photo,
     Wrapper,
     Info,
@@ -15,6 +14,7 @@ import {
     Rates,
     Votes
 } from "./styled";
+import noMovie from "../../images/noMovie.svg";
 import { useSelector } from "react-redux";
 import { selectMoviesGenresState } from "../../core/moviesListPage/moviesListSlice";
 
@@ -32,54 +32,62 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
             return genre ? genre.name : null;
         }).filter(name => name !== null);
     };
+    
+    const formatNumber = (number) => {
+        const rounded = number.toFixed(1);
+        const formatted = rounded.replace('.', ',');
+        return formatted;
+    }
 
     return (
         <Movies>
             {movies.map((movie) => {
-                const url = `${baseurl}${movie.poster_path}`;
+                const url = movie.poster_path ? `${baseurl}${movie.poster_path}` : noMovie;
                 const genreNames = getGenreNames(movie.genre_ids);
-
+                const role = `${movie.character ? movie.character : movie.department}`;
                 return (
-                    <Link to={`/movies/${movie.id}`} key={movie.id}>
-                        <Content>
-                            <Photo
-                                src={url}
-                                alt={movie.title}
-                            />
-                            <Wrapper>
-                                <Info>
-                                    <Title>
-                                        {movie.original_title}
-                                    </Title>
-                                    <Year>
-                                        {renderinpeopledetails ?
-                                            <>
-                                                <DisabledOnMobile>Rola (</DisabledOnMobile>
-                                                {movie.release_date ? movie.release_date : ""}
-                                                <DisabledOnMobile>)</DisabledOnMobile>
-                                            </>
-                                            :
-                                            <>{movie.release_date ? movie.release_date.split("-")[0] : ""}</>
-                                        }
-                                    </Year>
-                                    <Categories>
-                                        {genreNames.map((name, index) => (
-                                            <Category key={index}>{name}</Category>
-                                        ))}
-                                    </Categories>
-                                </Info>
-                                <Bottom>
-                                    <StyledStarIcon />
-                                    <Rates>
-                                        {movie.vote_average.toFixed(1)}
-                                    </Rates>
-                                    <Votes>
-                                        {movie.vote_count} votes
-                                    </Votes>
-                                </Bottom>
-                            </Wrapper>
-                        </Content>
-                    </Link>
+                    <StyledLink to={`/movies/${movie.id}`} key={movie.id}>
+                        <Photo
+                            src={url}
+                            alt={movie.title}
+                        />
+                        <Wrapper>
+                            <Info>
+                                <Title>
+                                    {movie.original_title}
+                                </Title>
+                                <Year>
+                                    {renderinpeopledetails ?
+                                        <>
+                                            <DisabledOnMobile>{role !== "undefined" ? role : "uncredited"} </DisabledOnMobile>
+                                            {movie.release_date ? 
+                                                <><DisabledOnMobile>(</DisabledOnMobile>
+                                                {movie.release_date.split("-")[0]}
+                                                <DisabledOnMobile>)</DisabledOnMobile></> 
+                                                : ""
+                                            } 
+                                        </>
+                                        :
+                                        <>{movie.release_date ? movie.release_date.split("-")[0] : ""}</>
+                                    }
+                                </Year>
+                                <Categories>
+                                    {genreNames.map((name, index) => (
+                                        <Category key={index}>{name}</Category>
+                                    ))}
+                                </Categories>
+                            </Info>
+                            <Bottom>
+                                <StyledStarIcon />
+                                <Rates>
+                                    {movie.vote_average ? formatNumber(movie.vote_average) : ""}
+                                </Rates>
+                                <Votes>
+                                    {movie.vote_count} votes
+                                </Votes>
+                            </Bottom>
+                        </Wrapper>
+                    </StyledLink>
                 );
             })}
         </Movies>
