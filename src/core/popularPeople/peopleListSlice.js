@@ -30,6 +30,7 @@ export const {
 const selectPeopleState = state => state.people;
 export const selectPeople = state => selectPeopleState(state).people;
 export const selectLoading = state => selectPeopleState(state).loading;
+export const selectPeopleTotalPages = state => selectPeopleState(state).people.total_pages;
 export const selectPeopleImagePath = state => selectPeopleState(state).people.results || [];
 
 export default peopleListSlice.reducer;

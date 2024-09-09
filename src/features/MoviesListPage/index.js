@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMoviesList, selectImagePath, selectLoading } from "../../core/moviesListPage/moviesListSlice";
 import MoviesList from "../MoviesList";
 import { useEffect } from "react";
+import Paginator from "../../common/Paginator";
+import { selectCurrentPage } from "../../core/actual/actualStateSlice";
 
 export const MoviesListPage = () => {
 
     const movies = useSelector(selectImagePath);
     const loading = useSelector(selectLoading);
+    const page = useSelector(selectCurrentPage);
     const size = {
         small: "w200",
         large: "w400",
@@ -28,6 +31,7 @@ export const MoviesListPage = () => {
                 movies={movies}
                 baseurl={baseURL}
             />
+            <Paginator/>
         </Container>
     );
 };

@@ -4,10 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import PeopleList from "../PeopleList";
+import Paginator from "../../common/Paginator";
+import { selectCurrentPage } from "../../core/actual/actualStateSlice";
 
 export const PeopleListPage = () => {
     const people = useSelector(selectPeopleImagePath);
     const loading = useSelector(selectLoading);
+    const page = useSelector(selectCurrentPage);
     const size = {
         small: "w200",
         large: "w400",
@@ -25,9 +28,10 @@ export const PeopleListPage = () => {
         <Container>
             <Header>Popular people</Header>
             <PeopleList
-                people= {people}
-                baseurl= {baseURL} 
+                people={people}
+                baseurl={baseURL}
             />
+            <Paginator />
         </Container>
     )
 };
