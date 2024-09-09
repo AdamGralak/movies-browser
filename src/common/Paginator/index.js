@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { selectCurrentPage, setCurrentPage } from '../../core/actual/actualStateSlice';
 import { useTheme } from 'styled-components';
 import {
     StyledPaginator,
@@ -8,7 +10,7 @@ import {
     PageText,
     PageNumber,
     BackwardForward
-} from "./styled";
+} from './styled';
 import FirstPageIcon from './First.svg';
 import PreviousPageIcon from './Previous.svg';
 import NextPageIcon from './Next.svg';
@@ -17,12 +19,13 @@ import MobileFirstPageIcon from './MobileFirst.svg';
 import MobilePreviousPageIcon from './MobilePrevious.svg';
 import MobileNextPageIcon from './MobileNext.svg';
 import MobileLastPageIcon from './MobileLast.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { decrementCurrentPage, goToFirstPage, goToLastPage, incrementCurrentPage, selectCurrentPage } from '../../core/actual/actualStateSlice';
+import { useEffect, useState } from 'react';
 
 const Paginator = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
     const currentPage = useSelector(selectCurrentPage);
 
     const mobileMax2 = theme.breakpoint.mobileMax2;
@@ -36,13 +39,19 @@ const Paginator = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, [mobileMax2]);
 
+    const handlePageChange = (newPage) => {
+        dispatch(setCurrentPage(newPage));
+        const basePath = location.pathname.includes("movies") ? "/movies" : "/people";
+        navigate(`${basePath}/page/${newPage}`);
+    };
+
     return (
         <StyledPaginator>
             <BackwardForward>
-                <PaginatorButton onClick={() => dispatch(goToFirstPage())} disabled={currentPage === 1}>
+                <PaginatorButton onClick={() => handlePageChange(1)} disabled={currentPage === 1}>
                     <ButtonImage src={isMobile ? MobileFirstPageIcon : FirstPageIcon} alt="First page" />
                 </PaginatorButton>
-                <PaginatorButton onClick={() => dispatch(decrementCurrentPage())} disabled={currentPage === 1}>
+                <PaginatorButton onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
                     <ButtonImage src={isMobile ? MobilePreviousPageIcon : PreviousPageIcon} alt="Previous page" />
                 </PaginatorButton>
             </BackwardForward>
@@ -53,14 +62,14 @@ const Paginator = () => {
                 <PageNumber>500</PageNumber>
             </PageInfo>
             <BackwardForward>
-                <PaginatorButton onClick={() => dispatch(incrementCurrentPage())} disabled={currentPage === 500}>
+                <PaginatorButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === 500}>
                     <ButtonImage src={isMobile ? MobileNextPageIcon : NextPageIcon} alt="Next page" />
                 </PaginatorButton>
-                <PaginatorButton onClick={() => dispatch(goToLastPage())} disabled={currentPage === 500}>
+                <PaginatorButton onClick={() => handlePageChange(500)} disabled={currentPage === 500}>
                     <ButtonImage src={isMobile ? MobileLastPageIcon : LastPageIcon} alt="Last page" />
                 </PaginatorButton>
             </BackwardForward>
-        </StyledPaginator >
+        </StyledPaginator>
     );
 };
 

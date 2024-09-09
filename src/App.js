@@ -13,7 +13,6 @@ import { NoResults } from './common/Message/MessageContainer/NoResults';
 import { SearchResults } from './common/Message/MessageContainer/SearchResults';
 import { Loading } from './common/Message/MessageContainer/Loading';
 
-
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -26,15 +25,17 @@ function App() {
       <HashRouter>
         <Navigation />
         <Routes>
-          <Route path="/movies" element={<MoviesListPage />} />
+          <Route path="/movies/page/:page" element={<MoviesListPage />} />
+          <Route path="/movies" element={<Navigate to="/movies/page/1" />} />
           <Route path="/movies/:id" element={<MovieDetails />} />
+          <Route path="/people/page/:page" element={<PeopleListPage />} />
           <Route path="/people/:id" element={<PeopleDetails />} />
-          <Route path="/people" element={<PeopleListPage />} />
+          <Route path="/people" element={<Navigate to="/people/page/1" />} />
           <Route path="/no-connection" element={<ConnectionError />} />
           <Route path="/no-results" element={<NoResults />} />
           <Route path="/search-results" element={<SearchResults />} />
           <Route path="/loading" element={<Loading />} />
-          <Route path="/" element={<Navigate to="/movies" />} />
+          <Route path="/" element={<Navigate to="/movies/page/1" />} />
         </Routes>
       </HashRouter>
     </>

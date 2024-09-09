@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    currentPage: 1
+    currentPage: 1,
 };
 
 const actualState = createSlice({
@@ -11,25 +11,17 @@ const actualState = createSlice({
         goToFirstPage: (state) => {
             state.currentPage = 1;
         },
-        goToLastPage: (state) => {
-            state.currentPage = 500;
+        setCurrentPage: (state, action) => {
+            state.currentPage = action.payload;
         },
-        incrementCurrentPage: (state) => {
-            state.currentPage++;
-        },
-        decrementCurrentPage: (state) => {
-            state.currentPage--;
-        },
-    }
+    },
 });
 
 export const {
-    incrementCurrentPage,
-    decrementCurrentPage,
     goToFirstPage,
-    goToLastPage,
+    setCurrentPage,
 } = actualState.actions;
 
-export const selectCurrentPage = state => state.actualState.currentPage;
+export const selectCurrentPage = (state) => state.actualState.currentPage;
 
 export default actualState.reducer;
