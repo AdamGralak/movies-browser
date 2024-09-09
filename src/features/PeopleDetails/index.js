@@ -17,6 +17,7 @@ import { fetchPeopleDetails, resetPeopleDetails, selectLoading, selectPeopleCred
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Loading } from "../../common/Message/MessageContainer/Loading";
 
 export const PeopleDetails = () => {
     const people = useSelector(selectPeopleDetails);
@@ -38,7 +39,7 @@ export const PeopleDetails = () => {
         };
     }, [dispatch, id]);
 
-    if (loading) return <p>Loading Page (spinner)</p>;
+    if (loading) return <Loading />;
 
     if (!people || !credits) {
         return <p>No data available</p>;

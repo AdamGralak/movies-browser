@@ -33,6 +33,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMovieDetails, selectLoading, selectMovieCredits, selectMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
 import { useEffect } from "react";
 import { resetMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
+import { Loading } from "../../common/Message/MessageContainer/Loading";
 
 export const MovieDetails = () => {
     const movie = useSelector(selectMovieDetails);
@@ -55,7 +56,7 @@ export const MovieDetails = () => {
         };
     }, [dispatch, id]);
 
-    if (loading) return <p>Loading Page (spinner)</p>;
+    if (loading) return <Loading />;
 
     if (!movie || !credits) {
         return <p>No data available</p>;

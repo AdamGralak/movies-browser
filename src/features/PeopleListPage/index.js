@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import PeopleList from "../PeopleList";
+import { Loading } from "../../common/Message/MessageContainer/Loading";
 
 export const PeopleListPage = () => {
     const people = useSelector(selectPeopleImagePath);
@@ -19,7 +20,7 @@ export const PeopleListPage = () => {
         dispatch(fetchPeopleList());
     }, [dispatch]);
 
-    if (loading === true) return <p>Loading Page (spinner)</p>;
+    if (loading === true) return <Loading />;
 
     return (
         <Container>
