@@ -34,37 +34,6 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const InfoHeader = styled.h1`
-  margin: 0 0 0 276px;
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 43.2px;
-  color: ${({ theme }) => theme.color.black};
-  text-align: left;
-  width: 100%;
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-    font-size: 22px;
-    margin: 0 0 0 200px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax3}px) {
-    font-size: 20px;
-    margin: 0 0 0 100px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
-    font-size: 18px;
-    margin: 0 0 0 40px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax5}px) {
-    font-size: 14px;
-    font-weight: 500;
-    margin: 0 0 0 16px;
-  }
-`;
-
 export const Icon = styled(({ as: IconComponent, ...props }) => (
   <IconComponent {...props} />
 ))`
