@@ -2,9 +2,12 @@ import React from "react";
 import { Item, List, StyledLogoNavLink, Logo, StyledInput, StyledNavigation, Wrapper, StyledNavLink } from "./styled";
 import { useDispatch } from "react-redux";
 import { goToFirstPage } from "../../core/actual/actualStateSlice";
+import { useLocation } from "react-router-dom";
 
 export const Navigation = () => {
     const dispatch = useDispatch();
+    const location = useLocation();
+    const actualLocation = location.pathname.includes("movies") ? "movies" : "people";
     return (
         <StyledNavigation>
             <Wrapper>
@@ -21,7 +24,7 @@ export const Navigation = () => {
                 </List>
                 <StyledInput
                     type="text"
-                    placeholder="Search in..."
+                    placeholder={`Search in ${actualLocation}`}
                 />
             </Wrapper>
         </StyledNavigation>
