@@ -18,7 +18,7 @@ import MobilePreviousPageIcon from './MobilePrevious.svg';
 import MobileNextPageIcon from './MobileNext.svg';
 import MobileLastPageIcon from './MobileLast.svg';
 
-const Paginator = () => {
+export const Paginator = () => {
     const theme = useTheme();
     const mobileMax2 = theme.breakpoint.mobileMax2;
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileMax2);

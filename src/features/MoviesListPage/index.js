@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMoviesList, selectImagePath, selectLoading } from "../../core/moviesListPage/moviesListSlice";
 import MoviesList from "../MoviesList";
 import { useEffect } from "react";
+import { Loading } from "../../common/Message/MessageContainer/Loading";
+import { Paginator } from "../../common/Paginator"
 
 export const MoviesListPage = () => {
 
@@ -19,16 +21,19 @@ export const MoviesListPage = () => {
         dispatch(fetchMoviesList());
     }, [dispatch]);
 
-    if (loading === true) return <p>Loading Page (spinner)</p>;
+    if (loading === true) return <Loading />;
 
     return (
-        <Container>
-            <Header>Popular movies</Header>
-            <MoviesList
-                movies={movies}
-                baseurl={baseURL}
-            />
-        </Container>
+        <>
+            <Container>
+                <Header>Popular movies</Header>
+                <MoviesList
+                    movies={movies}
+                    baseurl={baseURL}
+                />
+            </Container>
+            <Paginator />
+        </>
     );
 };
 

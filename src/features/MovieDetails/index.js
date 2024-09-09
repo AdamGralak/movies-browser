@@ -33,6 +33,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchMovieDetails, selectLoading, selectMovieCredits, selectMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
 import { useEffect } from "react";
 import { resetMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
+import { Loading } from "../../common/Message/MessageContainer/Loading";
 
 export const MovieDetails = () => {
     const movie = useSelector(selectMovieDetails);
@@ -55,14 +56,14 @@ export const MovieDetails = () => {
         };
     }, [dispatch, id]);
 
-    if (loading) return <p>Loading Page (spinner)</p>;
+    if (loading) return <Loading />;
 
     if (!movie || !credits) {
         return <p>No data available</p>;
     }
 
     const url = movie.poster_path ? `${baseURL}${movie.poster_path}` : noMovie;
-    const bgUrl = `${"https://image.tmdb.org/t/p/"}${size.original}${movie.backdrop_path}`;
+    const bgUrl = movie.backdrop_path ? `${"https://image.tmdb.org/t/p/"}${size.original}${movie.backdrop_path}` : false;
 
     const FormatDate = (date) => {
         const day = date.split("-")[2];
@@ -80,7 +81,7 @@ export const MovieDetails = () => {
 
     return (
         <>
-            <BackgroundBlack>
+            <BackgroundBlack bgimage={bgUrl}>
                 <BackgroundImage bgimage={bgUrl}>
                     <HeadTitle>{movie.original_title}</HeadTitle>
                     <RatingWrapper>

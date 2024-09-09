@@ -6,7 +6,6 @@ import { PeopleListPage } from './features/PeopleListPage';
 import { MoviesListPage } from './features/MoviesListPage';
 import { useDispatch } from 'react-redux';
 import { fetchMoviesGenres } from './core/moviesListPage/moviesListSlice';
-import Paginator from './common/Paginator';
 import { ConnectionError } from './common/Message/ConnectionError';
 import { MovieDetails } from './features/MovieDetails';
 import PeopleDetails from './features/PeopleDetails';
@@ -37,7 +36,6 @@ function App() {
           <Route path="/loading" element={<Loading />} />
           <Route path="/" element={<Navigate to="/movies" />} />
         </Routes>
-        <Paginator />
       </HashRouter>
     </>
   );
