@@ -2,11 +2,11 @@ import { call, put, select, takeLatest } from "redux-saga/effects";
 import { fetchMoviesList, fetchMoviesListSucces, fetchMoviesListError, fetchMoviesGenresSucces, fetchMoviesGenresError, fetchMoviesGenres } from "./moviesListSlice";
 import { getMoviesFromApi } from "./getMoviesList";
 import { getMoviesGenresFromApi } from "./getMoviesGenres";
-import { selectCurrentPage } from "../actual/actualStateSlice";
+import { selectactualPage } from "../actual/actualStateSlice";
 
 function* fetchMoviesListHandler() {
     try {
-        const page = yield select(selectCurrentPage);
+        const page = yield select(selectactualPage);
         const movies = yield call(getMoviesFromApi, {page});
         const genres = yield call(getMoviesGenresFromApi);
         yield put(fetchMoviesListSucces(movies));

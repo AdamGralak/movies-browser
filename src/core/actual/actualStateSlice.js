@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    currentPage: 1,
+    actualPage: 1,
 };
 
 const actualState = createSlice({
@@ -9,19 +9,19 @@ const actualState = createSlice({
     initialState,
     reducers: {
         goToFirstPage: (state) => {
-            state.currentPage = 1;
+            state.actualPage = 1;
         },
-        setCurrentPage: (state, action) => {
-            state.currentPage = action.payload;
+        setactualPage: (state, action) => {
+            state.actualPage = action.payload;
         },
     },
 });
 
 export const {
     goToFirstPage,
-    setCurrentPage,
+    setactualPage,
 } = actualState.actions;
 
-export const selectCurrentPage = (state) => state.actualState.currentPage;
+export const selectactualPage = (state) => state.actualState.actualPage;
 
 export default actualState.reducer;

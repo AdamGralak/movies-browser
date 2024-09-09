@@ -6,36 +6,36 @@ import PeopleList from '../PeopleList';
 import { Container } from '../../common/Container/styled';
 import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
-import { selectCurrentPage, setCurrentPage } from '../../core/actual/actualStateSlice';
+import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
 
 export const PeopleListPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { page: urlPage } = useParams();
-    const page = useSelector(selectCurrentPage);
+    const page = useSelector(selectactualPage);
     const people = useSelector(selectPeopleImagePath);
     const loading = useSelector(selectLoading);
 
-    const currentPage = parseInt(urlPage, 10) || 1;
+    const actualPage = parseInt(urlPage, 10) || 1;
 
     // Synchronizuj numer strony z Redux
     useEffect(() => {
-        if (currentPage !== page) {
-            dispatch(setCurrentPage(currentPage));
+        if (actualPage !== page) {
+            dispatch(setactualPage(actualPage));
         }
-    }, [currentPage, page, dispatch]);
+    }, [actualPage, page, dispatch]);
 
     // Załaduj dane dla odpowiedniej strony
     useEffect(() => {
         dispatch(fetchPeopleList());
-    }, [dispatch, currentPage]);
+    }, [dispatch, actualPage]);
 
     // Zaktualizuj URL w razie zmiany numeru strony
     useEffect(() => {
-        if (page !== currentPage) {
+        if (page !== actualPage) {
             navigate(`/people/page/${page}`);
         }
-    }, [page, navigate, currentPage]);
+    }, [page, navigate, actualPage]);
 
     if (loading) return <p>Loading Page (spinner)</p>;
 

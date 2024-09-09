@@ -6,33 +6,33 @@ import MoviesList from '../MoviesList';
 import { Container } from '../../common/Container/styled';
 import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
-import { selectCurrentPage, setCurrentPage } from '../../core/actual/actualStateSlice';
+import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
 
 export const MoviesListPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { page: urlPage } = useParams();
-    const page = useSelector(selectCurrentPage);
+    const page = useSelector(selectactualPage);
     const movies = useSelector(selectImagePath);
     const loading = useSelector(selectLoading);
 
-    const currentPage = parseInt(urlPage, 10) || 1;
+    const actualPage = parseInt(urlPage, 10) || 1;
 
     useEffect(() => {
-        if (currentPage !== page) {
-            dispatch(setCurrentPage(currentPage));
+        if (actualPage !== page) {
+            dispatch(setactualPage(actualPage));
         }
-    }, [currentPage, page, dispatch]);
+    }, [actualPage, page, dispatch]);
 
     useEffect(() => {
         dispatch(fetchMoviesList());
-    }, [dispatch, currentPage]);
+    }, [dispatch, actualPage]);
 
     useEffect(() => {
-        if (page !== currentPage) {
+        if (page !== actualPage) {
             navigate(`/movies/page/${page}`);
         }
-    }, [page, navigate, currentPage]);
+    }, [page, navigate, actualPage]);
 
     if (loading) return <p>Loading Page (spinner)</p>;
 

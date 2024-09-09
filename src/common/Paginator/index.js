@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { selectCurrentPage, setCurrentPage } from '../../core/actual/actualStateSlice';
+import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
 import { useTheme } from 'styled-components';
 import {
     StyledPaginator,
@@ -26,7 +26,7 @@ const Paginator = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const currentPage = useSelector(selectCurrentPage);
+    const actualPage = useSelector(selectactualPage);
 
     const mobileMax2 = theme.breakpoint.mobileMax2;
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileMax2);
@@ -40,7 +40,7 @@ const Paginator = () => {
     }, [mobileMax2]);
 
     const handlePageChange = (newPage) => {
-        dispatch(setCurrentPage(newPage));
+        dispatch(setactualPage(newPage));
         const basePath = location.pathname.includes("movies") ? "/movies" : "/people";
         navigate(`${basePath}/page/${newPage}`);
     };
@@ -48,24 +48,24 @@ const Paginator = () => {
     return (
         <StyledPaginator>
             <BackwardForward>
-                <PaginatorButton onClick={() => handlePageChange(1)} disabled={currentPage === 1}>
+                <PaginatorButton onClick={() => handlePageChange(1)} disabled={actualPage === 1}>
                     <ButtonImage src={isMobile ? MobileFirstPageIcon : FirstPageIcon} alt="First page" />
                 </PaginatorButton>
-                <PaginatorButton onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+                <PaginatorButton onClick={() => handlePageChange(actualPage - 1)} disabled={actualPage === 1}>
                     <ButtonImage src={isMobile ? MobilePreviousPageIcon : PreviousPageIcon} alt="Previous page" />
                 </PaginatorButton>
             </BackwardForward>
             <PageInfo>
                 <PageText>Page</PageText>
-                <PageNumber>{currentPage}</PageNumber>
+                <PageNumber>{actualPage}</PageNumber>
                 <PageText>of</PageText>
                 <PageNumber>500</PageNumber>
             </PageInfo>
             <BackwardForward>
-                <PaginatorButton onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === 500}>
+                <PaginatorButton onClick={() => handlePageChange(actualPage + 1)} disabled={actualPage === 500}>
                     <ButtonImage src={isMobile ? MobileNextPageIcon : NextPageIcon} alt="Next page" />
                 </PaginatorButton>
-                <PaginatorButton onClick={() => handlePageChange(500)} disabled={currentPage === 500}>
+                <PaginatorButton onClick={() => handlePageChange(500)} disabled={actualPage === 500}>
                     <ButtonImage src={isMobile ? MobileLastPageIcon : LastPageIcon} alt="Last page" />
                 </PaginatorButton>
             </BackwardForward>
