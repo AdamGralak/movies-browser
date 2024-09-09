@@ -11,8 +11,8 @@ const actualState = createSlice({
         goToFirstPage: (state) => {
             state.currentPage = 1;
         },
-        goToLastPage: (state, action) => {
-            state.currentPage = action.payload;
+        goToLastPage: (state) => {
+            state.currentPage = 500;
         },
         incrementCurrentPage: (state) => {
             state.currentPage++;

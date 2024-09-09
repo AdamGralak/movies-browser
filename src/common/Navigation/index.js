@@ -1,7 +1,10 @@
 import React from "react";
 import { Item, List, StyledLogoNavLink, Logo, StyledInput, StyledNavigation, Wrapper, StyledNavLink } from "./styled";
+import { useDispatch } from "react-redux";
+import { goToFirstPage } from "../../core/actual/actualStateSlice";
 
 export const Navigation = () => {
+    const dispatch = useDispatch();
     return (
         <StyledNavigation>
             <Wrapper>
@@ -10,10 +13,10 @@ export const Navigation = () => {
                         <Logo />
                     </StyledLogoNavLink>
                     <Item>
-                        <StyledNavLink to="/movies">MOVIES</StyledNavLink>
+                        <StyledNavLink to="/movies" onClick={() => dispatch(goToFirstPage())}>MOVIES</StyledNavLink>
                     </Item>
                     <Item>
-                        <StyledNavLink to="/people">PEOPLE</StyledNavLink>
+                        <StyledNavLink to="/people" onClick={() => dispatch(goToFirstPage())}>PEOPLE</StyledNavLink>
                     </Item>
                 </List>
                 <StyledInput

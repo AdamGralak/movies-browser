@@ -1,6 +1,6 @@
 import { accessToken } from "../accessToken";
 
-export const getPeopleFromApi = async () => {
+export const getPeopleFromApi = async ({ page }) => {
   const options = {
     method: 'GET',
     headers: {
@@ -9,15 +9,15 @@ export const getPeopleFromApi = async () => {
     }
   };
 
-try {
-  const response = await fetch('https://api.themoviedb.org/3/person/popular?language=en-US&page=1', options);
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/person/popular?language=en-US&page=${page}`, options);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    return data;
+  } catch (err) {
+    console.error(err);
+    return null;
   }
-  const data = await response.json();
-  return data;
-} catch (err) {
-  console.error(err);
-  return null;
-}
 }

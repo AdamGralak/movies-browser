@@ -18,9 +18,10 @@ export const MoviesListPage = () => {
     }
     const baseURL = `${"https://image.tmdb.org/t/p/"}${size.large}`;
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(fetchMoviesList());
-    }, [dispatch]);
+    }, [dispatch, page]);
 
     if (loading === true) return <p>Loading Page (spinner)</p>;
 
@@ -31,7 +32,7 @@ export const MoviesListPage = () => {
                 movies={movies}
                 baseurl={baseURL}
             />
-            <Paginator/>
+            <Paginator />
         </Container>
     );
 };

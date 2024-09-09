@@ -19,18 +19,11 @@ import MobileNextPageIcon from './MobileNext.svg';
 import MobileLastPageIcon from './MobileLast.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { decrementCurrentPage, goToFirstPage, goToLastPage, incrementCurrentPage, selectCurrentPage } from '../../core/actual/actualStateSlice';
-import { useLocation } from 'react-router-dom';
-import { selectMoviesTotalPages } from '../../core/moviesListPage/moviesListSlice';
-import { selectPeopleTotalPages } from '../../core/popularPeople/peopleListSlice';
 
 const Paginator = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
-    const location = useLocation();
     const currentPage = useSelector(selectCurrentPage);
-    const totalMoviesPages = useSelector(selectMoviesTotalPages);
-    const totalPeoplePages = useSelector(selectPeopleTotalPages);
-    const totalPages = location.pathname.includes("/movies") ? totalMoviesPages : totalPeoplePages;
 
     const mobileMax2 = theme.breakpoint.mobileMax2;
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileMax2);
@@ -57,13 +50,13 @@ const Paginator = () => {
                 <PageText>Page</PageText>
                 <PageNumber>{currentPage}</PageNumber>
                 <PageText>of</PageText>
-                <PageNumber>{totalPages}</PageNumber>
+                <PageNumber>500</PageNumber>
             </PageInfo>
             <BackwardForward>
-                <PaginatorButton onClick={() => dispatch(incrementCurrentPage())} disabled={currentPage === totalPages}>
+                <PaginatorButton onClick={() => dispatch(incrementCurrentPage())} disabled={currentPage === 500}>
                     <ButtonImage src={isMobile ? MobileNextPageIcon : NextPageIcon} alt="Next page" />
                 </PaginatorButton>
-                <PaginatorButton onClick={() => dispatch(goToLastPage(totalPages))} disabled={currentPage === totalPages}>
+                <PaginatorButton onClick={() => dispatch(goToLastPage())} disabled={currentPage === 500}>
                     <ButtonImage src={isMobile ? MobileLastPageIcon : LastPageIcon} alt="Last page" />
                 </PaginatorButton>
             </BackwardForward>

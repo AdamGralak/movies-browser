@@ -18,9 +18,10 @@ export const PeopleListPage = () => {
     const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
 
     const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(fetchPeopleList());
-    }, [dispatch]);
+    }, [dispatch, page]);
 
     if (loading === true) return <p>Loading Page (spinner)</p>;
 
