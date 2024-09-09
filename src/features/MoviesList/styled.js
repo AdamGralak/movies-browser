@@ -34,7 +34,7 @@ export const StyledLink = styled(Link)`
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
         min-height: 0;
         flex-direction: row;
-        height: 210px;
+        min-height: 210px;
         max-width: none;
         font-size: 13px;
     }
@@ -49,6 +49,7 @@ export const Photo = styled.img`
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
         flex-direction: row;
         width: auto;
+        max-height: 178px;
         height: 100%;
     }
 `;
