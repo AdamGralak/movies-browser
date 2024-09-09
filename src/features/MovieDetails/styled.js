@@ -4,26 +4,28 @@ import { ReactComponent as StarIcon } from '../../images/StarIcon.svg';
 export const BackgroundBlack = styled.div`
     background-color: ${({ theme }) => theme.color.black};
     width: 100%;
-    height: 770px;
-    max-height: 80vh;
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
-        height: 600px;
-    }
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax1}px) {
-        height: 500px;
-    }
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax21}px) {
-        height: 400px;
-    }
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
-        height: 250px;
-    }
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax41}px) {
-        height: 200px;
-    }
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax42}px) {
-        height: 148px;
-    }
+    ${({ bgimage }) => bgimage && css`
+        height: 770px;
+        max-height: 80vh;
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax}px) {
+            height: 600px;
+        }
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax1}px) {
+            height: 500px;
+        }
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax21}px) {
+            height: 400px;
+        }
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax4}px) {
+            height: 250px;
+        }
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax41}px) {
+            height: 200px;
+        }
+        @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax42}px) {
+            height: 148px;
+        }
+    `}
 `;
 
 export const BackgroundImage = styled.div`

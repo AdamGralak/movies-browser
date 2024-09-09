@@ -62,7 +62,7 @@ export const MovieDetails = () => {
     }
 
     const url = movie.poster_path ? `${baseURL}${movie.poster_path}` : noMovie;
-    const bgUrl = `${"https://image.tmdb.org/t/p/"}${size.original}${movie.backdrop_path}`;
+    const bgUrl = movie.backdrop_path ? `${"https://image.tmdb.org/t/p/"}${size.original}${movie.backdrop_path}` : false;
 
     const FormatDate = (date) => {
         const day = date.split("-")[2];
@@ -80,7 +80,7 @@ export const MovieDetails = () => {
 
     return (
         <>
-            <BackgroundBlack>
+            <BackgroundBlack bgimage={bgUrl}>
                 <BackgroundImage bgimage={bgUrl}>
                     <HeadTitle>{movie.original_title}</HeadTitle>
                     <RatingWrapper>
