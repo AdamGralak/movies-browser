@@ -5,6 +5,7 @@ import { fetchMoviesList, selectImagePath, selectLoading } from "../../core/movi
 import MoviesList from "../MoviesList";
 import { useEffect } from "react";
 import { Loading } from "../../common/Message/MessageContainer/Loading";
+import { Paginator } from "../../common/Paginator"
 
 export const MoviesListPage = () => {
 
@@ -23,13 +24,16 @@ export const MoviesListPage = () => {
     if (loading === true) return <Loading />;
 
     return (
-        <Container>
-            <Header>Popular movies</Header>
-            <MoviesList
-                movies={movies}
-                baseurl={baseURL}
-            />
-        </Container>
+        <>
+            <Container>
+                <Header>Popular movies</Header>
+                <MoviesList
+                    movies={movies}
+                    baseurl={baseURL}
+                />
+            </Container>
+            <Paginator />
+        </>
     );
 };
 

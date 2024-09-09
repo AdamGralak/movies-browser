@@ -5,6 +5,7 @@ import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import PeopleList from "../PeopleList";
 import { Loading } from "../../common/Message/MessageContainer/Loading";
+import { Paginator } from "../../common/Paginator"
 
 export const PeopleListPage = () => {
     const people = useSelector(selectPeopleImagePath);
@@ -23,13 +24,16 @@ export const PeopleListPage = () => {
     if (loading === true) return <Loading />;
 
     return (
-        <Container>
-            <Header>Popular people</Header>
-            <PeopleList
-                people= {people}
-                baseurl= {baseURL} 
-            />
-        </Container>
+        <>
+            <Container>
+                <Header>Popular people</Header>
+                <PeopleList
+                    people={people}
+                    baseurl={baseURL}
+                />
+            </Container>
+            <Paginator />
+        </>
     )
 };
 
