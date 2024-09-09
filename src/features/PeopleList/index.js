@@ -18,7 +18,7 @@ export const PeopleList = ({ people = [], baseurl, renderinmoviedetails }) => {
                         <Photo photo={url} alt={person.name} />
                         <Wrapper>
                             <Name>{person.name}</Name>
-                            {renderinmoviedetails && <Role>{role !== "undefined" ? role : "uncredited"}</Role>}
+                            {renderinmoviedetails && <Role>{role !== "undefined" ? role : "Unknown"}</Role>}
                         </Wrapper>
                     </StyledLink>
                 );
