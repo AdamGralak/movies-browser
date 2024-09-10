@@ -26,11 +26,9 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
         return <p>No movies data available</p>;
     }
 
-    const getGenreNames = (genreIds) => {
-        return genreIds.map(id => {
-            const genre = genres.find(genre => genre.id === id);
-            return genre ? genre.name : null;
-        }).filter(name => name !== null);
+    const getGenreName = (genreId) => {
+        const genre = genres.find(genre => genre.id === genreId);
+        return genre ? genre.name : null;
     };
 
     const formatNumber = (number) => {
@@ -43,7 +41,6 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
         <Movies>
             {movies.map((movie) => {
                 const url = movie.poster_path ? `${baseurl}${movie.poster_path}` : noMovie;
-                const genreNames = getGenreNames(movie.genre_ids);
                 const role = `${movie.character ? movie.character : movie.department}`;
                 return (
                     <StyledLink to={`/movies/${movie.id}`} key={movie.id}>
@@ -72,9 +69,16 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
                                     }
                                 </Year>
                                 <Categories>
-                                    {genreNames.map((name, index) => (
-                                        <Category key={index}>{name}</Category>
-                                    ))}
+                                    {movie.genre_ids ?
+                                        <>
+                                            {
+                                                movie.genre_ids.map((genre_id) => (
+                                                    <Category key={genre_id}>{getGenreName(genre_id)}</Category>
+                                                ))
+                                            }
+                                        </>
+                                        : ""
+                                    }
                                 </Categories>
                             </Info>
                             <Bottom>
