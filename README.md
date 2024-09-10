@@ -50,6 +50,17 @@ This app is built using modern web technologies to ensure high performance, clea
 - **@media queries**: For making the design responsive across different screen sizes.
 - **Styled Components**: For writing clean, reusable, and scoped CSS in JavaScript.
 
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](./images/home-page.png)
+
+### 📖 Movie Details
+![Movie Details](./images/movie-details.png)
+
+### 👤 Actor Profiles
+![Actor Profiles](./images/actor-profiles.png)
+
 
 # Happy movie browsing! 🍿🎬
 
