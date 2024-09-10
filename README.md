@@ -17,6 +17,39 @@ Welcome to **Movie Browser App** — an interactive application that allows you 
 
 👉 [Movie Browser App](https://adamgralak.github.io/movies-browser/#/movies)
 
+## 🛠️ Technologies Used
+
+This app is built using modern web technologies to ensure high performance, clean code, and maintainability.
+
+### Frontend Technologies
+- **HTML**: Structuring the content of the application.
+- **CSS**: Styling the components and layouts.
+- **JavaScript (ES6+)**: The backbone of the application, leveraging modern JavaScript features.
+
+### Core Libraries & Tools
+- **React**: Core library for building the user interface.
+  - **React-Router**: For seamless navigation between different sections of the app.
+  - **useState**: React hook for managing component-level state.
+  - **useEffect**: React hook for managing side-effects in components.
+  - **useLocation**: For accessing the current location of the app.
+  - **useHistory**: For navigating programmatically between routes.
+  - **custom hooks**: For encapsulating and reusing logic.
+- **Redux Toolkit**: State management for handling complex state and async API requests.
+  - **@reduxjs/toolkit**: For simplifying Redux setup and logic.
+  - **react-redux**: For connecting React components to the Redux store.
+- **Redux Saga**: Handling side effects (like API requests) in a scalable and predictable way.
+  - **JS-generators**: For handling asynchronous actions in Redux Saga.
+- **TMDB API**: For retrieving real-time data on movies and actors.
+- **Webpack**: Module bundler to compile the project and serve optimized assets.
+- **Babel**: Transpiler to ensure compatibility with older browsers.
+- **create-react-app**: Bootstrap tool to set up the React environment.
+
+### CSS Techniques
+- **Grid layout**: For creating flexible and responsive layouts.
+- **Flexbox**: For aligning items within containers.
+- **@media queries**: For making the design responsive across different screen sizes.
+- **Styled Components**: For writing clean, reusable, and scoped CSS in JavaScript.
+
 
 # Happy movie browsing! 🍿🎬
 
