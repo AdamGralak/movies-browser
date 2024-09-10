@@ -3,7 +3,7 @@
 
 Welcome to **Movie Browser App** — an interactive application that allows you to browse the most popular movies and actors using the power of the [The Movie Database (TMDB) API](https://www.themoviedb.org/documentation/api). Discover the latest hits, explore movie details, and dive into the world of your favorite actors!
 
-![Movie Browser App Screenshot](./images/movie-browser-screenshot.png)
+![Movie Browser App Screenshot](./src/images/home-page.png)
 
 ## ✨ Features
 
