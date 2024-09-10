@@ -53,13 +53,13 @@ This app is built using modern web technologies to ensure high performance, clea
 ## 📸 Screenshots
 
 ### 🏠 Home Page
-![Home Page](./images/home-page.png)
+![Home Page](./src/images/home-page.png)
 
 ### 📖 Movie Details
-![Movie Details](./images/movie-details.png)
+![Movie Details](./src/images/movie-details.png)
 
 ### 👤 Actor Profiles
-![Actor Profiles](./images/actor-profiles.png)
+![Actor Profiles](./src/images/actor-profiles.png)
 
 
 # Happy movie browsing! 🍿🎬
