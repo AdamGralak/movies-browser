@@ -32,7 +32,7 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
             return genre ? genre.name : null;
         }).filter(name => name !== null);
     };
-    
+
     const formatNumber = (number) => {
         const rounded = number.toFixed(1);
         const formatted = rounded.replace('.', ',');
@@ -60,12 +60,12 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
                                     {renderinpeopledetails ?
                                         <>
                                             <DisabledOnMobile>{role !== "undefined" ? role : "Unknown"} </DisabledOnMobile>
-                                            {movie.release_date ? 
+                                            {movie.release_date ?
                                                 <><DisabledOnMobile>(</DisabledOnMobile>
-                                                {movie.release_date.split("-")[0]}
-                                                <DisabledOnMobile>)</DisabledOnMobile></> 
+                                                    {movie.release_date.split("-")[0]}
+                                                    <DisabledOnMobile>)</DisabledOnMobile></>
                                                 : ""
-                                            } 
+                                            }
                                         </>
                                         :
                                         <>{movie.release_date ? movie.release_date.split("-")[0] : ""}</>
@@ -78,13 +78,18 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
                                 </Categories>
                             </Info>
                             <Bottom>
-                                <StyledStarIcon />
-                                <Rates>
-                                    {movie.vote_average ? formatNumber(movie.vote_average) : ""}
-                                </Rates>
-                                <Votes>
-                                    {movie.vote_count} votes
-                                </Votes>
+                                {movie.vote_average ?
+                                    <>
+                                        <StyledStarIcon />
+                                        <Rates>
+                                            {movie.vote_average ? formatNumber(movie.vote_average) : ""}
+                                        </Rates>
+                                        <Votes>
+                                            {movie.vote_count} votes
+                                        </Votes>
+                                    </>
+                                    : <Votes>No votes</Votes>
+                                }
                             </Bottom>
                         </Wrapper>
                     </StyledLink>

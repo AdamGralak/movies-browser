@@ -70,7 +70,7 @@ export const MovieDetails = () => {
         const month = date.split("-")[1];
         const year = date.split("-")[0];
         const formattedDate = day + "." + month + "." + year;
-        return formattedDate    
+        return formattedDate
     }
 
     const formatNumber = (number) => {
@@ -85,12 +85,17 @@ export const MovieDetails = () => {
                 <BackgroundImage bgimage={bgUrl}>
                     <HeadTitle>{movie.original_title}</HeadTitle>
                     <RatingWrapper>
-                        <HeadRatingInfo>
-                            <HeadStyledStarIcon />
-                            <HeadRates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</HeadRates>
-                            <HeadSmallerFont>/ 10</HeadSmallerFont>
-                        </HeadRatingInfo>
-                        <HeadVotes>{movie.vote_count} votes</HeadVotes>
+                        {movie.vote_average ?
+                            <>
+                                <HeadRatingInfo>
+                                    <HeadStyledStarIcon />
+                                    <HeadRates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</HeadRates>
+                                    <HeadSmallerFont>/ 10</HeadSmallerFont>
+                                </HeadRatingInfo>
+                                <HeadVotes>{movie.vote_count} votes</HeadVotes>
+                            </>
+                            : <HeadVotes>No votes</HeadVotes>
+                        }
                     </RatingWrapper>
                 </BackgroundImage>
             </BackgroundBlack>
@@ -111,10 +116,15 @@ export const MovieDetails = () => {
                                 ))}
                             </Categories>
                             <RatingInfo>
-                                <StyledStarIcon />
-                                <Rates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</Rates>
-                                <SmallerFont disabledonmobile="true">/ 10</SmallerFont>
-                                <SmallerFont>{movie.vote_count} votes</SmallerFont>
+                                {movie.vote_average ?
+                                    <>
+                                        <StyledStarIcon />
+                                        <Rates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</Rates>
+                                        <SmallerFont disabledonmobile="true">/ 10</SmallerFont>
+                                        <SmallerFont>{movie.vote_count} votes</SmallerFont>
+                                    </>
+                                    : <SmallerFont>No votes</SmallerFont>
+                                }
                             </RatingInfo>
                         </Wrapper>
                         <Description>{movie.overview}</Description>
