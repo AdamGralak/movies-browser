@@ -59,7 +59,7 @@ export const MovieDetails = () => {
     if (loading) return <Loading />;
 
     if (!movie || !credits) {
-        return <p>No data available</p>;
+        return "";
     }
 
     const url = movie.poster_path ? `${baseURL}${movie.poster_path}` : noMovie;
@@ -130,14 +130,20 @@ export const MovieDetails = () => {
                         <Description>{movie.overview}</Description>
                     </MovieInfo>
                 </Section>
-                <Section>
-                    <Header>Cast</Header>
-                    <PeopleList people={credits.cast || []} baseurl={baseURL} renderinmoviedetails={true} />
-                </Section>
-                <Section>
-                    <Header>Crew</Header>
-                    <PeopleList people={credits.crew || []} baseurl={baseURL} renderinmoviedetails={true} />
-                </Section>
+                {credits.cast?.length ?
+                    <Section>
+                        <Header>Cast</Header>
+                        <PeopleList people={credits.cast || []} baseurl={baseURL} renderinmoviedetails={true} />
+                    </Section>
+                    : ""
+                }
+                {credits.crew?.length ?
+                    <Section>
+                        <Header>Crew</Header>
+                        <PeopleList people={credits.crew || []} baseurl={baseURL} renderinmoviedetails={true} />
+                    </Section>
+                    : ""
+                }
             </Container>
         </>
     );
