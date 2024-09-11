@@ -22,7 +22,7 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
     const genresState = useSelector(selectMoviesGenresState);
     const genres = genresState.genres || []; // Pobranie tablicy genres z obiektu genresState
 
-    if (!Array.isArray(movies) || movies.length === 0) {
+    if (!movies.length) {
         return <p>No movies data available</p>;
     }
 

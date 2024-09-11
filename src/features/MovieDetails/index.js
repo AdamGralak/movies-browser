@@ -65,12 +65,9 @@ export const MovieDetails = () => {
     const url = movie.poster_path ? `${baseURL}${movie.poster_path}` : noMovie;
     const bgUrl = movie.backdrop_path ? `${"https://image.tmdb.org/t/p/"}${size.original}${movie.backdrop_path}` : false;
 
-    const FormatDate = (date) => {
-        const day = date.split("-")[2];
-        const month = date.split("-")[1];
-        const year = date.split("-")[0];
-        const formattedDate = day + "." + month + "." + year;
-        return formattedDate
+    const formatDate = (date) => {
+        const [year, month, day] = date.split("-");
+        return `${day}.${month}.${year}`;
     }
 
     const formatNumber = (number) => {
@@ -108,7 +105,7 @@ export const MovieDetails = () => {
                             <Year>{movie.release_date ? movie.release_date.split("-")[0] : ""}</Year>
                             <ProductionRelease>
                                 {(movie.production_countries?.length !== 0) ? <><GreyText>Production:</GreyText> {movie.production_countries?.map(c => c.name).join(", ")}<br /></> : ""}
-                                {movie.release_date ? <><GreyText>Release date:</GreyText> {FormatDate(movie.release_date)}</> : ""}
+                                {movie.release_date ? <><GreyText>Release date:</GreyText> {formatDate(movie.release_date)}</> : ""}
                             </ProductionRelease>
                             <Categories>
                                 {movie.genres?.map(genre => (

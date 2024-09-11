@@ -47,12 +47,9 @@ export const PeopleDetails = () => {
 
     const url = people.profile_path ? `${baseURL}${people.profile_path}` : noPerson;
 
-    const FormatDate = (date) => {
-        const day = date.split("-")[2];
-        const month = date.split("-")[1];
-        const year = date.split("-")[0];
-        const formattedDate = day + "." + month + "." + year;
-        return formattedDate
+    const formatDate = (date) => {
+        const [year, month, day] = date.split("-");
+        return `${day}.${month}.${year}`;
     }
 
     return (
@@ -65,7 +62,7 @@ export const PeopleDetails = () => {
                             {people.name}
                         </Name>
                         <div>
-                            {people.birthday ? <><GreyText><DisabledOnMobile>Date of birth:</DisabledOnMobile><Birth>Birth:</Birth></GreyText> {FormatDate(people.birthday)}<br /></> : ""}
+                            {people.birthday ? <><GreyText><DisabledOnMobile>Date of birth:</DisabledOnMobile><Birth>Birth:</Birth></GreyText> {formatDate(people.birthday)}<br /></> : ""}
 
                             {people.place_of_birth ? <><GreyText>Place of birth:</GreyText> {people.place_of_birth}</> : ""}
                         </div>
