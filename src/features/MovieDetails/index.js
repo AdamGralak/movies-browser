@@ -59,18 +59,15 @@ export const MovieDetails = () => {
     if (loading) return <Loading />;
 
     if (!movie || !credits) {
-        return <p>No data available</p>;
+        return "";
     }
 
     const url = movie.poster_path ? `${baseURL}${movie.poster_path}` : noMovie;
     const bgUrl = movie.backdrop_path ? `${"https://image.tmdb.org/t/p/"}${size.original}${movie.backdrop_path}` : false;
 
-    const FormatDate = (date) => {
-        const day = date.split("-")[2];
-        const month = date.split("-")[1];
-        const year = date.split("-")[0];
-        const formattedDate = day + "." + month + "." + year;
-        return formattedDate    
+    const formatDate = (date) => {
+        const [year, month, day] = date.split("-");
+        return `${day}.${month}.${year}`;
     }
 
     const formatNumber = (number) => {
@@ -85,12 +82,17 @@ export const MovieDetails = () => {
                 <BackgroundImage bgimage={bgUrl}>
                     <HeadTitle>{movie.original_title}</HeadTitle>
                     <RatingWrapper>
-                        <HeadRatingInfo>
-                            <HeadStyledStarIcon />
-                            <HeadRates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</HeadRates>
-                            <HeadSmallerFont>/ 10</HeadSmallerFont>
-                        </HeadRatingInfo>
-                        <HeadVotes>{movie.vote_count} votes</HeadVotes>
+                        {movie.vote_average ?
+                            <>
+                                <HeadRatingInfo>
+                                    <HeadStyledStarIcon />
+                                    <HeadRates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</HeadRates>
+                                    <HeadSmallerFont>/ 10</HeadSmallerFont>
+                                </HeadRatingInfo>
+                                <HeadVotes>{movie.vote_count} votes</HeadVotes>
+                            </>
+                            : <HeadVotes>No votes</HeadVotes>
+                        }
                     </RatingWrapper>
                 </BackgroundImage>
             </BackgroundBlack>
@@ -103,7 +105,7 @@ export const MovieDetails = () => {
                             <Year>{movie.release_date ? movie.release_date.split("-")[0] : ""}</Year>
                             <ProductionRelease>
                                 {(movie.production_countries?.length !== 0) ? <><GreyText>Production:</GreyText> {movie.production_countries?.map(c => c.name).join(", ")}<br /></> : ""}
-                                {movie.release_date ? <><GreyText>Release date:</GreyText> {FormatDate(movie.release_date)}</> : ""}
+                                {movie.release_date ? <><GreyText>Release date:</GreyText> {formatDate(movie.release_date)}</> : ""}
                             </ProductionRelease>
                             <Categories>
                                 {movie.genres?.map(genre => (
@@ -111,23 +113,34 @@ export const MovieDetails = () => {
                                 ))}
                             </Categories>
                             <RatingInfo>
-                                <StyledStarIcon />
-                                <Rates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</Rates>
-                                <SmallerFont disabledonmobile="true">/ 10</SmallerFont>
-                                <SmallerFont>{movie.vote_count} votes</SmallerFont>
+                                {movie.vote_average ?
+                                    <>
+                                        <StyledStarIcon />
+                                        <Rates>{movie.vote_average ? formatNumber(movie.vote_average) : ""}</Rates>
+                                        <SmallerFont disabledonmobile="true">/ 10</SmallerFont>
+                                        <SmallerFont>{movie.vote_count} votes</SmallerFont>
+                                    </>
+                                    : <SmallerFont>No votes</SmallerFont>
+                                }
                             </RatingInfo>
                         </Wrapper>
                         <Description>{movie.overview}</Description>
                     </MovieInfo>
                 </Section>
-                <Section>
-                    <Header>Cast</Header>
-                    <PeopleList people={credits.cast || []} baseurl={baseURL} renderinmoviedetails={true} />
-                </Section>
-                <Section>
-                    <Header>Crew</Header>
-                    <PeopleList people={credits.crew || []} baseurl={baseURL} renderinmoviedetails={true} />
-                </Section>
+                {credits.cast?.length ?
+                    <Section>
+                        <Header>Cast</Header>
+                        <PeopleList people={credits.cast || []} baseurl={baseURL} renderinmoviedetails={true} />
+                    </Section>
+                    : ""
+                }
+                {credits.crew?.length ?
+                    <Section>
+                        <Header>Crew</Header>
+                        <PeopleList people={credits.crew || []} baseurl={baseURL} renderinmoviedetails={true} />
+                    </Section>
+                    : ""
+                }
             </Container>
         </>
     );
