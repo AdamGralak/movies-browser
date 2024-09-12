@@ -1,11 +1,13 @@
-import { call, put, takeLatest } from "redux-saga/effects";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import { fetchPeopleList, fetchPeopleListSucces, fetchPeopleListError } from "./peopleListSlice"
 import { getPeopleFromApi } from "./getPeopleList";
+import { selectactualPage } from "../actual/actualStateSlice";
 
 function* fetchPeopleListHandler() {
     try {
-        const people = yield call(getPeopleFromApi);
         
+        const page = yield select(selectactualPage);
+        const people = yield call(getPeopleFromApi, {page});
         yield put(fetchPeopleListSucces(people));
     } catch (error) {
         yield put(fetchPeopleListError());

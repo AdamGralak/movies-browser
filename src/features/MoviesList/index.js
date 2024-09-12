@@ -20,7 +20,7 @@ import { selectMoviesGenresState } from "../../core/moviesListPage/moviesListSli
 
 export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
     const genresState = useSelector(selectMoviesGenresState);
-    const genres = genresState.genres || []; // Pobranie tablicy genres z obiektu genresState
+    const genres = genresState.genres || [];
 
     if (!movies.length) {
         return <p>No movies data available</p>;

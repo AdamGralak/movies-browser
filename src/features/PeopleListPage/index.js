@@ -1,27 +1,43 @@
-import React, { useEffect } from "react";
-import { fetchPeopleList, selectLoading, selectPeopleImagePath } from "../../core/popularPeople/peopleListSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { Header } from "../../common/Header/styled";
-import { Container } from "../../common/Container/styled";
-import PeopleList from "../PeopleList";
-import { Loading } from "../../common/Message/MessageContainer/Loading";
-import { Paginator } from "../../common/Paginator"
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchPeopleList, selectLoading, selectPeopleImagePath } from '../../core/popularPeople/peopleListSlice';
+import PeopleList from '../PeopleList';
+import { Container } from '../../common/Container/styled';
+import { Header } from '../../common/Header/styled';
+import Paginator from '../../common/Paginator';
+import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
 
 export const PeopleListPage = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { page: urlPage } = useParams();
+    const page = useSelector(selectactualPage);
     const people = useSelector(selectPeopleImagePath);
     const loading = useSelector(selectLoading);
-    const size = {
-        small: "w200",
-        large: "w400",
-    };
-    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.small}`;
 
-    const dispatch = useDispatch();
+    const actualPage = parseInt(urlPage, 10) || 1;
+
+    // Synchronizuj numer strony z Redux
+    useEffect(() => {
+        if (actualPage !== page) {
+            dispatch(setactualPage(actualPage));
+        }
+    }, [actualPage, page, dispatch]);
+
+    // Załaduj dane dla odpowiedniej strony
     useEffect(() => {
         dispatch(fetchPeopleList());
-    }, [dispatch]);
+    }, [dispatch, actualPage]);
 
-    if (loading === true) return <Loading />;
+    // Zaktualizuj URL w razie zmiany numeru strony
+    useEffect(() => {
+        if (page !== actualPage) {
+            navigate(`/people/page/${page}`);
+        }
+    }, [page, navigate, actualPage]);
+
+  if (loading === true) return <Loading />;
 
     return (
         <>

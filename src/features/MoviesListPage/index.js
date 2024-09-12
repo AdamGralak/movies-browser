@@ -1,3 +1,12 @@
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+import { fetchMoviesList, selectImagePath, selectLoading } from '../../core/moviesListPage/moviesListSlice';
+import MoviesList from '../MoviesList';
+import { Container } from '../../common/Container/styled';
+import { Header } from '../../common/Header/styled';
+import Paginator from '../../common/Paginator';
+import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
 import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,20 +17,32 @@ import { Loading } from "../../common/Message/MessageContainer/Loading";
 import { Paginator } from "../../common/Paginator"
 
 export const MoviesListPage = () => {
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const { page: urlPage } = useParams();
+    const page = useSelector(selectactualPage);
     const movies = useSelector(selectImagePath);
     const loading = useSelector(selectLoading);
-    const size = {
-        small: "w200",
-        large: "w400",
-    }
-    const baseURL = `${"https://image.tmdb.org/t/p/"}${size.large}`;
-    const dispatch = useDispatch();
+
+    const actualPage = parseInt(urlPage, 10) || 1;
+
+    useEffect(() => {
+        if (actualPage !== page) {
+            dispatch(setactualPage(actualPage));
+        }
+    }, [actualPage, page, dispatch]);
+
     useEffect(() => {
         dispatch(fetchMoviesList());
-    }, [dispatch]);
+    }, [dispatch, actualPage]);
 
-    if (loading === true) return <Loading />;
+    useEffect(() => {
+        if (page !== actualPage) {
+            navigate(`/movies/page/${page}`);
+        }
+    }, [page, navigate, actualPage]);
+   
+  if (loading === true) return <Loading />;
 
     return (
         <>
