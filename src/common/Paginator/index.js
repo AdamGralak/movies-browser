@@ -21,7 +21,7 @@ import MobileNextPageIcon from './MobileNext.svg';
 import MobileLastPageIcon from './MobileLast.svg';
 import { useEffect, useState } from 'react';
 
-const Paginator = () => {
+export const Paginator = () => {
     const theme = useTheme();
     const dispatch = useDispatch();
     const navigate = useNavigate();

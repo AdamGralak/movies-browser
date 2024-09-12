@@ -1,4 +1,71 @@
-# Getting Started with Create React App
+
+# 🎬 Movie Browser App
+
+Welcome to **Movie Browser App** — an interactive application that allows you to browse the most popular movies and actors using the power of the [The Movie Database (TMDB) API](https://www.themoviedb.org/documentation/api). Discover the latest hits, explore movie details, and dive into the world of your favorite actors!
+
+![Movie Browser App Screenshot](./src/images/home-page.png)
+
+## ✨ Features
+
+- 🔍 **Browse Movies**: Explore popular movies fetched in real-time from TMDB API.
+- 🎥 **Movie Details**: View detailed information such as title, release date, genre, and ratings.
+- 👤 **Actor Profiles**: Check out your favorite actors, see their filmography, and learn more about their careers.
+- 🔄 **Pagination**: Easily navigate through pages of results for movies and actors.
+- 📱 **Responsive Design**: Enjoy the app on both desktop and mobile devices.
+
+## 🚀 Live Demo
+
+👉 [Movie Browser App](https://adamgralak.github.io/movies-browser/#/movies)
+
+## 🛠️ Technologies Used
+
+This app is built using modern web technologies to ensure high performance, clean code, and maintainability.
+
+### Frontend Technologies
+- **HTML**: Structuring the content of the application.
+- **CSS**: Styling the components and layouts.
+- **JavaScript (ES6+)**: The backbone of the application, leveraging modern JavaScript features.
+
+### Core Libraries & Tools
+- **React**: Core library for building the user interface.
+  - **React-Router**: For seamless navigation between different sections of the app.
+  - **useState**: React hook for managing component-level state.
+  - **useEffect**: React hook for managing side-effects in components.
+  - **useLocation**: For accessing the current location of the app.
+  - **useHistory**: For navigating programmatically between routes.
+  - **custom hooks**: For encapsulating and reusing logic.
+- **Redux Toolkit**: State management for handling complex state and async API requests.
+  - **@reduxjs/toolkit**: For simplifying Redux setup and logic.
+  - **react-redux**: For connecting React components to the Redux store.
+- **Redux Saga**: Handling side effects (like API requests) in a scalable and predictable way.
+  - **JS-generators**: For handling asynchronous actions in Redux Saga.
+- **TMDB API**: For retrieving real-time data on movies and actors.
+- **Webpack**: Module bundler to compile the project and serve optimized assets.
+- **Babel**: Transpiler to ensure compatibility with older browsers.
+- **create-react-app**: Bootstrap tool to set up the React environment.
+
+### CSS Techniques
+- **Grid layout**: For creating flexible and responsive layouts.
+- **Flexbox**: For aligning items within containers.
+- **@media queries**: For making the design responsive across different screen sizes.
+- **Styled Components**: For writing clean, reusable, and scoped CSS in JavaScript.
+
+## 📸 Screenshots
+
+### 🏠 Home Page
+![Home Page](./src/images/home-page.png)
+
+### 📖 Movie Details
+![Movie Details](./src/images/movie-details.png)
+
+### 👤 Actor Profiles
+![Actor Profiles](./src/images/actor-profiles.png)
+
+
+# Happy movie browsing! 🍿🎬
+
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -14,11 +81,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -29,42 +91,8 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

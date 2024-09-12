@@ -7,6 +7,14 @@ import { Container } from '../../common/Container/styled';
 import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
 import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
+import { Header } from "../../common/Header/styled";
+import { Container } from "../../common/Container/styled";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchMoviesList, selectImagePath, selectLoading } from "../../core/moviesListPage/moviesListSlice";
+import MoviesList from "../MoviesList";
+import { useEffect } from "react";
+import { Loading } from "../../common/Message/MessageContainer/Loading";
+import { Paginator } from "../../common/Paginator"
 
 export const MoviesListPage = () => {
     const dispatch = useDispatch();
@@ -33,18 +41,20 @@ export const MoviesListPage = () => {
             navigate(`/movies/page/${page}`);
         }
     }, [page, navigate, actualPage]);
-
-    if (loading) return <p>Loading Page (spinner)</p>;
+   
+  if (loading === true) return <Loading />;
 
     return (
-        <Container>
-            <Header>Popular movies</Header>
-            <MoviesList
-                movies={movies}
-                baseurl="https://image.tmdb.org/t/p/w400"
-            />
+        <>
+            <Container>
+                <Header>Popular movies</Header>
+                <MoviesList
+                    movies={movies}
+                    baseurl={baseURL}
+                />
+            </Container>
             <Paginator />
-        </Container>
+        </>
     );
 };
 

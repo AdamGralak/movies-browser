@@ -1,10 +1,11 @@
 import { Container } from "../../Container/styled";
-import { Wrapper, InfoHeader, Icon } from "./styled";
+import { Header } from "../../Header/styled";
+import { Wrapper, Icon } from "./styled";
 
 export const MessageContainer = ({ headerText, IconComponent, iconProps = {} }) => (
   <Container>
+    <Header>{headerText}</Header>
     <Wrapper>
-      <InfoHeader>{headerText}</InfoHeader>
       <Icon as={IconComponent} {...iconProps} />
     </Wrapper>
   </Container>

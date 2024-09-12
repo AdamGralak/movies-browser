@@ -37,18 +37,20 @@ export const PeopleListPage = () => {
         }
     }, [page, navigate, actualPage]);
 
-    if (loading) return <p>Loading Page (spinner)</p>;
+  if (loading === true) return <Loading />;
 
     return (
-        <Container>
-            <Header>Popular people</Header>
-            <PeopleList
-                people={people}
-                baseurl="https://image.tmdb.org/t/p/w200"
-            />
+        <>
+            <Container>
+                <Header>Popular people</Header>
+                <PeopleList
+                    people={people}
+                    baseurl={baseURL}
+                />
+            </Container>
             <Paginator />
-        </Container>
-    );
+        </>
+    )
 };
 
 export default PeopleListPage;

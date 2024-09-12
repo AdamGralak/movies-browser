@@ -17,6 +17,7 @@ import { fetchPeopleDetails, resetPeopleDetails, selectLoading, selectPeopleCred
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Loading } from "../../common/Message/MessageContainer/Loading";
 
 export const PeopleDetails = () => {
     const people = useSelector(selectPeopleDetails);
@@ -38,20 +39,17 @@ export const PeopleDetails = () => {
         };
     }, [dispatch, id]);
 
-    if (loading) return <p>Loading Page (spinner)</p>;
+    if (loading) return <Loading />;
 
     if (!people || !credits) {
-        return <p>No data available</p>;
+        return "";
     }
 
     const url = people.profile_path ? `${baseURL}${people.profile_path}` : noPerson;
 
-    const FormatDate = (date) => {
-        const day = date.split("-")[2];
-        const month = date.split("-")[1];
-        const year = date.split("-")[0];
-        const formattedDate = day + "." + month + "." + year;
-        return formattedDate    
+    const formatDate = (date) => {
+        const [year, month, day] = date.split("-");
+        return `${day}.${month}.${year}`;
     }
 
     return (
@@ -64,32 +62,38 @@ export const PeopleDetails = () => {
                             {people.name}
                         </Name>
                         <div>
-                            {people.birthday ? <><GreyText><DisabledOnMobile>Date of birth:</DisabledOnMobile><Birth>Birth:</Birth></GreyText> {FormatDate(people.birthday)}<br /></> : ""}
-                            
+                            {people.birthday ? <><GreyText><DisabledOnMobile>Date of birth:</DisabledOnMobile><Birth>Birth:</Birth></GreyText> {formatDate(people.birthday)}<br /></> : ""}
+
                             {people.place_of_birth ? <><GreyText>Place of birth:</GreyText> {people.place_of_birth}</> : ""}
                         </div>
                     </Info>
                     <Description>
-                        {people.place_of_birth ? <>{people.biography}</> : ""}        
+                        {people.place_of_birth ? <>{people.biography}</> : ""}
                     </Description>
                 </PersonInfo>
             </Section>
-            <Section>
-                <Header>Movies - cast ({credits.cast?.length})</Header>
-                <MoviesList
-                    movies={credits.cast}
-                    baseurl={baseURL}
-                    renderinpeopledetails={(true)}
-                />
-            </Section>
-            <Section>
-                <Header>Movies - crew ({credits.crew?.length})</Header>
-                <MoviesList
-                    movies={credits.crew}
-                    baseurl={baseURL}
-                    renderinpeopledetails={(true)}
-                />
-            </Section>
+            {credits.cast?.length ?
+                <Section>
+                    <Header>Movies - cast ({credits.cast?.length})</Header>
+                    <MoviesList
+                        movies={credits.cast}
+                        baseurl={baseURL}
+                        renderinpeopledetails={(true)}
+                    />
+                </Section>
+                : ""
+            }
+            {credits.crew?.length ?
+                <Section>
+                    <Header>Movies - crew ({credits.crew?.length})</Header>
+                    <MoviesList
+                        movies={credits.crew}
+                        baseurl={baseURL}
+                        renderinpeopledetails={(true)}
+                    />
+                </Section>
+                : ""
+            }
         </Container>
     );
 };
