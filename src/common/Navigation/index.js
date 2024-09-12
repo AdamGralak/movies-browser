@@ -24,7 +24,7 @@ export const Navigation = () => {
                 </List>
                 <StyledInput
                     type="text"
-                    placeholder={`Search in ${actualLocation}`}
+                    placeholder={`Search for ${actualLocation}...`}
                 />
             </Wrapper>
         </StyledNavigation>
