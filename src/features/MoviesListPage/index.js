@@ -3,18 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchMoviesList, selectImagePath, selectLoading } from '../../core/moviesListPage/moviesListSlice';
 import MoviesList from '../MoviesList';
-import { Container } from '../../common/Container/styled';
 import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
 import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
-import { Header } from "../../common/Header/styled";
 import { Container } from "../../common/Container/styled";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchMoviesList, selectImagePath, selectLoading } from "../../core/moviesListPage/moviesListSlice";
-import MoviesList from "../MoviesList";
-import { useEffect } from "react";
 import { Loading } from "../../common/Message/MessageContainer/Loading";
-import { Paginator } from "../../common/Paginator"
 
 export const MoviesListPage = () => {
     const dispatch = useDispatch();
@@ -23,7 +16,7 @@ export const MoviesListPage = () => {
     const page = useSelector(selectactualPage);
     const movies = useSelector(selectImagePath);
     const loading = useSelector(selectLoading);
-
+    const baseURL = `${"https://image.tmdb.org/t/p/"}${"w500"}`;
     const actualPage = parseInt(urlPage, 10) || 1;
 
     useEffect(() => {

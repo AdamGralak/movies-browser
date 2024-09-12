@@ -7,6 +7,7 @@ import { Container } from '../../common/Container/styled';
 import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
 import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
+import { Loading } from '../../common/Message/MessageContainer/Loading';
 
 export const PeopleListPage = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export const PeopleListPage = () => {
     const page = useSelector(selectactualPage);
     const people = useSelector(selectPeopleImagePath);
     const loading = useSelector(selectLoading);
-
+    const baseURL = `${"https://image.tmdb.org/t/p/"}${"w500"}`;
     const actualPage = parseInt(urlPage, 10) || 1;
 
     // Synchronizuj numer strony z Redux
