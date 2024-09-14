@@ -5,13 +5,9 @@ export const StyledPaginator = styled.div`
     align-items: center;
     justify-content: center;
     gap: 24px;
-    width: 525px;
-    height: 36px;
     margin: 40px auto;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-        width: 232px;
-        height: 24px;
         gap: 8px;
         margin: 32px auto;
     }
@@ -24,14 +20,14 @@ export const BackwardForward = styled.div`
     gap: 12px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-        gap: 4px;
+        gap: 8px;
     }
 `;
 
 export const PaginatorButton = styled.button`
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     gap: 8px;
     height: 36px;
     padding: 8px 16px;
@@ -49,6 +45,13 @@ export const PaginatorButton = styled.button`
 export const ArrowIcon = styled.svg`
     width: 7px;
     height: 11px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
+        width: 5px;
+        height: 8px;
+        margin-left: -2px;
+        margin-right: -2px;
+    }
 `;
 
 export const ButtonText = styled.span`
