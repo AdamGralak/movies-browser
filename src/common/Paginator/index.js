@@ -14,8 +14,7 @@ import {
     ButtonText
 } from './styled';
 
-import { ReactComponent as BackVectorIcon } from './back.svg';
-import { ReactComponent as ForthVectorIcon } from './forth.svg';
+import { ReactComponent as ArrowVectorIcon } from './arrow.svg';
 
 export const Paginator = () => {
     const theme = useTheme();
@@ -47,16 +46,16 @@ export const Paginator = () => {
                 <PaginatorButton onClick={() => handlePageChange(1)} disabled={actualPage === 1}>
                     {isMobile ? (
                         <>
-                            <ArrowIcon as={BackVectorIcon} />
-                            <ArrowIcon as={BackVectorIcon} />
+                            <ArrowIcon as={ArrowVectorIcon} disabled={actualPage === 1} />
+                            <ArrowIcon as={ArrowVectorIcon} disabled={actualPage === 1} />
                         </>
                     ) : (
-                        <ArrowIcon as={BackVectorIcon} />
+                        <ArrowIcon as={ArrowVectorIcon} disabled={actualPage === 1} />
                     )}
                     <ButtonText>First</ButtonText>
                 </PaginatorButton>
                 <PaginatorButton onClick={() => handlePageChange(actualPage - 1)} disabled={actualPage === 1}>
-                    <ArrowIcon as={BackVectorIcon} disabled={actualPage === 1} />
+                    <ArrowIcon as={ArrowVectorIcon} disabled={actualPage === 1} />
                     <ButtonText>Previous</ButtonText>
                 </PaginatorButton>
             </BackwardForward>
@@ -69,17 +68,17 @@ export const Paginator = () => {
             <BackwardForward>
                 <PaginatorButton onClick={() => handlePageChange(actualPage + 1)} disabled={actualPage === 500}>
                     <ButtonText>Next</ButtonText>
-                    <ArrowIcon as={ForthVectorIcon} disabled={actualPage === 500} />
+                    <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
                 </PaginatorButton>
                 <PaginatorButton onClick={() => handlePageChange(500)} disabled={actualPage === 500}>
                     <ButtonText>Last</ButtonText>
                     {isMobile ? (
                         <>
-                            <ArrowIcon as={ForthVectorIcon} />
-                            <ArrowIcon as={ForthVectorIcon} />
+                            <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
+                            <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
                         </>
                     ) : (
-                        <ArrowIcon as={ForthVectorIcon} />
+                        <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
                     )}
                 </PaginatorButton>
             </BackwardForward>

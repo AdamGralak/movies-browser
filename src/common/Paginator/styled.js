@@ -45,6 +45,11 @@ export const PaginatorButton = styled.button`
 export const ArrowIcon = styled.svg`
     width: 7px;
     height: 11px;
+    transform: ${({ rotate }) => rotate ? 'rotate(180deg)' : 'none'};
+
+    .arrow-path {
+        fill: ${({ theme, disabled }) => disabled ? theme.color.darkerGrey : theme.color.blue};
+    }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
         width: 5px;
