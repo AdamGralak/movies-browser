@@ -10,7 +10,8 @@ import {
     PageText,
     PageNumber,
     BackwardForward,
-    ArrowIcon
+    ArrowIcon,
+    ButtonText
 } from './styled';
 
 import { ReactComponent as BackVectorIcon } from './back.svg';
@@ -45,11 +46,11 @@ export const Paginator = () => {
             <BackwardForward>
                 <PaginatorButton onClick={() => handlePageChange(1)} disabled={actualPage === 1}>
                     <ArrowIcon as={BackVectorIcon} disabled={actualPage === 1} />
-                    <span>First</span>
+                    <ButtonText>First</ButtonText>
                 </PaginatorButton>
                 <PaginatorButton onClick={() => handlePageChange(actualPage - 1)} disabled={actualPage === 1}>
                     <ArrowIcon as={BackVectorIcon} disabled={actualPage === 1} />
-                    <span>Previous</span>
+                    <ButtonText>Previous</ButtonText>
                 </PaginatorButton>
             </BackwardForward>
             <PageInfo>
@@ -60,11 +61,11 @@ export const Paginator = () => {
             </PageInfo>
             <BackwardForward>
                 <PaginatorButton onClick={() => handlePageChange(actualPage + 1)} disabled={actualPage === 500}>
-                    <span>Next</span>
+                    <ButtonText>Next</ButtonText>
                     <ArrowIcon as={ForthVectorIcon} disabled={actualPage === 500} />
                 </PaginatorButton>
                 <PaginatorButton onClick={() => handlePageChange(500)} disabled={actualPage === 500}>
-                    <span>Last</span>
+                    <ButtonText>Last</ButtonText>
                     <ArrowIcon as={ForthVectorIcon} disabled={actualPage === 500} />
                 </PaginatorButton>
             </BackwardForward>

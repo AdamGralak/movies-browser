@@ -39,11 +39,6 @@ export const PaginatorButton = styled.button`
     background-color: ${({ theme, disabled }) => disabled ? theme.color.grey : theme.color.lightBlue};
     cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
     border: none;
-    color: ${({ theme }) => theme.color.black};
-
-    &:disabled svg {
-        fill: ${({ theme }) => theme.color.grey};
-    }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
         height: 24px;
@@ -52,15 +47,14 @@ export const PaginatorButton = styled.button`
 `;
 
 export const ArrowIcon = styled.svg`
-    width: 24px;
-    height: 24px;
+    width: 7px;
+    height: 11px;
+`;
 
-    fill: ${({ theme, disabled }) => disabled ? theme.color.grey : theme.color.lightBlue};
-
-    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-        width: 16px;
-        height: 16px;
-    }
+export const ButtonText = styled.span`
+    color: ${({ theme }) => theme.color.black};
+    font-size: 14px;
+    line-height: 19.6px;
 `;
 
 export const PageInfo = styled.div`
