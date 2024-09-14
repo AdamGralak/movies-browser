@@ -55,6 +55,10 @@ export const ButtonText = styled.span`
     color: ${({ theme }) => theme.color.black};
     font-size: 14px;
     line-height: 19.6px;
+
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
+        display: none;
+    }
 `;
 
 export const PageInfo = styled.div`

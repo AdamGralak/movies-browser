@@ -45,7 +45,14 @@ export const Paginator = () => {
         <StyledPaginator>
             <BackwardForward>
                 <PaginatorButton onClick={() => handlePageChange(1)} disabled={actualPage === 1}>
-                    <ArrowIcon as={BackVectorIcon} disabled={actualPage === 1} />
+                    {isMobile ? (
+                        <>
+                            <ArrowIcon as={BackVectorIcon} />
+                            <ArrowIcon as={BackVectorIcon} />
+                        </>
+                    ) : (
+                        <ArrowIcon as={BackVectorIcon} />
+                    )}
                     <ButtonText>First</ButtonText>
                 </PaginatorButton>
                 <PaginatorButton onClick={() => handlePageChange(actualPage - 1)} disabled={actualPage === 1}>
@@ -66,7 +73,14 @@ export const Paginator = () => {
                 </PaginatorButton>
                 <PaginatorButton onClick={() => handlePageChange(500)} disabled={actualPage === 500}>
                     <ButtonText>Last</ButtonText>
-                    <ArrowIcon as={ForthVectorIcon} disabled={actualPage === 500} />
+                    {isMobile ? (
+                        <>
+                            <ArrowIcon as={ForthVectorIcon} />
+                            <ArrowIcon as={ForthVectorIcon} />
+                        </>
+                    ) : (
+                        <ArrowIcon as={ForthVectorIcon} />
+                    )}
                 </PaginatorButton>
             </BackwardForward>
         </StyledPaginator>
