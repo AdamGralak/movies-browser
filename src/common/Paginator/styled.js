@@ -32,36 +32,34 @@ export const PaginatorButton = styled.button`
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 8px;
     height: 36px;
-    border-radius: 5px;
     padding: 8px 16px;
-    background-color: ${({ theme, disabled }) => 
-        disabled ? theme.color.grey : theme.color.lightBlue};
-    cursor: pointer;
+    border-radius: 5px;
+    background-color: ${({ theme, disabled }) => disabled ? theme.color.grey : theme.color.lightBlue};
+    cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
     border: none;
+    color: ${({ theme }) => theme.color.black};
 
-    &:disabled {
-        cursor: not-allowed;
+    &:disabled svg {
+        fill: ${({ theme }) => theme.color.grey};
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-            height: 24px;
-            max-width: 38px;
-            padding: 8px 12px;
-        }
+        height: 24px;
+        padding: 8px 12px;
+    }
 `;
 
-export const ButtonImage = styled.img`
-    width: auto;
-    height: 36px;
+export const ArrowIcon = styled.svg`
+    width: 24px;
+    height: 24px;
+
+    fill: ${({ theme, disabled }) => disabled ? theme.color.grey : theme.color.lightBlue};
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-        height: 23px;
-    }  
-
-    svg .button-background {
-        fill: ${({ theme, disabled }) => 
-            disabled ? theme.color.grey : theme.color.lightBlue};
+        width: 16px;
+        height: 16px;
     }
 `;
 
