@@ -1,13 +1,12 @@
 import React from "react";
-import { Item, List, StyledLogoNavLink, Logo, StyledInput, StyledNavigation, Wrapper, StyledNavLink } from "./styled";
+import { Item, List, StyledLogoNavLink, Logo, StyledNavigation, Wrapper, StyledNavLink } from "./styled";
 import { useDispatch } from "react-redux";
 import { goToFirstPage } from "../../core/actual/actualStateSlice";
-import { useLocation } from "react-router-dom";
+import { SearchInput } from "../../core/search";
 
 export const Navigation = () => {
     const dispatch = useDispatch();
-    const location = useLocation();
-    const actualLocation = location.pathname.includes("movies") ? "movies" : "people";
+    
     return (
         <StyledNavigation>
             <Wrapper>
@@ -22,10 +21,7 @@ export const Navigation = () => {
                         <StyledNavLink to="/people" onClick={() => dispatch(goToFirstPage())}>PEOPLE</StyledNavLink>
                     </Item>
                 </List>
-                <StyledInput
-                    type="text"
-                    placeholder={`Search for ${actualLocation}...`}
-                />
+                <SearchInput/>
             </Wrapper>
         </StyledNavigation>
     );
