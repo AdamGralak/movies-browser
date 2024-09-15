@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     actualPage: 1,
     query: "",
+    actualLocation: "",
 };
 
 const actualState = createSlice({
@@ -18,8 +19,8 @@ const actualState = createSlice({
         setActualQuery: (state, action) => {
             state.query = action.payload;
         },
-        resetQuery: (state) => {
-            state.query = "";
+        setActualLocation: (state, action) => {
+            state.actualLocation = action.payload;
         },
     },
 });
@@ -28,10 +29,11 @@ export const {
     goToFirstPage,
     setactualPage,
     setActualQuery,
-    resetQuery,
+    setActualLocation,
 } = actualState.actions;
 
 export const selectactualPage = (state) => state.actualState.actualPage;
 export const selectActualQuery = (state) => state.actualState.query;
+export const selectActualLocation = (state) => state.actualState.actualLocation;
 
 export default actualState.reducer;

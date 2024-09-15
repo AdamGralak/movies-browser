@@ -1,6 +1,6 @@
 import { accessToken } from "../accessToken";
 
-export const getMoviesFromApi = async ({ page }) => {
+export const getMoviesFromApi = async ({ page, query, actualLocation }) => {
     const options = {
         method: 'GET',
         headers: {
@@ -8,9 +8,13 @@ export const getMoviesFromApi = async ({ page }) => {
             Authorization: `Bearer ${accessToken}`,
         }
     };
-    
+
+    const url = query === ""
+        ? `https://api.themoviedb.org/3/${actualLocation}/popular?language=en-US&page=${page}`
+        : `https://api.themoviedb.org/3/search/${actualLocation}?query=${query}&include_adult=false&language=en-US&page=${page}`;
+
     try {
-        const response = await fetch(`https://api.themoviedb.org/3/movie/popular?language=en-US&page=${page}`, options);
+        const response = await fetch(url, options);
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }

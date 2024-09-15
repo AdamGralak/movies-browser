@@ -1,16 +1,17 @@
-import { call, put, select, takeLatest } from "redux-saga/effects";
+import { call, delay, put, select, takeLatest } from "redux-saga/effects";
 import { fetchMoviesList, fetchMoviesListSucces, fetchMoviesListError, fetchMoviesGenresSucces, fetchMoviesGenresError, fetchMoviesGenres } from "./moviesListSlice";
 import { getMoviesFromApi } from "./getMoviesList";
 import { getMoviesGenresFromApi } from "./getMoviesGenres";
-import { selectactualPage } from "../actual/actualStateSlice";
+import { selectActualLocation, selectactualPage, selectActualQuery } from "../actual/actualStateSlice";
 
 function* fetchMoviesListHandler() {
     try {
+        yield delay (1000);
         const page = yield select(selectactualPage);
-        const movies = yield call(getMoviesFromApi, {page});
-        const genres = yield call(getMoviesGenresFromApi);
+        const query = yield select(selectActualQuery);
+        const actualLocation = yield select(selectActualLocation);
+        const movies = yield call(getMoviesFromApi, {page, query, actualLocation});
         yield put(fetchMoviesListSucces(movies));
-        yield put(fetchMoviesGenresSucces(genres));
     } catch (error) {
         yield put(fetchMoviesListError());
         yield call(alert, "Coś poszło nie tak");
