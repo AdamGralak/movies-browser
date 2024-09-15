@@ -5,7 +5,7 @@ import { fetchMoviesList, selectImagePath, selectLoading } from '../../core/movi
 import MoviesList from '../MoviesList';
 import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
-import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
+import { resetQuery, selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
 import { Container } from "../../common/Container/styled";
 import { Loading } from "../../common/Message/MessageContainer/Loading";
 
@@ -27,6 +27,9 @@ export const MoviesListPage = () => {
 
     useEffect(() => {
         dispatch(fetchMoviesList());
+        return () => {
+            dispatch(resetQuery());
+        };
     }, [dispatch, actualPage]);
 
     useEffect(() => {

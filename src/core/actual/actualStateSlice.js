@@ -18,6 +18,9 @@ const actualState = createSlice({
         setActualQuery: (state, action) => {
             state.query = action.payload;
         },
+        resetQuery: (state) => {
+            state.query = "";
+        },
     },
 });
 
@@ -25,6 +28,7 @@ export const {
     goToFirstPage,
     setactualPage,
     setActualQuery,
+    resetQuery,
 } = actualState.actions;
 
 export const selectactualPage = (state) => state.actualState.actualPage;
