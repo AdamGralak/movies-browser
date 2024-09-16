@@ -1,7 +1,7 @@
 import { ReactComponent as NoResultsIcon } from "../../MessageContainer/NoResultsIcon.svg";
 import { MessageContainer } from "../../MessageContainer";
 
-export const NoResults = ({ searchQuery = "Mulan" }) => (
+export const NoResults = ({ searchQuery }) => (
   <MessageContainer
     headerText={`Sorry, there are no results for "${searchQuery}"`}
     IconComponent={NoResultsIcon}

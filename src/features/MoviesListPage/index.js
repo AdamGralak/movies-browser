@@ -8,6 +8,7 @@ import Paginator from '../../common/Paginator';
 import { selectactualPage, selectActualQuery, setActualLocation, setactualPage } from '../../core/actual/actualStateSlice';
 import { Container } from "../../common/Container/styled";
 import { Loading } from "../../common/Message/MessageContainer/Loading";
+import { NoResults } from '../../common/Message/MessageContainer/NoResults';
 
 export const MoviesListPage = () => {
     const dispatch = useDispatch();
@@ -39,18 +40,25 @@ export const MoviesListPage = () => {
         }
     }, [page, navigate, actualPage]);
 
-    if (loading === true) return <Loading />;
+    if (!movies.length) {
+        if(!query) {
+            return <Loading />
+        }else
+        return <NoResults searchQuery= {query}/>
+    };
 
     return (
         <>
             <Container>
-                <Header>Popular movies</Header>
-                <MoviesList
-                    movies={movies}
-                    baseurl={baseURL}
-                />
+                <Header>
+                    {query ? `Search results for "${query}"` : "Popular movies"}
+                </Header>
+                {loading ?
+                    <Loading />
+                    : <MoviesList movies={movies} baseurl={baseURL} />
+                }
             </Container>
-            <Paginator />
+            {(!query && !loading) ? <Paginator /> : ""}
         </>
     );
 };

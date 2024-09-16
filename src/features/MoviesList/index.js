@@ -22,10 +22,6 @@ export const MoviesList = ({ movies = [], baseurl, renderinpeopledetails }) => {
     const genresState = useSelector(selectMoviesGenresState);
     const genres = genresState.genres || [];
 
-    if (!movies.length) {
-        return <p>No movies data available</p>;
-    }
-
     const getGenreName = (genreId) => {
         const genre = genres.find(genre => genre.id === genreId);
         return genre ? genre.name : null;

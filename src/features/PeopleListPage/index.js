@@ -8,6 +8,7 @@ import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
 import { selectactualPage, selectActualQuery, setActualLocation, setactualPage } from '../../core/actual/actualStateSlice';
 import { Loading } from '../../common/Message/MessageContainer/Loading';
+import { NoResults } from '../../common/Message/MessageContainer/NoResults';
 
 export const PeopleListPage = () => {
     const dispatch = useDispatch();
@@ -46,20 +47,27 @@ export const PeopleListPage = () => {
         }
     }, [page, navigate, actualPage]);
 
-  if (loading === true) return <Loading />;
+    if (!people.length) {
+        if(!query) {
+            return <Loading />
+        }else
+        return <NoResults searchQuery= {query}/>
+    };
 
     return (
         <>
             <Container>
-                <Header>Popular people</Header>
-                <PeopleList
-                    people={people}
-                    baseurl={baseURL}
-                />
+                <Header>
+                    {query ? `Search results for "${query}"` : "Popular people"}
+                </Header>
+                {loading ?
+                    <Loading />
+                    : <PeopleList people={people} baseurl={baseURL} />
+                }
             </Container>
-            <Paginator />
+            {(!query && !loading) ? <Paginator /> : ""}
         </>
-    )
+    );
 };
 
 export default PeopleListPage;

@@ -10,7 +10,6 @@ import { ConnectionError } from './common/Message/ConnectionError';
 import { MovieDetails } from './features/MovieDetails';
 import PeopleDetails from './features/PeopleDetails';
 import { NoResults } from './common/Message/MessageContainer/NoResults';
-import { SearchResults } from './common/Message/MessageContainer/SearchResults';
 import { Loading } from './common/Message/MessageContainer/Loading';
 
 function App() {
@@ -32,9 +31,6 @@ function App() {
           <Route path="/people/:id" element={<PeopleDetails />} />
           <Route path="/people" element={<Navigate to="/people/page/1" />} />
           <Route path="/no-connection" element={<ConnectionError />} />
-          <Route path="/no-results" element={<NoResults />} />
-          <Route path="/search-results" element={<SearchResults />} />
-          <Route path="/loading" element={<Loading />} />
           <Route path="/" element={<Navigate to="/movies/page/1" />} />
         </Routes>
       </HashRouter>
