@@ -8,6 +8,7 @@ import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
 import { selectactualPage, selectActualQuery, setActualLocation, setactualPage } from '../../core/actual/actualStateSlice';
 import { Loading } from '../../common/Message/MessageContainer/Loading';
+import { NoResults } from '../../common/Message/MessageContainer/NoResults';
 
 export const PeopleListPage = () => {
     const dispatch = useDispatch();
@@ -46,7 +47,11 @@ export const PeopleListPage = () => {
         }
     }, [page, navigate, actualPage]);
 
-  if (loading === true) return <Loading />;
+    if (loading === true) return <Loading />;
+
+    if (!people.length) {
+        return <NoResults searchQuery={query} />;
+    }
 
     return (
         <>

@@ -4,10 +4,6 @@ import { People, StyledLink, Photo, Wrapper, Name, Role } from "./styled";
 
 export const PeopleList = ({ people = [], baseurl, renderinmoviedetails }) => {
 
-    if (!Array.isArray(people)) {
-        return <p>No people data available</p>;
-    }
-
     return (
         <People>
             {people.map((person) => {

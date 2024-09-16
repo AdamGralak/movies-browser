@@ -8,6 +8,7 @@ import Paginator from '../../common/Paginator';
 import { selectactualPage, selectActualQuery, setActualLocation, setactualPage } from '../../core/actual/actualStateSlice';
 import { Container } from "../../common/Container/styled";
 import { Loading } from "../../common/Message/MessageContainer/Loading";
+import { NoResults } from '../../common/Message/MessageContainer/NoResults';
 
 export const MoviesListPage = () => {
     const dispatch = useDispatch();
@@ -40,6 +41,10 @@ export const MoviesListPage = () => {
     }, [page, navigate, actualPage]);
 
     if (loading === true) return <Loading />;
+
+    if (!movies.length) {
+        return <NoResults searchQuery= {query}/>;
+    }
 
     return (
         <>
