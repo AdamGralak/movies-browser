@@ -47,24 +47,27 @@ export const PeopleListPage = () => {
         }
     }, [page, navigate, actualPage]);
 
-    if (loading === true) return <Loading />;
-
     if (!people.length) {
-        return <NoResults searchQuery={query} />;
-    }
+        if(!query) {
+            return <Loading />
+        }else
+        return <NoResults searchQuery= {query}/>
+    };
 
     return (
         <>
             <Container>
-                <Header>Popular people</Header>
-                <PeopleList
-                    people={people}
-                    baseurl={baseURL}
-                />
+                <Header>
+                    {query ? `Search results for "${query}"` : "Popular people"}
+                </Header>
+                {loading ?
+                    <Loading />
+                    : <PeopleList people={people} baseurl={baseURL} />
+                }
             </Container>
-            <Paginator />
+            {(!query && !loading) ? <Paginator /> : ""}
         </>
-    )
+    );
 };
 
 export default PeopleListPage;

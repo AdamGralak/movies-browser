@@ -3,7 +3,6 @@ import { MessageContainer } from "../../MessageContainer";
 
 export const Loading = () => (
   <MessageContainer
-    headerText="Loading..."
     IconComponent={SpinnerIcon}
     iconProps={{
       isSpinning: true,

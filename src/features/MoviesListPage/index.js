@@ -40,22 +40,25 @@ export const MoviesListPage = () => {
         }
     }, [page, navigate, actualPage]);
 
-    if (loading === true) return <Loading />;
-
     if (!movies.length) {
-        return <NoResults searchQuery= {query}/>;
-    }
+        if(!query) {
+            return <Loading />
+        }else
+        return <NoResults searchQuery= {query}/>
+    };
 
     return (
         <>
             <Container>
-                <Header>Popular movies</Header>
-                <MoviesList
-                    movies={movies}
-                    baseurl={baseURL}
-                />
+                <Header>
+                    {query ? `Search results for "${query}"` : "Popular movies"}
+                </Header>
+                {loading ?
+                    <Loading />
+                    : <MoviesList movies={movies} baseurl={baseURL} />
+                }
             </Container>
-            <Paginator />
+            {(!query && !loading) ? <Paginator /> : ""}
         </>
     );
 };
