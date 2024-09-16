@@ -23,7 +23,7 @@ export const SearchInput = () => {
     }, [query, queryFromURL, dispatch]);
 
     const onInputChange = ({ target }) => {
-        const newValue = target.value.trim();
+        const newValue = target.value;
         dispatch(setActualQuery(newValue));
 
         replaceQueryParameter({
