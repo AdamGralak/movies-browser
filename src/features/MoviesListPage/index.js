@@ -40,12 +40,13 @@ export const MoviesListPage = () => {
         }
     }, [page, navigate, actualPage]);
 
-    if (!movies.length) {
-        if(!query) {
-            return <Loading />
-        }else
-        return <NoResults searchQuery= {query}/>
+    if (!movies.length && loading === false) {
+        return <NoResults searchQuery={query} />
     };
+
+    if (loading === true) {
+        return <Loading />
+    }
 
     return (
         <>

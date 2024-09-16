@@ -47,12 +47,13 @@ export const PeopleListPage = () => {
         }
     }, [page, navigate, actualPage]);
 
-    if (!people.length) {
-        if(!query) {
-            return <Loading />
-        }else
-        return <NoResults searchQuery= {query}/>
+    if (!people.length && loading === false) {
+        return <NoResults searchQuery={query} />
     };
+
+    if (loading === true) {
+        return <Loading />
+    }
 
     return (
         <>

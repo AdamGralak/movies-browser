@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     loading: false,
+    genresLoading: false,
     movies: [],
     genres: [],
 };
@@ -15,13 +16,13 @@ const moviesListSlice = createSlice({
             state.loading = true;
         },
         fetchMoviesGenres: (state) => {
-            state.loading = true;
+            state.genresLoading = true;
         },
         fetchMoviesListError: (state) => {
-            state.loading = true;
+            state.loading = false;
         },
         fetchMoviesGenresError: (state) => {
-            state.loading = true;
+            state.genresLoading = false;
         },
         fetchMoviesListSucces: (state, { payload: movies }) => {
             state.movies = movies;
@@ -29,7 +30,7 @@ const moviesListSlice = createSlice({
         },
         fetchMoviesGenresSucces: (state, { payload: genres }) => {
             state.genres = genres;
-            state.loading = false;
+            state.genresLoading = false;
         },
     },
 });
