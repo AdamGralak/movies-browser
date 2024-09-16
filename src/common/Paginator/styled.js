@@ -5,13 +5,9 @@ export const StyledPaginator = styled.div`
     align-items: center;
     justify-content: center;
     gap: 24px;
-    width: 525px;
-    height: 36px;
     margin: 40px auto;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-        width: 232px;
-        height: 24px;
         gap: 8px;
         margin: 32px auto;
     }
@@ -24,44 +20,52 @@ export const BackwardForward = styled.div`
     gap: 12px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-        gap: 4px;
+        gap: 8px;
     }
 `;
 
 export const PaginatorButton = styled.button`
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    gap: 8px;
     height: 36px;
-    border-radius: 5px;
     padding: 8px 16px;
-    background-color: ${({ theme, disabled }) => 
-        disabled ? theme.color.grey : theme.color.lightBlue};
-    cursor: pointer;
+    border-radius: 5px;
+    background-color: ${({ theme, disabled }) => disabled ? theme.color.grey : theme.color.lightBlue};
+    cursor: ${({ disabled }) => disabled ? 'not-allowed' : 'pointer'};
     border: none;
 
-    &:disabled {
-        cursor: not-allowed;
+    @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
+        height: 24px;
+        padding: 8px 12px;
+    }
+`;
+
+export const ArrowIcon = styled.svg`
+    width: 7px;
+    height: 11px;
+    transform: ${({ rotate }) => rotate ? 'rotate(180deg)' : 'none'};
+
+    .arrow-path {
+        fill: ${({ theme, disabled }) => disabled ? theme.color.darkerGrey : theme.color.blue};
     }
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-            height: 24px;
-            max-width: 38px;
-            padding: 8px 12px;
-        }
+        width: 5px;
+        height: 8px;
+        margin-left: -2px;
+        margin-right: -2px;
+    }
 `;
 
-export const ButtonImage = styled.img`
-    width: auto;
-    height: 36px;
+export const ButtonText = styled.span`
+    color: ${({ theme }) => theme.color.black};
+    font-size: 14px;
+    line-height: 19.6px;
 
     @media (max-width: ${({ theme }) => theme.breakpoint.mobileMax2}px) {
-        height: 23px;
-    }  
-
-    svg .button-background {
-        fill: ${({ theme, disabled }) => 
-            disabled ? theme.color.grey : theme.color.lightBlue};
+        display: none;
     }
 `;
 

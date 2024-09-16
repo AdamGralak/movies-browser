@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
@@ -5,21 +6,15 @@ import { useTheme } from 'styled-components';
 import {
     StyledPaginator,
     PaginatorButton,
-    ButtonImage,
     PageInfo,
     PageText,
     PageNumber,
-    BackwardForward
+    BackwardForward,
+    ArrowIcon,
+    ButtonText
 } from './styled';
-import FirstPageIcon from './First.svg';
-import PreviousPageIcon from './Previous.svg';
-import NextPageIcon from './Next.svg';
-import LastPageIcon from './Last.svg';
-import MobileFirstPageIcon from './MobileFirst.svg';
-import MobilePreviousPageIcon from './MobilePrevious.svg';
-import MobileNextPageIcon from './MobileNext.svg';
-import MobileLastPageIcon from './MobileLast.svg';
-import { useEffect, useState } from 'react';
+
+import { ReactComponent as ArrowVectorIcon } from './arrow.svg';
 
 export const Paginator = () => {
     const theme = useTheme();
@@ -49,10 +44,19 @@ export const Paginator = () => {
         <StyledPaginator>
             <BackwardForward>
                 <PaginatorButton onClick={() => handlePageChange(1)} disabled={actualPage === 1}>
-                    <ButtonImage src={isMobile ? MobileFirstPageIcon : FirstPageIcon} alt="First page" />
+                    {isMobile ? (
+                        <>
+                            <ArrowIcon as={ArrowVectorIcon} disabled={actualPage === 1} />
+                            <ArrowIcon as={ArrowVectorIcon} disabled={actualPage === 1} />
+                        </>
+                    ) : (
+                        <ArrowIcon as={ArrowVectorIcon} disabled={actualPage === 1} />
+                    )}
+                    <ButtonText>First</ButtonText>
                 </PaginatorButton>
                 <PaginatorButton onClick={() => handlePageChange(actualPage - 1)} disabled={actualPage === 1}>
-                    <ButtonImage src={isMobile ? MobilePreviousPageIcon : PreviousPageIcon} alt="Previous page" />
+                    <ArrowIcon as={ArrowVectorIcon} disabled={actualPage === 1} />
+                    <ButtonText>Previous</ButtonText>
                 </PaginatorButton>
             </BackwardForward>
             <PageInfo>
@@ -63,10 +67,19 @@ export const Paginator = () => {
             </PageInfo>
             <BackwardForward>
                 <PaginatorButton onClick={() => handlePageChange(actualPage + 1)} disabled={actualPage === 500}>
-                    <ButtonImage src={isMobile ? MobileNextPageIcon : NextPageIcon} alt="Next page" />
+                    <ButtonText>Next</ButtonText>
+                    <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
                 </PaginatorButton>
                 <PaginatorButton onClick={() => handlePageChange(500)} disabled={actualPage === 500}>
-                    <ButtonImage src={isMobile ? MobileLastPageIcon : LastPageIcon} alt="Last page" />
+                    <ButtonText>Last</ButtonText>
+                    {isMobile ? (
+                        <>
+                            <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
+                            <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
+                        </>
+                    ) : (
+                        <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
+                    )}
                 </PaginatorButton>
             </BackwardForward>
         </StyledPaginator>
