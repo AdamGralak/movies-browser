@@ -1,28 +1,21 @@
 {
   "files": {
-    "main.js": "/movies-browser/static/js/main.c16d3f92.js",
+    "main.js": "/movies-browser/static/js/main.2ac29d5e.js",
     "static/js/453.2843cbec.chunk.js": "/movies-browser/static/js/453.2843cbec.chunk.js",
     "static/media/logo.svg": "/movies-browser/static/media/logo.edd7a2de519dc85334f791526141c1be.svg",
-    "static/media/Previous.svg": "/movies-browser/static/media/Previous.795f27c69e0eed1a71bb2bc4d5fc9025.svg",
-    "static/media/Last.svg": "/movies-browser/static/media/Last.9f6cebb3326b31892b9f0c13739ce291.svg",
-    "static/media/First.svg": "/movies-browser/static/media/First.54d0436f3e82d27a25b703c9fa87a32d.svg",
-    "static/media/Next.svg": "/movies-browser/static/media/Next.d4a80d9734d2244693352ee8eefa5db7.svg",
     "static/media/NoResultsIcon.svg": "/movies-browser/static/media/NoResultsIcon.d286a671797f1244d0ba26eeaa04cf6f.svg",
     "static/media/StarIcon.svg": "/movies-browser/static/media/StarIcon.9d9d3e3b84561a420af5343482f78b29.svg",
-    "static/media/MobileFirst.svg": "/movies-browser/static/media/MobileFirst.461effbee11c8b5fcd9547dfbdad5b83.svg",
-    "static/media/MobileLast.svg": "/movies-browser/static/media/MobileLast.aaa01a794a520946abd924dc9732ccdb.svg",
     "static/media/noPerson.svg": "/movies-browser/static/media/noPerson.7d47d6943ecf10e95b8e6a657c9235f6.svg",
     "static/media/WarningIcon.svg": "/movies-browser/static/media/WarningIcon.3a34cfbf30425ebf4f5715afb7d139e1.svg",
     "index.html": "/movies-browser/index.html",
     "static/media/noMovie.svg": "/movies-browser/static/media/noMovie.2c288fd559e29ded3f0c04b39bab8f89.svg",
-    "static/media/MobilePrevious.svg": "/movies-browser/static/media/MobilePrevious.8d2cbca6f77123f2a8efb909bd990de1.svg",
-    "static/media/MobileNext.svg": "/movies-browser/static/media/MobileNext.2a5d6c61b1000538f0b4741efabf6921.svg",
+    "static/media/arrow.svg": "/movies-browser/static/media/arrow.615e0f6fa9c80480b38391d54cba6b0a.svg",
     "static/media/SpinnerIcon.svg": "/movies-browser/static/media/SpinnerIcon.c5f29646f52eed97faa98a9f6f43ce08.svg",
     "static/media/searchIcon.svg": "/movies-browser/static/media/searchIcon.7a3478887113ba35d2a160dd99d7d55f.svg",
-    "main.c16d3f92.js.map": "/movies-browser/static/js/main.c16d3f92.js.map",
+    "main.2ac29d5e.js.map": "/movies-browser/static/js/main.2ac29d5e.js.map",
     "453.2843cbec.chunk.js.map": "/movies-browser/static/js/453.2843cbec.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.c16d3f92.js"
+    "static/js/main.2ac29d5e.js"
   ]
 }
