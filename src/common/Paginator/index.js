@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import {
@@ -21,10 +21,9 @@ import { selectPeopleTotalPages } from '../../core/popularPeople/peopleListSlice
 
 export const Paginator = () => {
     const theme = useTheme();
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const { page: page } = useParams();
+    const { page } = useParams();
     const actualPage = parseInt(page, 10) || 1;  // Default to 1 if page is NaN
     const query = useQueryParameter(searchQueryParameter);
     const moviesTotalPages = useSelector(selectMoviesTotalPages);

@@ -1,13 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyledInput } from "../../common/Navigation/styled";
 import { useLocation, useNavigate } from "react-router-dom";
 import useQueryParameter from "./useQueryParameter";
 import useReplaceQueryParameter from "./useReplaceQueryParameter";
 import searchQueryParamName from "./searchQueryParameter";
-import { useDispatch, useSelector } from "react-redux";
 
 export const SearchInput = () => {
-    const dispatch = useDispatch();
     const location = useLocation();
     const navigate = useNavigate();
     const query = useQueryParameter(searchQueryParamName);
@@ -23,9 +21,9 @@ export const SearchInput = () => {
             value: newValue,
         });
 
-        if (actualLocation === "movie"){
+        if (actualLocation === "movie") {
             navigate(`/movies/page/1?${new URLSearchParams({ [searchQueryParamName]: newValue }).toString()}`);
-        } else if (actualLocation === "people"){
+        } else if (actualLocation === "people") {
             navigate(`/people/page/1?${new URLSearchParams({ [searchQueryParamName]: newValue }).toString()}`);
         }
     };
