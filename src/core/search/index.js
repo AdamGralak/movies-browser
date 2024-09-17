@@ -23,9 +23,9 @@ export const SearchInput = () => {
             value: newValue,
         });
 
-        if (actualLocation === "movie" && !location.pathname.startsWith('/movies/page')) {
+        if (actualLocation === "movie"){
             navigate(`/movies/page/1?${new URLSearchParams({ [searchQueryParamName]: newValue }).toString()}`);
-        } else if (actualLocation === "people" && !location.pathname.startsWith('/people/page')) {
+        } else if (actualLocation === "people"){
             navigate(`/people/page/1?${new URLSearchParams({ [searchQueryParamName]: newValue }).toString()}`);
         }
     };

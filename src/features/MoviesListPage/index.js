@@ -28,9 +28,9 @@ export const MoviesListPage = () => {
 
     useEffect(() => {
         query === ""
-        ? navigate(`/movies/page/${actualPage}`)
-        : navigate(`/movies/page/${actualPage}?search=${query}`);
-    }, [navigate, actualPage, query ]);
+            ? navigate(`/movies/page/${actualPage}`)
+            : navigate(`/movies/page/${actualPage}?search=${query}`);
+    }, [navigate, actualPage, query]);
 
     if (!movies.length && loading === false) {
         return <NoResults searchQuery={query} />
@@ -51,7 +51,7 @@ export const MoviesListPage = () => {
                     : <MoviesList movies={movies} baseurl={baseURL} />
                 }
             </Container>
-            {(!query && !loading) ? <Paginator /> : ""}
+            <Paginator />
         </>
     );
 };

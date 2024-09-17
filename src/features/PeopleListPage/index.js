@@ -53,7 +53,7 @@ export const PeopleListPage = () => {
                     : <PeopleList people={people} baseurl={baseURL} />
                 }
             </Container>
-            {(!query && !loading) ? <Paginator /> : ""}
+            <Paginator />
         </>
     );
 };
