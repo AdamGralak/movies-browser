@@ -5,7 +5,6 @@ import useQueryParameter from "./useQueryParameter";
 import useReplaceQueryParameter from "./useReplaceQueryParameter";
 import searchQueryParamName from "./searchQueryParameter";
 import { useDispatch, useSelector } from "react-redux";
-import { selectActualQuery, setActualQuery } from "../actual/actualStateSlice";
 
 export const SearchInput = () => {
     const dispatch = useDispatch();
@@ -13,18 +12,11 @@ export const SearchInput = () => {
     const navigate = useNavigate();
     const query = useQueryParameter(searchQueryParamName);
     const replaceQueryParameter = useReplaceQueryParameter();
-    const queryFromURL = useSelector(selectActualQuery);
     const actualLocation = location.pathname.includes("movies") ? "movie" : "people";
 
-    useEffect(() => {
-        if (query !== queryFromURL) {
-            dispatch(setActualQuery(query));
-        }
-    }, [query, queryFromURL, dispatch]);
 
     const onInputChange = ({ target }) => {
         const newValue = target.value;
-        dispatch(setActualQuery(newValue));
 
         replaceQueryParameter({
             key: searchQueryParamName,

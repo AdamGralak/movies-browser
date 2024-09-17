@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import {
     StyledPaginator,
@@ -21,7 +20,9 @@ export const Paginator = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const actualPage = useSelector(selectactualPage);
+    const increment = page => page++;
+    const decrement = page => page--;
+    const { page: actualPage } = useParams();
 
     const mobileMax2 = theme.breakpoint.mobileMax2;
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileMax2);
@@ -35,7 +36,6 @@ export const Paginator = () => {
     }, [mobileMax2]);
 
     const handlePageChange = (newPage) => {
-        dispatch(setactualPage(newPage));
         const basePath = location.pathname.includes("movies") ? "/movies" : "/people";
         navigate(`${basePath}/page/${newPage}`);
     };

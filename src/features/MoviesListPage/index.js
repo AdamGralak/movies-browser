@@ -5,40 +5,32 @@ import { fetchMoviesList, selectImagePath, selectLoading } from '../../core/movi
 import MoviesList from '../MoviesList';
 import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
-import { selectactualPage, selectActualQuery, setActualLocation, setactualPage } from '../../core/actual/actualStateSlice';
 import { Container } from "../../common/Container/styled";
 import { Loading } from "../../common/Message/MessageContainer/Loading";
 import { NoResults } from '../../common/Message/MessageContainer/NoResults';
+import useQueryParameter from '../../core/search/useQueryParameter';
+import searchQueryParameter from '../../core/search/searchQueryParameter';
 
 export const MoviesListPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
     const { page: urlPage } = useParams();
-    const page = useSelector(selectactualPage);
     const movies = useSelector(selectImagePath);
     const loading = useSelector(selectLoading);
     const baseURL = `${"https://image.tmdb.org/t/p/"}${"w500"}`;
     const actualPage = parseInt(urlPage, 10) || 1;
-    const query = useSelector(selectActualQuery);
     const actualLocation = location.pathname.includes("movies") ? "movie" : "people";
-
-    useEffect(() => {
-        dispatch(setActualLocation(actualLocation)); // Ustawienie actualLocation przy montowaniu
-        if (actualPage !== page) {
-            dispatch(setactualPage(actualPage));
-        }
-    }, [actualPage, page, dispatch, actualLocation]);
-
+    const query = useQueryParameter(searchQueryParameter);
     useEffect(() => {
         dispatch(fetchMoviesList({ page: actualPage, query, actualLocation }));
     }, [dispatch, actualPage, query, actualLocation]);
 
     useEffect(() => {
-        if (page !== actualPage) {
-            navigate(`/movies/page/${page}`);
-        }
-    }, [page, navigate, actualPage]);
+        query === ""
+        ? navigate(`/movies/page/${actualPage}`)
+        : navigate(`/movies/page/${actualPage}?search=${query}`);
+    }, [navigate, actualPage, query ]);
 
     if (!movies.length && loading === false) {
         return <NoResults searchQuery={query} />
