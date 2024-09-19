@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { fetchPeopleList, selectLoading, selectPeopleImagePath } from '../../core/popularPeople/peopleListSlice';
 import PeopleList from '../PeopleList';
 import { Container } from '../../common/Container/styled';
@@ -15,31 +15,33 @@ export const PeopleListPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const { page: urlPage } = useParams();
+
+    const queryPage = useQueryParameter('page');
+    const actualPage = parseInt(queryPage, 10) || 1;
+    
+    const query = useQueryParameter(searchQueryParameter);
+
     const people = useSelector(selectPeopleImagePath);
     const loading = useSelector(selectLoading);
     const baseURL = `${"https://image.tmdb.org/t/p/"}${"w500"}`;
-    const actualPage = parseInt(urlPage, 10) || 1;
     const actualLocation = location.pathname.includes("movies") ? "movie" : "people";
-    const query = useQueryParameter(searchQueryParameter);
 
     useEffect(() => {
         dispatch(fetchPeopleList({ page: actualPage, query, actualLocation }));
     }, [dispatch, actualPage, query, actualLocation]);
 
-
     useEffect(() => {
-        query === ""
-            ? navigate(`/people/page/${actualPage}`)
-            : navigate(`/people/page/${actualPage}?search=${query}`);
-    }, [navigate, actualPage, query]);
+        const searchParams = new URLSearchParams(location.search);
+        if (query !== "") {
+            searchParams.set('search', query);
+        }
+        searchParams.set('page', actualPage);
+        
+        navigate(`${location.pathname}?${searchParams.toString()}`, { replace: true });
+    }, [navigate, actualPage, query, location.pathname]);
 
-    if (!people.length && loading === false) {
+    if (!people.length && !loading) {
         return <NoResults searchQuery={query} />
-    };
-
-    if (loading === true) {
-        return <Loading />
     }
 
     return (
@@ -48,12 +50,9 @@ export const PeopleListPage = () => {
                 <Header>
                     {query ? `Search results for "${query}"` : "Popular people"}
                 </Header>
-                {loading ?
-                    <Loading />
-                    : <PeopleList people={people} baseurl={baseURL} />
-                }
+                {loading ? <Loading /> : <PeopleList people={people} baseurl={baseURL} />}
             </Container>
-            <Paginator />
+            {!loading ? <Paginator /> : ""}
         </>
     );
 };

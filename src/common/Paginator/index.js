@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import {
     StyledPaginator,
@@ -23,9 +23,9 @@ export const Paginator = () => {
     const theme = useTheme();
     const navigate = useNavigate();
     const location = useLocation();
-    const { page } = useParams();
-    const actualPage = parseInt(page, 10) || 1;  // Default to 1 if page is NaN
     const query = useQueryParameter(searchQueryParameter);
+    const page = useQueryParameter('page');
+    const actualPage = parseInt(page, 10) || 1;
     const moviesTotalPages = useSelector(selectMoviesTotalPages);
     const peopleTotalPages = useSelector(selectPeopleTotalPages);
 
@@ -45,9 +45,14 @@ export const Paginator = () => {
     const lastPage = totalPages > 500 ? 500 : totalPages;
 
     const handlePageChange = (newPage) => {
-        query === ""
-            ? navigate(`${basePath}/page/${newPage}`)
-            : navigate(`${basePath}/page/${newPage}?search=${query}`);
+        const searchParams = new URLSearchParams(location.search);
+        searchParams.set('page', newPage);
+        
+        if (query !== "") {
+            searchParams.set('search', query);
+        }
+
+        navigate(`${location.pathname}?${searchParams.toString()}`);
     };
 
     return (

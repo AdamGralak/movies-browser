@@ -10,7 +10,7 @@ export const SearchInput = () => {
     const navigate = useNavigate();
     const query = useQueryParameter(searchQueryParamName);
     const replaceQueryParameter = useReplaceQueryParameter();
-    const actualLocation = location.pathname.includes("movies") ? "movie" : "people";
+    const actualLocation = location.pathname.includes("movies") ? "movies" : "people";
 
 
     const onInputChange = ({ target }) => {
@@ -21,17 +21,17 @@ export const SearchInput = () => {
             value: newValue,
         });
 
-        if (actualLocation === "movie") {
-            navigate(`/movies/page/1?${new URLSearchParams({ [searchQueryParamName]: newValue }).toString()}`);
+        if (actualLocation === "movies") {
+            navigate(`/movies/?page=1&${new URLSearchParams({ [searchQueryParamName]: newValue }).toString()}`);
         } else if (actualLocation === "people") {
-            navigate(`/people/page/1?${new URLSearchParams({ [searchQueryParamName]: newValue }).toString()}`);
+            navigate(`/people/?page=1&${new URLSearchParams({ [searchQueryParamName]: newValue }).toString()}`);
         }
     };
 
     return (
         <StyledInput
             type="text"
-            placeholder={`Search ${actualLocation}...`}
+            placeholder={`Search for ${actualLocation}...`}
             value={query || ""}
             onChange={onInputChange}
         />

@@ -1,8 +1,8 @@
 import { useLocation } from "react-router-dom";
 
-const useQueryParameter = (searchQueryParamName) => {
+const useQueryParameter = (queryParamName) => {
     const location = useLocation();
-    const value = new URLSearchParams(location.search).get(searchQueryParamName);
+    const value = new URLSearchParams(location.search).get(queryParamName);
     return value !== null ? value : "";
 };
 
