@@ -9,8 +9,6 @@ import { fetchMoviesGenres } from './core/moviesListPage/moviesListSlice';
 import { ConnectionError } from './common/Message/ConnectionError';
 import { MovieDetails } from './features/MovieDetails';
 import PeopleDetails from './features/PeopleDetails';
-import { NoResults } from './common/Message/MessageContainer/NoResults';
-import { Loading } from './common/Message/MessageContainer/Loading';
 
 function App() {
   const dispatch = useDispatch();
