@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { selectactualPage, setactualPage } from '../../core/actual/actualStateSlice';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useTheme } from 'styled-components';
 import {
     StyledPaginator,
@@ -15,13 +14,20 @@ import {
 } from './styled';
 
 import { ReactComponent as ArrowVectorIcon } from './arrow.svg';
+import useQueryParameter from '../../core/search/useQueryParameter';
+import searchQueryParameter from '../../core/search/searchQueryParameter';
+import { selectMoviesTotalPages } from '../../core/moviesListPage/moviesListSlice';
+import { selectPeopleTotalPages } from '../../core/popularPeople/peopleListSlice';
 
 export const Paginator = () => {
     const theme = useTheme();
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const location = useLocation();
-    const actualPage = useSelector(selectactualPage);
+    const { page } = useParams();
+    const actualPage = parseInt(page, 10) || 1;  // Default to 1 if page is NaN
+    const query = useQueryParameter(searchQueryParameter);
+    const moviesTotalPages = useSelector(selectMoviesTotalPages);
+    const peopleTotalPages = useSelector(selectPeopleTotalPages);
 
     const mobileMax2 = theme.breakpoint.mobileMax2;
     const [isMobile, setIsMobile] = useState(window.innerWidth <= mobileMax2);
@@ -34,10 +40,14 @@ export const Paginator = () => {
         return () => window.removeEventListener('resize', handleResize);
     }, [mobileMax2]);
 
+    const basePath = location.pathname.includes("movies") ? "/movies" : "/people";
+    const totalPages = basePath === "/movies" ? moviesTotalPages : peopleTotalPages;
+    const lastPage = totalPages > 500 ? 500 : totalPages;
+
     const handlePageChange = (newPage) => {
-        dispatch(setactualPage(newPage));
-        const basePath = location.pathname.includes("movies") ? "/movies" : "/people";
-        navigate(`${basePath}/page/${newPage}`);
+        query === ""
+            ? navigate(`${basePath}/page/${newPage}`)
+            : navigate(`${basePath}/page/${newPage}?search=${query}`);
     };
 
     return (
@@ -63,22 +73,22 @@ export const Paginator = () => {
                 <PageText>Page</PageText>
                 <PageNumber>{actualPage}</PageNumber>
                 <PageText>of</PageText>
-                <PageNumber>500</PageNumber>
+                <PageNumber>{lastPage}</PageNumber>
             </PageInfo>
             <BackwardForward>
-                <PaginatorButton onClick={() => handlePageChange(actualPage + 1)} disabled={actualPage === 500}>
+                <PaginatorButton onClick={() => handlePageChange(actualPage + 1)} disabled={actualPage >= lastPage}>
                     <ButtonText>Next</ButtonText>
-                    <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
+                    <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage >= lastPage} />
                 </PaginatorButton>
-                <PaginatorButton onClick={() => handlePageChange(500)} disabled={actualPage === 500}>
+                <PaginatorButton onClick={() => handlePageChange(lastPage)} disabled={actualPage >= lastPage}>
                     <ButtonText>Last</ButtonText>
                     {isMobile ? (
                         <>
-                            <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
-                            <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
+                            <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage >= lastPage} />
+                            <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage >= lastPage} />
                         </>
                     ) : (
-                        <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage === 500} />
+                        <ArrowIcon as={ArrowVectorIcon} rotate disabled={actualPage >= lastPage} />
                     )}
                 </PaginatorButton>
             </BackwardForward>

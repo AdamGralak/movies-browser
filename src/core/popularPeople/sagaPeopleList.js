@@ -1,14 +1,11 @@
-import { call, delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, delay, put, takeLatest } from "redux-saga/effects";
 import { fetchPeopleList, fetchPeopleListSucces, fetchPeopleListError } from "./peopleListSlice"
 import { getPeopleFromApi } from "./getPeopleList";
-import { selectActualLocation, selectactualPage, selectActualQuery } from "../actual/actualStateSlice";
 
-function* fetchPeopleListHandler() {
+function* fetchPeopleListHandler(action) {
     try {
         yield delay (1000);
-        const page = yield select(selectactualPage);
-        const query = yield select(selectActualQuery);
-        const actualLocation = yield select(selectActualLocation);
+        const { page, query, actualLocation } = action.payload;
         const people = yield call(getPeopleFromApi, { page, query, actualLocation });
         yield put(fetchPeopleListSucces(people));
     } catch (error) {
