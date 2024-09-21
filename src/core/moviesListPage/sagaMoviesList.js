@@ -5,10 +5,14 @@ import { getMoviesGenresFromApi } from "./getMoviesGenres";
 
 function* fetchMoviesListHandler(action) {
     try {
-        yield delay (1000);
+        yield delay(1000);
         const { page, query, actualLocation } = action.payload;
-        const movies = yield call(getMoviesFromApi, {page, query, actualLocation});
-        yield put(fetchMoviesListSucces(movies));
+        const movies = yield call(getMoviesFromApi, { page, query, actualLocation });
+        if (movies === null) {
+            yield put(fetchMoviesListError());
+        } else {
+            yield put(fetchMoviesListSucces(movies));
+        }
     } catch (error) {
         yield put(fetchMoviesListError());
         yield call(alert, "Coś poszło nie tak");

@@ -4,10 +4,15 @@ import { getPeopleFromApi } from "./getPeopleList";
 
 function* fetchPeopleListHandler(action) {
     try {
-        yield delay (1000);
+        yield delay(1000);
         const { page, query, actualLocation } = action.payload;
         const people = yield call(getPeopleFromApi, { page, query, actualLocation });
         yield put(fetchPeopleListSucces(people));
+        if (people === null) {
+            yield put(fetchPeopleListError());
+        } else {
+            yield put(fetchPeopleListSucces(people));
+        }
     } catch (error) {
         yield put(fetchPeopleListError());
         yield call(alert, "Coś poszło nie tak");
