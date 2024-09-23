@@ -51,7 +51,7 @@ const selectMoviesState = state => state.movies;
 
 export const selectMoviesGenresState = state => state.movies.genres;
 export const selectMovies = state => selectMoviesState(state).movies;
-export const selectMoviesTotalPages = state => (state.people.people && state.people.people.total_pages) || 0;
+export const selectMoviesTotalPages = state => selectMoviesState(state).movies.total_pages;
 export const selectLoading = state => selectMoviesState(state).loading;
 export const selectImagePath = state => (state.movies.movies && state.movies.movies.results) || [];
 export const selectResponeOk = state => selectMoviesState(state).responseOk;
