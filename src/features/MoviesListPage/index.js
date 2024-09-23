@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { fetchMoviesList, selectImagePath, selectLoading } from '../../core/moviesListPage/moviesListSlice';
+import { fetchMoviesList, selectImagePath, selectLoading, selectResponeOk } from '../../core/moviesListPage/moviesListSlice';
 import MoviesList from '../MoviesList';
 import { Header } from '../../common/Header/styled';
 import Paginator from '../../common/Paginator';
@@ -10,6 +10,7 @@ import { Loading } from "../../common/Message/MessageContainer/Loading";
 import { NoResults } from '../../common/Message/MessageContainer/NoResults';
 import useQueryParameter from '../../core/search/useQueryParameter';
 import searchQueryParameter from '../../core/search/searchQueryParameter';
+import { ConnectionError } from '../../common/Message/ConnectionError';
 
 export const MoviesListPage = () => {
     const dispatch = useDispatch();
@@ -20,7 +21,7 @@ export const MoviesListPage = () => {
     const actualPage = parseInt(queryPage, 10) || 1; 
 
     const query = useQueryParameter(searchQueryParameter);
-
+    const responseOk = useSelector(selectResponeOk);
     const movies = useSelector(selectImagePath);
     const loading = useSelector(selectLoading);
     const baseURL = `${"https://image.tmdb.org/t/p/"}${"w500"}`;
@@ -42,6 +43,10 @@ export const MoviesListPage = () => {
 
     if (!movies.length && !loading) {
         return <NoResults searchQuery={query} />
+    }
+
+    if (!responseOk) {
+        return <ConnectionError />
     }
 
     return (
