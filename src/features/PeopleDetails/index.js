@@ -18,6 +18,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Loading } from "../../common/Message/MessageContainer/Loading";
+import { ConnectionError } from "../../common/Message/ConnectionError";
 
 export const PeopleDetails = () => {
     const people = useSelector(selectPeopleDetails);
@@ -41,8 +42,8 @@ export const PeopleDetails = () => {
 
     if (loading) return <Loading />;
 
-    if (!people || !credits) {
-        return "";
+    if (people === null) {
+        return <ConnectionError />;;
     }
 
     const url = people.profile_path ? `${baseURL}${people.profile_path}` : noPerson;

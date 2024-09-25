@@ -34,6 +34,7 @@ import { fetchMovieDetails, selectLoading, selectMovieCredits, selectMovieDetail
 import { useEffect } from "react";
 import { resetMovieDetails } from "../../core/moviesDetails/movieDetailsSlice";
 import { Loading } from "../../common/Message/MessageContainer/Loading";
+import { ConnectionError } from "../../common/Message/ConnectionError";
 
 export const MovieDetails = () => {
     const movie = useSelector(selectMovieDetails);
@@ -58,8 +59,8 @@ export const MovieDetails = () => {
 
     if (loading) return <Loading />;
 
-    if (!movie || !credits) {
-        return "";
+    if (movie === null) {
+        return <ConnectionError />;;
     }
 
     const url = movie.poster_path ? `${baseURL}${movie.poster_path}` : noMovie;
