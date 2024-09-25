@@ -59,7 +59,7 @@ export const MovieDetails = () => {
 
     if (loading) return <Loading />;
 
-    if (movie === null) {
+    if (movie === null || credits === null) {
         return <ConnectionError />;;
     }
 

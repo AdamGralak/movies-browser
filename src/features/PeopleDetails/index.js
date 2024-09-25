@@ -42,7 +42,7 @@ export const PeopleDetails = () => {
 
     if (loading) return <Loading />;
 
-    if (people === null) {
+    if (people === null || credits === null) {
         return <ConnectionError />;;
     }
 
